@@ -1,0 +1,1 @@
+This is a splash page for showing artist info.
