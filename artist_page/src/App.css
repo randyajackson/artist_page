@@ -29,7 +29,7 @@ span.tagLineSecond {
 }
 
 ul {
-  padding: 100em;
+  padding: 2em;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -58,13 +58,13 @@ img.results {
   }
 }
 
-@media (max-height: 480px) {
+@media (max-height: 375px) {
   li {
     height: 80vh;
   }
 }
 
-@media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+@media (max-aspect-ratio: 1/1) and (max-width: 375px) {
   ul {
     flex-direction: row;
   }
