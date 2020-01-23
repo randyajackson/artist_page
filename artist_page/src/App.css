@@ -1,3 +1,4 @@
+
 .topDisplay {
   display: block;
   font-family: 'Barlow', sans-serif;
@@ -32,31 +33,19 @@ span.tagLineSecond {
   color: red;
 }
 
-div.artistsContainer{
-  display: block;
-  width: auto;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 section.artists {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
 
-div.card {
-  height: 25%;
-  flex-grow: 2;
-  align-content: center;
+section.artists > div.card{
+  width: 25%;
+  height: 500px;
 }
 
-img.results {
-  max-height: 100%;
-  min-width: 100%;
-  object-fit: cover;
-  vertical-align: bottom;
+section.artists > img.results {
+  height: 10px; 
 }
+
 

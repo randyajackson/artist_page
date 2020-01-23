@@ -1,6 +1,15 @@
 import React from 'react';
 import './App.css';
 import logo from './img/logo.png';
+import a1 from './img/1.jpg';
+import a2 from './img/2.jpg';
+import a3 from './img/3.jpg';
+import a4 from './img/4.jpg';
+import a5 from './img/5.jpg';
+import a6 from './img/6.jpg';
+import a7 from './img/7.jpg';
+import a8 from './img/8.jpg';
+
 
 
 
@@ -21,52 +30,45 @@ const App: React.FC = () => {
 
     </div>
     <br/>
-  
-    <div className= "artistsContainer">
-      <section className= "artists">
+    
+    <section className= "artists">
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05586_oj8jfo.jpg" alt="none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a1} alt="none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05459_ziuomy.jpg" alt = "none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a2} alt = "none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg" alt="none"></img>
-          
-        </div>
+      <div className="card">
+        <img className = "results" src = {a3} alt="none"></img>
+        
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814784/photostream-photos/DSC05624_f5b2ud.jpg" alt = "none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a4}  alt = "none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05559_hu49zx.jpg" alt="none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a5}  alt="none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg" alt = "none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a6}  alt = "none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05565_dx5rp6.jpg" alt="none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a7}  alt="none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05469_fdxdzx.jpg" alt = "none"></img>
-        </div>
+      <div className="card">
+        <img className = "results" src = {a8}  alt = "none"></img>
+      </div>
 
-        <div className="card">
-          <img className = "results" src = "https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814781/photostream-photos/DSC05483_dyiuya.jpg" alt = "none"></img>
-        </div>
-
-      </section>
-    </div>
-
-
+    </section>
   </div>
+
   );
 
 };
