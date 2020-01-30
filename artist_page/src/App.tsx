@@ -1,19 +1,19 @@
 import React from 'react';
 import './App.css';
 import logo from './img/logo.png';
-import a1 from './img/1.jpg';
-import a2 from './img/2.jpg';
-import a3 from './img/3.jpg';
-import a4 from './img/4.jpg';
-import a5 from './img/5.jpg';
-import a6 from './img/6.jpg';
-import a7 from './img/7.jpg';
-import a8 from './img/8.jpg';
 
+import Masonry from 'react-masonry-component';
 
-
+const masonryOptions = {
+  columnWidth: 100,
+  horizontalOrder: true,
+  fitWidth: true,
+  transitionDuration: '0.8s',
+  stagger: '0.03s'
+};
 
 const App: React.FC = () => {
+
   return (
   <div>
     
@@ -31,42 +31,45 @@ const App: React.FC = () => {
     </div>
     <br/>
     
-    <section className= "artists">
-
-      <div className="card">
-        <img className = "results" src = {a1} alt="none"></img>
+    <Masonry
+                className={'grid-item'}
+                elementType={'div'}
+                options={masonryOptions}
+    >
+      <div className="grid-item">
+        <img src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a2} alt = "none"></img>
+      <div className="grid-item">
+        <img src = "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/75238076/original/d274960485df2a5b8b3e9960c2c9dda01eb8237d/ask-20-random-strangers-to-choose-your-best-profile-picture.jpg" alt = "none"></img>
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a3} alt="none"></img>
+      <div className="grid-item">
+        <img src = "https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png" alt="none"></img>
         
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a4}  alt = "none"></img>
+      <div className="grid-item">
+        <img src = "https://catchmycar.files.wordpress.com/2011/06/tobey-maguire-very-upset.jpg"  alt = "none"></img>
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a5}  alt="none"></img>
+      <div className="grid-item">
+        <img src = "https://www.connollysdoitbest.com/Data/ItemImage-160565-2524294.jpg?AutoCrop=1&CropHeight=1440&CropWidth=1440&Resize=Smallest&Revision=0Hd&Timestamp=fkwbVG&Width=1440"  alt="none"></img>
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a6}  alt = "none"></img>
+      <div className="grid-item">
+        <img src = "http://i.imgur.com/6YSV2I3.gif" alt = "none"></img>
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a7}  alt="none"></img>
+      <div className="grid-item">
+        <img src = "https://avatars0.githubusercontent.com/u/22890813?s=460&v=4"  alt="none"></img>
       </div>
 
-      <div className="card">
-        <img className = "results" src = {a8}  alt = "none"></img>
+      <div className="grid-item">
+        <img src = "https://www.researchgate.net/profile/Jussi_Poikonen/publication/265265707/figure/fig3/AS:669496293478407@1536631763215/Power-delay-profile-of-one-realization-of-a-random-exponentialPDP-WSSUS-channel.png" alt = "none"></img>
       </div>
 
-    </section>
+    </Masonry>
   </div>
 
   );
