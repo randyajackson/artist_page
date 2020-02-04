@@ -1,4 +1,3 @@
-
 .topDisplay {
   display: block;
   font-family: 'Barlow', sans-serif;
@@ -13,14 +12,13 @@
 }
 
 .logo {
-  width: 6em;
+  width: 100%;
 }
 
 div.featuredText{
   text-align:center;
   margin-left: 0px;
   margin-right: 0px;
-  
 }
 
 span.tagLineFirst {
@@ -36,5 +34,11 @@ span.tagLineSecond {
 .grid-item {
   margin: 0 auto;
 }
+
+.grid-item img {
+  max-width: 400px;
+  min-width: 400px;
+}
+
 
 

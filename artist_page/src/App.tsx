@@ -5,7 +5,7 @@ import logo from './img/logo.png';
 import Masonry from 'react-masonry-component';
 
 const masonryOptions = {
-  columnWidth: 100,
+  columnWidth: 50,
   horizontalOrder: true,
   fitWidth: true,
   transitionDuration: '0.8s',
@@ -29,6 +29,7 @@ const App: React.FC = () => {
       </div>
 
     </div>
+    <br/>
     <br/>
     
     <Masonry
