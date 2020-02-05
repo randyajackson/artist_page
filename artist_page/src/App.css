@@ -40,5 +40,53 @@ span.tagLineSecond {
   min-width: 400px;
 }
 
+div.artistName {
+  position: absolute;
+  left: -5%;
+  top: 50%;
+}
+
+span.artistName {
+  font-size: 3rem;
+  color: red;
+}
+
+p.artistName {
+  font-family: 'Barlow', sans-serif;
+  font-size: 2rem;
+  color: black;
+
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1);
+  
+  -webkit-animation-name: floating;
+          animation-name: floating;
+  -webkit-animation-duration: 15s;
+          animation-duration: 15s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  from {
+    -webkit-transform: translate(0, 0px) rotateY(-6deg);
+            transform: translate(0, 0px) rotateY(-6deg);
+    text-shadow: 5px 5px 3px rgba(0,0,0,0.15);
+  }
+  65% {
+    -webkit-transform: translate(0, 15px) rotateY(10deg) rotateX(10deg);
+            transform: translate(0, 15px) rotateY(10deg) rotateX(10deg);
+    text-shadow: -5px -5px 3px rgba(0,0,0,0.15);
+  }
+  to {
+    -webkit-transform: translate(0, 0px) rotateY(-6deg);
+            transform: translate(0, 0px) rotateY(-6deg);
+    text-shadow: 5px 5px 3px rgba(0,0,0,0.15);
+  }
+}
+
+
+
 
 
