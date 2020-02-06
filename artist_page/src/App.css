@@ -31,8 +31,23 @@ span.tagLineSecond {
   color: red;
 }
 
+@media only screen and (max-width: 500px) {
+
+  .grid-item {
+    margin: 0 auto;
+    padding-left: 10%;
+  }
+
+  div.artistName {
+    z-index: 1;
+  }
+
+
+}
+
 .grid-item {
   margin: 0 auto;
+  
 }
 
 .grid-item img {
@@ -40,10 +55,16 @@ span.tagLineSecond {
   min-width: 400px;
 }
 
+.grid-item img:hover{
+  opacity: 0;
+  transition: .5s ease-in-out;
+}
+
 div.artistName {
   position: absolute;
-  left: -5%;
+  left: -10%;
   top: 50%;
+  
 }
 
 span.artistName {
@@ -55,6 +76,7 @@ p.artistName {
   font-family: 'Barlow', sans-serif;
   font-size: 2rem;
   color: black;
+  background: rgba(255, 255, 255, 0.747);
 
   text-shadow: 2px 2px 2px rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1);
   
