@@ -40,6 +40,7 @@ const App: React.FC = () => {
       <div className="grid-item">
         <img src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
         <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
+        <div className="mouseOverButtons">These are where mouseover buttons go.</div>
       </div>
 
       <div className="grid-item">
