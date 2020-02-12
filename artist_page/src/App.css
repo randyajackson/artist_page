@@ -35,7 +35,7 @@ span.tagLineSecond {
 
   .grid-item {
     margin: 0 auto;
-    padding-left: 10%;
+    padding-left: 5%;
   }
 
   div.artistName {
@@ -67,7 +67,7 @@ span.tagLineSecond {
 div.artistName {
   position: absolute;
   left: -10%;
-  top: 50%;
+  top: 55%;
   
 }
 
@@ -114,29 +114,36 @@ p.artistName {
 
 .overlay {
   position: absolute;
-  top: 0;
+  top: 20%;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 50%;
   width: 100%;
   opacity: 0;
   transition: .5s ease;
 }
 
 .overlay_buttons {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.break {
+  width: 100%;
 }
 
 .social_icon {
   max-width: 20%;
 }
+
+#donate {
+  width: 35%;
+}
+
 
 
 
