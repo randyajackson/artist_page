@@ -35,14 +35,24 @@ span.tagLineSecond {
 
   .grid-item {
     margin: 0 auto;
-    padding-left: 5%;
+    padding-left: 10%;
   }
 
   div.artistName {
     z-index: 1;
   }
+  
+  .overlay_buttons {
+    padding-left: 10%;
+  }
 
 
+}
+
+@media only screen and (max-width: 825px) {
+  div.artistName {
+    z-index: 1;
+  }
 }
 
 .grid-item {
