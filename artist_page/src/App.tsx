@@ -1,4 +1,6 @@
 import React from 'react';
+import update from 'react-addons-update';
+
 import './App.css';
 import logo from './img/logo.png';
 
@@ -13,6 +15,7 @@ import donate from './img/donate.png';
 
 
 import Masonry from 'react-masonry-component';
+import { unstable_batchedUpdates } from 'react-dom';
 
 const masonryOptions = {
   columnWidth: 50,
@@ -28,29 +31,39 @@ class App extends React.Component<{},any> {
     super(props);
 
     this.state = {
-      buttonClicked: false
+
+      hamburgerButton: {
+        1 : false,
+        2 : false,
+        3 : false,
+        4 : false,
+        5 : false,
+        6 : false,
+        7 : false
+      }
+
     };
 
     this.buttonIsClicked = this.buttonIsClicked.bind(this);
+
   }
 
-  buttonIsClicked(e: { preventDefault: () => void; }) {
-    console.log(this.state.buttonClicked);
+  buttonIsClicked(id: number) 
+  {
 
-    if(this.state.buttonClicked){
-      this.setState({
-        buttonClicked : false
-      })
-    } else{
-      this.setState({
-        buttonClicked : true
-      })
-    }
-
+    this.setState((prevState: { hamburgerButton: any; }) => {
+       let hamburgerButton = prevState.hamburgerButton;
+       hamburgerButton[id] = !hamburgerButton[id];
+       return hamburgerButton;
+    });
 
   }
 
   render() {
+
+  const xSymbol = 'hamburger hamburger--slider is-active';
+  const hamburger = 'hamburger hamburger--slider';
+
   return (
     <div>
       
@@ -76,15 +89,12 @@ class App extends React.Component<{},any> {
       >
         <div className="grid-item">
           <img className="artist_picture" src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
-
-          <div className="overlay">
-
-          <button className={ this.state.buttonClicked ? 'hamburger hamburger--slider is-active' : 'hamburger hamburger--slider'} type="button" onClick={this.buttonIsClicked}>
+          <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-
+          <div className="overlay">
             <div className="overlay_buttons">
                 <img className="social_icon" src = {instagram} alt = {logo}></img>
                 <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -99,6 +109,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/75238076/original/d274960485df2a5b8b3e9960c2c9dda01eb8237d/ask-20-random-strangers-to-choose-your-best-profile-picture.jpg" alt = "none"></img>
+          <button className={ this.state.hamburgerButton[2] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,2)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
