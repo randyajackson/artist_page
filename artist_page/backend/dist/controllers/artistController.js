@@ -35,7 +35,7 @@ exports.addArtist = (req, res) => {
         }
     });
 };
-//Delete - /artists/{1} deletes artists with id of 1
+//Delete - /artists/5e1a1cba37a4e054fd86818e deletes artists with _id of 5e1a1cba37a4e054fd86818e
 exports.deleteArtist = (req, res) => {
     artists_1.default.deleteOne({ _id: req.params.id }, (err) => {
         if (err) {

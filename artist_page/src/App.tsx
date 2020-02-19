@@ -39,7 +39,8 @@ class App extends React.Component<{},any> {
         4 : false,
         5 : false,
         6 : false,
-        7 : false
+        7 : false,
+        8 : false
       }
 
     };
@@ -88,12 +89,12 @@ class App extends React.Component<{},any> {
                   options={masonryOptions}
       >
         <div className="grid-item">
-          <img className="artist_picture" src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
-          <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
+        <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
+          <img className="artist_picture" src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
           <div className="overlay">
             <div className="overlay_buttons">
                 <img className="social_icon" src = {instagram} alt = {logo}></img>
@@ -129,6 +130,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png" alt="none"></img>
+          <button className={ this.state.hamburgerButton[3] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,3)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
@@ -144,6 +150,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "https://catchmycar.files.wordpress.com/2011/06/tobey-maguire-very-upset.jpg"  alt = "none"></img>
+          <button className={ this.state.hamburgerButton[4] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,4)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
@@ -159,6 +170,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "https://www.connollysdoitbest.com/Data/ItemImage-160565-2524294.jpg?AutoCrop=1&CropHeight=1440&CropWidth=1440&Resize=Smallest&Revision=0Hd&Timestamp=fkwbVG&Width=1440"  alt="none"></img>
+          <button className={ this.state.hamburgerButton[5] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,5)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
@@ -174,6 +190,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "http://i.imgur.com/6YSV2I3.gif" alt = "none"></img>
+          <button className={ this.state.hamburgerButton[6] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,6)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
@@ -189,6 +210,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "https://avatars0.githubusercontent.com/u/22890813?s=460&v=4"  alt="none"></img>
+          <button className={ this.state.hamburgerButton[7] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,7)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
@@ -204,6 +230,11 @@ class App extends React.Component<{},any> {
 
         <div className="grid-item">
           <img className="artist_picture" src = "https://www.researchgate.net/profile/Jussi_Poikonen/publication/265265707/figure/fig3/AS:669496293478407@1536631763215/Power-delay-profile-of-one-realization-of-a-random-exponentialPDP-WSSUS-channel.png" alt = "none"></img>
+          <button className={ this.state.hamburgerButton[8] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,8)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           <div className="overlay">
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>

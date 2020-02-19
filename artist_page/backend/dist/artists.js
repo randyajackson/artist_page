@@ -11,7 +11,6 @@ mongoose.connect(uri, (err) => {
     }
 });
 exports.ArtistSchema = new mongoose.Schema({
-    id: { type: Number, required: true },
     name: { type: String, required: true },
     image: { type: String, required: true },
     soundCloud: { type: String, required: false },

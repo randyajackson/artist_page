@@ -31,7 +31,7 @@ span.tagLineSecond {
   color: red;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 825px) {
 
   .grid-item {
     margin: 0 auto;
@@ -46,13 +46,83 @@ span.tagLineSecond {
     padding-left: 10%;
   }
 
-
-}
-
-@media only screen and (max-width: 825px) {
   div.artistName {
     z-index: 1;
   }
+
+  .hamburger-box {
+    position: absolute;
+    top: 5%;
+    bottom: 0;
+    left: 80%;
+    right: 0;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+  }
+
+  .hamburger.hamburger--slider:focus ~ .overlay{
+    opacity: 1;
+  }
+  
+  .hamburger.hamburger--slider:focus ~ .artist_picture{
+    filter: blur(.5rem);
+    transition: .5s ease-in-out;
+  }
+
+  .hamburger.hamburger--slider.is-active:focus ~ .overlay{
+    opacity: 0;
+  }
+  
+  .hamburger.hamburger--slider.is-active:focus ~ .artist_picture{
+    filter: blur(0);
+    transition: .5s ease-in-out;
+  }
+
+
+}
+
+
+@media only screen and (min-width: 825px) {
+  .hamburger-box {
+    position: absolute;
+    top: 5%;
+    bottom: 0;
+    left: 80%;
+    right: 0;
+    opacity: 0;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 90%;
+    opacity: 0;
+    transition: .5s ease;
+  }
+
+  .grid-item:hover > .overlay{
+    opacity: 1;
+  }
+  
+  .grid-item:hover > .artist_picture{
+    filter: blur(.5rem);
+    transition: .5s ease-in-out;
+  }
+
 }
 
 .grid-item {
@@ -63,15 +133,6 @@ span.tagLineSecond {
 .grid-item  .artist_picture{
   max-width: 400px;
   min-width: 400px;
-}
-
-.grid-item:hover > .overlay{
-  opacity: 1;
-}
-
-.grid-item:hover > .artist_picture{
-  filter: blur(.5rem);
-  transition: .5s ease-in-out;
 }
 
 div.artistName {
@@ -122,18 +183,6 @@ p.artistName {
   }
 }
 
-.overlay {
-  position: absolute;
-  top: 20%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-}
-
 .overlay_buttons {
   display: flex;
   flex-wrap: wrap;
@@ -153,6 +202,9 @@ p.artistName {
 #donate {
   width: 35%;
 }
+
+
+
 
 
 
