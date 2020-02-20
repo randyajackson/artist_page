@@ -46,10 +46,6 @@ span.tagLineSecond {
     padding-left: 10%;
   }
 
-  div.artistName {
-    z-index: 1;
-  }
-
   .hamburger-box {
     position: absolute;
     top: 5%;
@@ -70,22 +66,12 @@ span.tagLineSecond {
     transition: .5s ease;
   }
 
-  .hamburger.hamburger--slider:focus ~ .overlay{
+  .hamburger.hamburger--slider:hover ~ .overlay{
     opacity: 1;
   }
-  
-  .hamburger.hamburger--slider:focus ~ .artist_picture{
-    filter: blur(.5rem);
-    transition: .5s ease-in-out;
-  }
 
-  .hamburger.hamburger--slider.is-active:focus ~ .overlay{
+  .hamburger.hamburger--slider.is-active:hover ~ .overlay{
     opacity: 0;
-  }
-  
-  .hamburger.hamburger--slider.is-active:focus ~ .artist_picture{
-    filter: blur(0);
-    transition: .5s ease-in-out;
   }
 
 
@@ -121,6 +107,10 @@ span.tagLineSecond {
   .grid-item:hover > .artist_picture{
     filter: blur(.5rem);
     transition: .5s ease-in-out;
+  }
+
+  div.artistName {
+    z-index: 1;
   }
 
 }

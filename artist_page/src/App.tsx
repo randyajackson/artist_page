@@ -89,12 +89,12 @@ class App extends React.Component<{},any> {
                   options={masonryOptions}
       >
         <div className="grid-item">
-        <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
+          <img className="artist_picture" src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
+          <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <img className="artist_picture" src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" alt="none"></img>
           <div className="overlay">
             <div className="overlay_buttons">
                 <img className="social_icon" src = {instagram} alt = {logo}></img>
