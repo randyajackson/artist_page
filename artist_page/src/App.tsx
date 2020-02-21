@@ -64,7 +64,7 @@ class App extends React.Component<{},any> {
 
   const xSymbol = 'hamburger hamburger--slider is-active';
   const hamburger = 'hamburger hamburger--slider';
-
+    console.log(window.innerWidth);
   return (
     <div>
       
@@ -92,13 +92,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" 
           alt="none"
-          style={{filter: this.state.hamburgerButton[1] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[1] ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
           <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[1] ? 1 : 0}} >
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[1] ? 1 : 0) : ''}} >
             <div className="overlay_buttons">
                 <img className="social_icon" src = {instagram} alt = {logo}></img>
                 <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -115,14 +115,14 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/75238076/original/d274960485df2a5b8b3e9960c2c9dda01eb8237d/ask-20-random-strangers-to-choose-your-best-profile-picture.jpg" 
           alt = "none"
-          style={{filter: this.state.hamburgerButton[2] ? 'blur(.5rem)' : 'blur(0)'}}
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[2] ? 'blur(.5rem)' : 'blur(0)') : ''}}
           ></img>
           <button className={ this.state.hamburgerButton[2] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,2)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[2] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[2] ? 1 : 0) : ''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -139,13 +139,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png" 
           alt="none"
-          style={{filter: this.state.hamburgerButton[3] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[3] ? 'blur(.5rem)' : 'blur(0)'): ''}}></img>
           <button className={ this.state.hamburgerButton[3] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,3)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[3] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[3] ? 1 : 0) : ''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -162,13 +162,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "https://catchmycar.files.wordpress.com/2011/06/tobey-maguire-very-upset.jpg"  
           alt = "none"
-          style={{filter: this.state.hamburgerButton[4] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[4] ? 'blur(.5rem)' : 'blur(0)'): ''}}></img>
           <button className={ this.state.hamburgerButton[4] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,4)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[4] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[4] ? 1 : 0):''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -185,13 +185,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "https://www.connollysdoitbest.com/Data/ItemImage-160565-2524294.jpg?AutoCrop=1&CropHeight=1440&CropWidth=1440&Resize=Smallest&Revision=0Hd&Timestamp=fkwbVG&Width=1440"  
           alt="none"
-          style={{filter: this.state.hamburgerButton[5] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[5] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
           <button className={ this.state.hamburgerButton[5] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,5)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[5] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[5] ? 1 : 0):''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -208,13 +208,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "http://i.imgur.com/6YSV2I3.gif" 
           alt = "none"
-          style={{filter: this.state.hamburgerButton[6] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[6] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
           <button className={ this.state.hamburgerButton[6] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,6)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[6] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[6] ? 1 : 0):''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -231,13 +231,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "https://avatars0.githubusercontent.com/u/22890813?s=460&v=4"  
           alt="none"
-          style={{filter: this.state.hamburgerButton[7] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[7] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
           <button className={ this.state.hamburgerButton[7] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,7)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[7] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[7] ? 1 : 0):''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
@@ -254,13 +254,13 @@ class App extends React.Component<{},any> {
           <img className="artist_picture" 
           src = "https://www.researchgate.net/profile/Jussi_Poikonen/publication/265265707/figure/fig3/AS:669496293478407@1536631763215/Power-delay-profile-of-one-realization-of-a-random-exponentialPDP-WSSUS-channel.png" 
           alt = "none"
-          style={{filter: this.state.hamburgerButton[8] ? 'blur(.5rem)' : 'blur(0)'}}></img>
+          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[8] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
           <button className={ this.state.hamburgerButton[8] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,8)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: this.state.hamburgerButton[8] ? 1 : 0}}>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[8] ? 1 : 0):''}}>
             <div className="overlay_buttons">
               <img className="social_icon" src = {instagram} alt = {logo}></img>
               <img className="social_icon" src = {soundcloud} alt = {logo}></img>
