@@ -63,17 +63,8 @@ span.tagLineSecond {
     height: 50%;
     width: 100%;
     opacity: 0;
-    transition: .5s ease;
+    transition: .5s ease-in;
   }
-
-  .hamburger.hamburger--slider:hover ~ .overlay{
-    opacity: 1;
-  }
-
-  .hamburger.hamburger--slider.is-active:hover ~ .overlay{
-    opacity: 0;
-  }
-
 
 }
 
