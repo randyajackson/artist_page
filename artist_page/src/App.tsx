@@ -66,7 +66,20 @@ class App extends React.Component<{},any> {
   const hamburger = 'hamburger hamburger--slider';
     console.log(window.innerWidth);
   return (
+    
     <div>
+      <header className="page-header">
+        <div></div>
+
+        <div className="searchBarMain">
+          <i className="material-icons searchBarSearchIcon noUserSelect">search</i>
+          <input type="text" name="header-search" value="" id="searchBarInput" placeholder="Search, discover, explore..."></input>
+          <i className="material-icons clearSearchBarField noUserSelect" >clear</i>
+        </div>
+
+        <nav></nav>
+      </header>
+      
       
       <div className = "topDisplay">
         
@@ -155,7 +168,7 @@ class App extends React.Component<{},any> {
               <img id="donate" src = {donate} alt = {logo}></img>
             </div>
           </div>
-          <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
+          <div className="artistName"><p className="artistName">bigassnameverylarge <span className="artistName">woahwoahwoahwoahwoah</span></p></div>
         </div>
 
         <div className="grid-item">
