@@ -200,10 +200,20 @@ button.hamburger {
 div{
   left: 0px;
 }
+
+/* Disable selection with class "noUserSelect" */
+
+.noUserSelect {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .page-header {
 	width: 100%;
 	position: fixed;
-	background: #6472cd;
+	background: black;
   top: 0;
   left: 0;
 	z-index: 500;
@@ -264,7 +274,6 @@ div{
 	right: 12px;
 	top: 11px;
 	color: rgba(0, 0, 0, 0.84);
-	display: none;
 	font-size: 20px;
 }
 

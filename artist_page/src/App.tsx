@@ -1,5 +1,7 @@
 import React from 'react';
 import update from 'react-addons-update';
+import { GoSearch } from "react-icons/go";
+import { MdClear } from "react-icons/md";
 
 import './App.css';
 import logo from './img/logo.png';
@@ -41,16 +43,25 @@ class App extends React.Component<{},any> {
         6 : false,
         7 : false,
         8 : false
-      }
+      },
+      searchField: ''
 
     };
 
     this.buttonIsClicked = this.buttonIsClicked.bind(this);
-
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClearChange = this.handleClearChange.bind(this);
   }
 
-  buttonIsClicked(id: number) 
-  {
+  handleClearChange(event: any){
+    this.setState({searchField: ''});  
+  }
+
+  handleInputChange(event: any){
+    this.setState({searchField: event.target.value});
+  }
+
+  buttonIsClicked(id: number){
 
     this.setState((prevState: { hamburgerButton: any; }) => {
        let hamburgerButton = prevState.hamburgerButton;
@@ -64,7 +75,8 @@ class App extends React.Component<{},any> {
 
   const xSymbol = 'hamburger hamburger--slider is-active';
   const hamburger = 'hamburger hamburger--slider';
-    console.log(window.innerWidth);
+
+
   return (
     
     <div>
@@ -72,9 +84,9 @@ class App extends React.Component<{},any> {
         <div></div>
 
         <div className="searchBarMain">
-          <i className="material-icons searchBarSearchIcon noUserSelect">search</i>
-          <input type="text" name="header-search" value="" id="searchBarInput" placeholder="Search, discover, explore..."></input>
-          <i className="material-icons clearSearchBarField noUserSelect" >clear</i>
+          <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
+          <input type="text" name="header-search" value={this.state.searchField} onChange={this.handleInputChange} id="searchBarInput" placeholder="Search"></input>
+          <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
         </div>
 
         <nav></nav>
@@ -82,7 +94,8 @@ class App extends React.Component<{},any> {
       
       
       <div className = "topDisplay">
-        
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />     
+
         <img className = "logo" src = {logo} alt = {logo}></img>
 
         <br />
@@ -91,6 +104,8 @@ class App extends React.Component<{},any> {
           <span className= "tagLineFirst">featured</span>
           <span className= "tagLineSecond">creators</span>
         </div>
+
+        <br /><br /><br /><br />
 
       </div>
       <br/>
