@@ -196,13 +196,12 @@ button.hamburger {
   padding-right: 0px !important;
 }
 
-/* ========== Page header (Top bar) ========== */
 div{
   left: 0px;
 }
 
-/* Disable selection with class "noUserSelect" */
 
+/* Search bar (header) */
 .noUserSelect {
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -221,8 +220,6 @@ div{
 	max-height: 64px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-
-/* Search bar (header) */
 
 .searchBarMain {
 	background: #fff;
@@ -281,7 +278,52 @@ div{
 	cursor: pointer;
 }
 
+/*Return to top button*/
 
+#topButton {
+  display: block;
+  position: fixed;
+  bottom: 50%;
+  right: -50;
+  z-index: 99;
+  font-size: 25px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import update from 'react-addons-update';
 import { GoSearch } from "react-icons/go";
 import { MdClear } from "react-icons/md";
+import { MdKeyboardArrowUp } from "react-icons/md";
 
 import './App.css';
 import logo from './img/logo.png';
@@ -29,6 +30,8 @@ const masonryOptions = {
 
 class App extends React.Component<{},any> {
 
+  topButton = document.getElementById("topButton");
+
   constructor(props: Readonly<{}>){
     super(props);
 
@@ -44,13 +47,23 @@ class App extends React.Component<{},any> {
         7 : false,
         8 : false
       },
-      searchField: ''
+      searchField: '',
+      topButtonCrawl: -60
 
     };
 
     this.buttonIsClicked = this.buttonIsClicked.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClearChange = this.handleClearChange.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 
   handleClearChange(event: any){
@@ -71,6 +84,23 @@ class App extends React.Component<{},any> {
 
   }
 
+  handleScroll(event: any){
+    console.log(this.state.topButtonCrawl);
+    console.log(window.scrollY);
+    
+    if(window.scrollY < 200 && window.scrollY < this.state.topButtonCrawl)
+      this.setState( {topButtonCrawl : this.state.topButtonCrawl - 10} );
+    else if(window.scrollY < 200 && window.scrollY > this.state.topButtonCrawl) 
+      this.setState( {topButtonCrawl : this.state.topButtonCrawl + 10} );
+    else
+      this.setState( {topButtonCrawl : 0} );
+  }
+
+  handleTop(){
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+  }
+
   render() {
 
   const xSymbol = 'hamburger hamburger--slider is-active';
@@ -83,9 +113,23 @@ class App extends React.Component<{},any> {
       <header className="page-header">
         <div></div>
 
+        <button 
+        onClick={this.handleTop} 
+        style={{right: this.state.topButtonCrawl}} 
+        id="topButton" 
+        title="Go to top"
+        onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>
+
         <div className="searchBarMain">
           <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
-          <input type="text" name="header-search" value={this.state.searchField} onChange={this.handleInputChange} id="searchBarInput" placeholder="Search"></input>
+          <input 
+          type="text" 
+          name="header-search" 
+          value={this.state.searchField} 
+          onChange={this.handleInputChange} 
+          id="searchBarInput" 
+          placeholder="Search">
+          </input>
           <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
         </div>
 
