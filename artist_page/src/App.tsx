@@ -48,7 +48,7 @@ class App extends React.Component<{},any> {
         8 : false
       },
       searchField: '',
-      topButtonCrawl: -60
+      topButtonCrawl: 0
 
     };
 
@@ -85,15 +85,11 @@ class App extends React.Component<{},any> {
   }
 
   handleScroll(event: any){
-    console.log(this.state.topButtonCrawl);
-    console.log(window.scrollY);
-    
-    if(window.scrollY < 200 && window.scrollY < this.state.topButtonCrawl)
-      this.setState( {topButtonCrawl : this.state.topButtonCrawl - 10} );
-    else if(window.scrollY < 200 && window.scrollY > this.state.topButtonCrawl) 
-      this.setState( {topButtonCrawl : this.state.topButtonCrawl + 10} );
+
+    if(window.scrollY < 1500)
+      this.setState( {topButtonCrawl : (window.scrollY / 1500).toFixed(2)} );
     else
-      this.setState( {topButtonCrawl : 0} );
+      this.setState( {topButtonCrawl : 1} );
   }
 
   handleTop(){
@@ -115,7 +111,7 @@ class App extends React.Component<{},any> {
 
         <button 
         onClick={this.handleTop} 
-        style={{right: this.state.topButtonCrawl}} 
+        style={{opacity: this.state.topButtonCrawl}} 
         id="topButton" 
         title="Go to top"
         onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>

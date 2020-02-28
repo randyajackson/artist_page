@@ -283,8 +283,8 @@ div{
 #topButton {
   display: block;
   position: fixed;
-  bottom: 50%;
-  right: -50;
+  bottom: 20%;
+  right: 0;
   z-index: 99;
   font-size: 25px;
   border: none;
