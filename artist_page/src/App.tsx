@@ -116,6 +116,13 @@ class App extends React.Component<{},any> {
         title="Go to top"
         onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>
 
+      <div className="page-header-buttons">
+            <img className="page-header-buttons-image" src = {youtube} alt = {logo}></img>
+            <img className="page-header-buttons-image" src = {instagram} alt = {logo}></img>
+            <img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img>
+            <img className="page-header-buttons-image" src = {donate} alt = {logo}></img>
+      </div>
+
         <div className="searchBarMain">
           <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
           <input 
@@ -127,6 +134,8 @@ class App extends React.Component<{},any> {
           placeholder="Search">
           </input>
           <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
+
+
         </div>
 
         <nav></nav>
