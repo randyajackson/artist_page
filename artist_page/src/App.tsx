@@ -28,6 +28,35 @@ const masonryOptions = {
   stagger: '0.03s'
 };
 
+const xSymbol = 'hamburger hamburger--slider is-active';
+const hamburger = 'hamburger hamburger--slider';
+
+const Artists = (props: any) => (
+  <div className="grid-item">
+          <img className="artist_picture" 
+          src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" 
+          alt="none"
+          style={{filter: window.innerWidth <= 825 ? (props.hamburgerButton[1] ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
+          <button className={ props.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={props.buttonIsClicked.bind(props,1)}>
+            <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[1] ? 1 : 0) : ''}} >
+            <div className="overlay_buttons">
+                <img className="social_icon" src = {instagram} alt = {logo}></img>
+                <img className="social_icon" src = {soundcloud} alt = {logo}></img>
+                <img className="social_icon" src = {facebook} alt = {logo}></img>
+                <img className="social_icon" src = {external_link} alt = {logo}></img>
+                <div className="break"></div>
+                <img id="donate" src = {donate} alt = {logo}></img>
+            </div>
+          </div>
+          <div className="artistName"><p className="artistName">alfred<span className="artistName">habadasheree</span></p></div>
+    </div>
+
+);
+
 class App extends React.Component<{},any> {
 
   topButton = document.getElementById("topButton");
@@ -98,10 +127,6 @@ class App extends React.Component<{},any> {
   }
 
   render() {
-
-  const xSymbol = 'hamburger hamburger--slider is-active';
-  const hamburger = 'hamburger hamburger--slider';
-
 
   return (
     
