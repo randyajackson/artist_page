@@ -3,6 +3,7 @@ import update from 'react-addons-update';
 import { GoSearch } from "react-icons/go";
 import { MdClear } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
+import API from "./utils/API";
 
 import './App.css';
 import logo from './img/logo.png';
@@ -30,6 +31,9 @@ const masonryOptions = {
 
 const xSymbol = 'hamburger hamburger--slider is-active';
 const hamburger = 'hamburger hamburger--slider';
+
+const nameSearchQuery = "db.artists.find({name: {$regex : 'Some'} })";
+
 
 const Artists = (props: any) => (
   <div className="grid-item">
@@ -87,12 +91,22 @@ class App extends React.Component<{},any> {
     this.handleScroll = this.handleScroll.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll, { passive: true })
+  async componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+
+    let userData = await API.get('/', {
+      params: {
+        name: "Intrinsic"
+      }
+    });
+
+    console.log(userData.data);
+
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.handleScroll);
+
   }
 
   handleClearChange(event: any){
