@@ -13,7 +13,7 @@ app.use(cors());
 app.use('/', router);
 router.get('/artists', artistController.allArtist);
 router.get('/artists/:name', artistController.artistByName);
-router.get('/artists/:id', artistController.getArtist);
+router.get('/artists/byID/:id', artistController.getArtist);
 router.put('/artists/', artistController.addArtist);
 router.delete('/artists/:id', artistController.deleteArtist);
 router.post('/artists/:id', artistController.updateArtist);

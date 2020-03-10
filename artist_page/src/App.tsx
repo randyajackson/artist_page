@@ -93,12 +93,8 @@ class App extends React.Component<{},any> {
 
   async componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, { passive: true });
-
-    let userData = await API.get('/', {
-      params: {
-        name: "Intrinsic"
-      }
-    });
+    let test = 'So';
+    let userData = await API.get('/' + test);
 
     console.log(userData.data);
 
