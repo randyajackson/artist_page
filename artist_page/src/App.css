@@ -57,6 +57,7 @@ span.tagLineSecond {
 
   .overlay {
     position: absolute;
+    text-align:center;
     top: 20%;
     bottom: 0;
     left: 0;
@@ -83,6 +84,7 @@ span.tagLineSecond {
 
   .overlay {
     position: absolute;
+    text-align:center;
     top: 20%;
     bottom: 0;
     left: 0;
@@ -167,12 +169,12 @@ p.artistName {
   }
 }
 
-.overlay_buttons {
-  display: flex;
-  flex-wrap: wrap;
+.overlay_buttons{
+  display: inline;
   justify-content: center;
   align-items: center;
   align-content: center;
+  white-space: nowrap;
 }
 
 .break {

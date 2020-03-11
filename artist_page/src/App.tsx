@@ -20,6 +20,7 @@ import donate from './img/donate.png';
 
 import Masonry from 'react-masonry-component';
 import { unstable_batchedUpdates } from 'react-dom';
+import { checkPropTypes } from 'prop-types';
 
 const masonryOptions = {
   columnWidth: 50,
@@ -32,31 +33,28 @@ const masonryOptions = {
 const xSymbol = 'hamburger hamburger--slider is-active';
 const hamburger = 'hamburger hamburger--slider';
 
-const nameSearchQuery = "db.artists.find({name: {$regex : 'Some'} })";
-
 
 const Artists = (props: any) => (
   <div className="grid-item">
           <img className="artist_picture" 
-          src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" 
+          src = {props.results.image} 
           alt="none"
-          style={{filter: window.innerWidth <= 825 ? (props.hamburgerButton[1] ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
-          <button className={ props.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={props.buttonIsClicked.bind(props,1)}>
+          style={{filter: window.innerWidth <= 825 ? (props.hamburgerButton ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
+          <button className={ props.hamburgerButton ? xSymbol : hamburger } type="button" onClick={props.buttonIsClicked.bind(props,1)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[1] ? 1 : 0) : ''}} >
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton ? 1 : 0) : ''}} >
             <div className="overlay_buttons">
-                <img className="social_icon" src = {instagram} alt = {logo}></img>
-                <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-                <img className="social_icon" src = {facebook} alt = {logo}></img>
-                <img className="social_icon" src = {external_link} alt = {logo}></img>
+                <a href= {props.results.instagram} ><img className="social_icon" src = {instagram} alt = {logo}></img></a>
+                <a href= {props.results.soundCloud} ><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>
+                <a href= {props.results.email} ><img className="social_icon" src = {external_link} alt = {logo}></img></a>
                 <div className="break"></div>
-                <img id="donate" src = {donate} alt = {logo}></img>
+                <a href= {props.results.instagram} ><img id="donate" src = {donate} alt = {logo}></img></a>
             </div>
           </div>
-          <div className="artistName"><p className="artistName">alfred<span className="artistName">habadasheree</span></p></div>
+          <div className="artistName"><p className="artistName">{props.results.name.split(" ")[0]}<span className="artistName">{props.results.name.substr(props.results.name.indexOf(" ") + 1)}</span></p></div>
     </div>
 
 );
@@ -81,6 +79,7 @@ class App extends React.Component<{},any> {
         8 : false
       },
       searchField: '',
+      artistResults: [],
       topButtonCrawl: 0
 
     };
@@ -91,12 +90,8 @@ class App extends React.Component<{},any> {
     this.handleScroll = this.handleScroll.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, { passive: true });
-    let test = 'So';
-    let userData = await API.get('/' + test);
-
-    console.log(userData.data);
 
   }
 
@@ -110,7 +105,22 @@ class App extends React.Component<{},any> {
   }
 
   handleInputChange(event: any){
+
     this.setState({searchField: event.target.value});
+
+    API.get('/' + this.state.searchField)
+    .then(response => {
+
+      this.setState({
+        artistResults: response.data
+      });
+      
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   }
 
   buttonIsClicked(id: number){
@@ -137,6 +147,13 @@ class App extends React.Component<{},any> {
   }
 
   render() {
+
+  let allProps = [];
+  if (this.state.artistResults[0])
+  console.log(this.state.artistResults[0].image);
+
+  allProps = this.state.artistResults.map(
+    (currentResult: any, index: any) =>  <Artists results = {currentResult} index = {index} hamburgerButton = {this.state.hamburgerButton[1]} buttonIsClicked = {this.buttonIsClicked.bind(this,1)}  />);
 
   return (
     
@@ -201,7 +218,8 @@ class App extends React.Component<{},any> {
                   elementType={'div'}
                   options={masonryOptions}
       >
-        <div className="grid-item">
+        {allProps};
+        {/* <div className="grid-item">
           <img className="artist_picture" 
           src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" 
           alt="none"
@@ -384,7 +402,7 @@ class App extends React.Component<{},any> {
             </div>
           </div>
           <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
-        </div>
+        </div> */}
 
         
 
