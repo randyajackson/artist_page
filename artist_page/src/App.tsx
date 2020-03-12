@@ -39,13 +39,13 @@ const Artists = (props: any) => (
           <img className="artist_picture" 
           src = {props.results.image} 
           alt="none"
-          style={{filter: window.innerWidth <= 825 ? (props.hamburgerButton ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
-          <button className={ props.hamburgerButton ? xSymbol : hamburger } type="button" onClick={props.buttonIsClicked.bind(props,1)}>
+          style={{filter: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
+          <button className={ props.hamburgerButton[props.index] ? xSymbol : hamburger } type="button" onClick={props.buttonIsClicked.bind(props,props.index)}>
             <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton ? 1 : 0) : ''}} >
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 1 : 0) : ''}} >
             <div className="overlay_buttons">
                 <a href= {props.results.instagram} ><img className="social_icon" src = {instagram} alt = {logo}></img></a>
                 <a href= {props.results.soundCloud} ><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>
@@ -68,16 +68,7 @@ class App extends React.Component<{},any> {
 
     this.state = {
 
-      hamburgerButton: {
-        1 : false,
-        2 : false,
-        3 : false,
-        4 : false,
-        5 : false,
-        6 : false,
-        7 : false,
-        8 : false
-      },
+      hamburgerButton: [],
       searchField: '',
       artistResults: [],
       topButtonCrawl: 0
@@ -112,7 +103,8 @@ class App extends React.Component<{},any> {
     .then(response => {
 
       this.setState({
-        artistResults: response.data
+        artistResults: response.data,
+        hamburgerButton : new Array(this.state.artistResults.length).fill(false)
       });
       
 
@@ -149,11 +141,8 @@ class App extends React.Component<{},any> {
   render() {
 
   let allProps = [];
-  if (this.state.artistResults[0])
-  console.log(this.state.artistResults[0].image);
-
   allProps = this.state.artistResults.map(
-    (currentResult: any, index: any) =>  <Artists results = {currentResult} index = {index} hamburgerButton = {this.state.hamburgerButton[1]} buttonIsClicked = {this.buttonIsClicked.bind(this,1)}  />);
+    (currentResult: any, index: any) =>  <Artists results = {currentResult} index = {index} hamburgerButton = {this.state.hamburgerButton} buttonIsClicked = {this.buttonIsClicked}  />);
 
   return (
     
