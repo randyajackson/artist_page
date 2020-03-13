@@ -46,6 +46,9 @@ span.tagLineSecond {
   .overlay_buttons {
     padding-left: 10%;
   }
+  #donate {
+    padding-left: 10%;
+  }
 
   .hamburger-box {
     position: absolute;

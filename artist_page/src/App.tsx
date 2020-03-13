@@ -182,9 +182,9 @@ class App extends React.Component<{},any> {
         <img className = "logo" src = {logo} alt = {logo}></img>
 
         <div className="topButtons">
-          <img className="page-header-buttons-image" src = {youtube} alt = {logo}></img>
-          <img className="page-header-buttons-image" src = {instagram} alt = {logo}></img>
-          <img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img>
+          <a href="https://www.youtube.com/c/IntrinsicAudio"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
+          <a href="https://www.instagram.com/intrinsic_radio/"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
+          <a href="https://soundcloud.com/intrinsic_radio"><img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img></a>
           <br />
           <img className="page-header-buttons-image" src = {donate} alt = {logo}></img>
         </div>
