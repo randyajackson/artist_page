@@ -13,6 +13,10 @@ mongoose.connect(uri, (err) => {
 exports.ArtistSchema = new mongoose.Schema({
     name: { type: String, required: true },
     image: { type: String, required: true },
+    facebook: { type: String, required: false },
+    tumblr: { type: String, required: false },
+    external: { type: String, required: false },
+    mixCloud: { type: String, required: false },
     soundCloud: { type: String, required: false },
     youTube: { type: String, required: false },
     instagram: { type: String, required: false },

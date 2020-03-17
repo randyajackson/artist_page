@@ -9,6 +9,7 @@ import './App.css';
 import logo from './img/logo.png';
 
 import external_link from './img/external_link.png';
+import email from './img/email.png';
 import facebook from './img/facebook.png';
 import instagram from './img/instagram.png';
 import mixcloud from './img/mixcloud.png';
@@ -47,11 +48,16 @@ const Artists = (props: any) => (
           </button>
           <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 1 : 0) : ''}} >
             <div className="overlay_buttons">
-                <a href= {props.results.instagram} ><img className="social_icon" src = {instagram} alt = {logo}></img></a>
-                <a href= {props.results.soundCloud} ><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>
-                <a href= {props.results.email} ><img className="social_icon" src = {external_link} alt = {logo}></img></a>
+                {props.results.instagram && <a href= {props.results.instagram} target="_blank"><img className="social_icon" src = {instagram} alt = {logo}></img></a>}
+                {props.results.tumblr && <a href= {props.results.tumblr} target="_blank"><img className="social_icon" src = {tumblr} alt = {logo}></img></a>}
+                {props.results.facebook && <a href= {props.results.facebook} target="_blank"><img className="social_icon" src = {facebook} alt = {logo}></img></a>}
+                {props.results.soundCloud && <a href= {props.results.soundCloud} target="_blank"><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>}
+                {props.results.mixCloud && <a href= {props.results.mixCloud} target="_blank"><img className="social_icon" src = {mixcloud} alt = {logo}></img></a>}
+                {props.results.youTube && <a href= {props.results.youTube} target="_blank"><img className="social_icon" src = {youtube} alt = {logo}></img></a>}
+                {props.results.external && <a href= {props.results.external} target="_blank"><img className="social_icon" src = {external_link} alt = {logo}></img></a>}
+                {props.results.email && <a href= {'mailto:' + props.results.email} target="_blank"><img className="social_icon" src = {email} alt = {logo}></img></a>}
                 <div className="break"></div>
-                <a href= {props.results.instagram} ><img id="donate" src = {donate} alt = {logo}></img></a>
+                {props.results.paypal && <a href= {props.results.paypal} target="_blank"><img id="donate" src = {donate} alt = {logo}></img></a>}
             </div>
           </div>
           <div className="artistName"><p className="artistName">{props.results.name.split(" ")[0]}<span className="artistName">{props.results.name.substr(props.results.name.indexOf(" ") + 1)}</span></p></div>
@@ -83,7 +89,7 @@ class App extends React.Component<{},any> {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, { passive: true });
-
+    this.queryAll();
   }
 
   componentWillUnmount() {
@@ -92,7 +98,8 @@ class App extends React.Component<{},any> {
   }
 
   handleClearChange(event: any){
-    this.setState({searchField: ''});  
+    this.setState({searchField: ''});
+    this.queryAll();  
   }
 
   handleInputChange(event: any){
@@ -138,6 +145,22 @@ class App extends React.Component<{},any> {
       document.documentElement.scrollTop = 0;
   }
 
+  queryAll(){
+    API.get('/')
+    .then(response => {
+
+      this.setState({
+        artistResults: response.data,
+        hamburgerButton : new Array(this.state.artistResults.length).fill(false)
+      });
+      
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });  
+  }
+
   render() {
 
   let allProps = [];
@@ -168,8 +191,6 @@ class App extends React.Component<{},any> {
           placeholder="Search">
           </input>
           <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
-
-
         </div>
 
         <nav></nav>
@@ -182,9 +203,9 @@ class App extends React.Component<{},any> {
         <img className = "logo" src = {logo} alt = {logo}></img>
 
         <div className="topButtons">
-          <a href="https://www.youtube.com/c/IntrinsicAudio"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
-          <a href="https://www.instagram.com/intrinsic_radio/"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
-          <a href="https://soundcloud.com/intrinsic_radio"><img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img></a>
+          <a href="https://www.youtube.com/c/IntrinsicAudio" target="_blank"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
+          <a href="https://www.instagram.com/intrinsic_radio/" target="_blank"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
+          <a href="https://soundcloud.com/intrinsic_radio" target="_blank"><img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img></a>
           <br />
           <img className="page-header-buttons-image" src = {donate} alt = {logo}></img>
         </div>
@@ -207,194 +228,7 @@ class App extends React.Component<{},any> {
                   elementType={'div'}
                   options={masonryOptions}
       >
-        {allProps};
-        {/* <div className="grid-item">
-          <img className="artist_picture" 
-          src = "http://uberhumor.com/wp-content/uploads/2014/09/lPBJXJl.png" 
-          alt="none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[1] ? 'blur(.5rem)' : 'blur(0)') : ''}}></img>
-          <button className={ this.state.hamburgerButton[1] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,1)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[1] ? 1 : 0) : ''}} >
-            <div className="overlay_buttons">
-                <img className="social_icon" src = {instagram} alt = {logo}></img>
-                <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-                <img className="social_icon" src = {facebook} alt = {logo}></img>
-                <img className="social_icon" src = {external_link} alt = {logo}></img>
-                <div className="break"></div>
-                <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">alfred<span className="artistName">habadasheree</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/75238076/original/d274960485df2a5b8b3e9960c2c9dda01eb8237d/ask-20-random-strangers-to-choose-your-best-profile-picture.jpg" 
-          alt = "none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[2] ? 'blur(.5rem)' : 'blur(0)') : ''}}
-          ></img>
-          <button className={ this.state.hamburgerButton[2] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,2)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[2] ? 1 : 0) : ''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">franklin <span className="artistName">spalding</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "https://cdn-images-1.medium.com/max/1200/1*NpUUls7kjn9JhO4ChjGV7w.png" 
-          alt="none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[3] ? 'blur(.5rem)' : 'blur(0)'): ''}}></img>
-          <button className={ this.state.hamburgerButton[3] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,3)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[3] ? 1 : 0) : ''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">bigassnameverylarge <span className="artistName">woahwoahwoahwoahwoah</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "https://catchmycar.files.wordpress.com/2011/06/tobey-maguire-very-upset.jpg"  
-          alt = "none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[4] ? 'blur(.5rem)' : 'blur(0)'): ''}}></img>
-          <button className={ this.state.hamburgerButton[4] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,4)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[4] ? 1 : 0):''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "https://www.connollysdoitbest.com/Data/ItemImage-160565-2524294.jpg?AutoCrop=1&CropHeight=1440&CropWidth=1440&Resize=Smallest&Revision=0Hd&Timestamp=fkwbVG&Width=1440"  
-          alt="none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[5] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
-          <button className={ this.state.hamburgerButton[5] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,5)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[5] ? 1 : 0):''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "http://i.imgur.com/6YSV2I3.gif" 
-          alt = "none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[6] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
-          <button className={ this.state.hamburgerButton[6] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,6)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[6] ? 1 : 0):''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "https://avatars0.githubusercontent.com/u/22890813?s=460&v=4"  
-          alt="none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[7] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
-          <button className={ this.state.hamburgerButton[7] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,7)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[7] ? 1 : 0):''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
-        </div>
-
-        <div className="grid-item">
-          <img className="artist_picture" 
-          src = "https://www.researchgate.net/profile/Jussi_Poikonen/publication/265265707/figure/fig3/AS:669496293478407@1536631763215/Power-delay-profile-of-one-realization-of-a-random-exponentialPDP-WSSUS-channel.png" 
-          alt = "none"
-          style={{filter: window.innerWidth <= 825 ? (this.state.hamburgerButton[8] ? 'blur(.5rem)' : 'blur(0)'):''}}></img>
-          <button className={ this.state.hamburgerButton[8] ? xSymbol : hamburger } type="button" onClick={this.buttonIsClicked.bind(this,8)}>
-            <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-          </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (this.state.hamburgerButton[8] ? 1 : 0):''}}>
-            <div className="overlay_buttons">
-              <img className="social_icon" src = {instagram} alt = {logo}></img>
-              <img className="social_icon" src = {soundcloud} alt = {logo}></img>
-              <img className="social_icon" src = {facebook} alt = {logo}></img>
-              <img className="social_icon" src = {external_link} alt = {logo}></img>
-              <div className="break"></div>
-              <img id="donate" src = {donate} alt = {logo}></img>
-            </div>
-          </div>
-          <div className="artistName"><p className="artistName">firstname <span className="artistName">lastname</span></p></div>
-        </div> */}
-
-        
-
+        {allProps}
       </Masonry>
     </div>
 

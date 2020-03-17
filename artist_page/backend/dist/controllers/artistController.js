@@ -4,7 +4,6 @@ const artists_1 = require("./../artists");
 
 //Get - /artists/name returns artist by name likeness
 exports.artistByName = (req, res) => {
-    console.log(req.params.name);
     let artists = artists_1.default.find( {"name": { $regex: req.params.name, $options: 'i'}} ,function(err, artists) {
         if (err) {
             res.send(err);
