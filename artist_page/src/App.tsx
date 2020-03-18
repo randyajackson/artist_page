@@ -18,7 +18,6 @@ import tumblr from './img/tumblr.png';
 import youtube from './img/youtube.png';
 import donate from './img/donate.png';
 
-
 import Masonry from 'react-masonry-component';
 import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
@@ -57,10 +56,10 @@ const Artists = (props: any) => (
                 {props.results.external && <a href= {props.results.external} target="_blank"><img className="social_icon" src = {external_link} alt = {logo}></img></a>}
                 {props.results.email && <a href= {'mailto:' + props.results.email} target="_blank"><img className="social_icon" src = {email} alt = {logo}></img></a>}
                 <div className="break"></div>
-                {props.results.paypal && <a href= {props.results.paypal} target="_blank"><img id="donate" src = {donate} alt = {logo}></img></a>}
+                <a href= {props.results.paypal} target="_blank"><img id="donate" src = {donate} alt = {logo}></img></a>
             </div>
           </div>
-          <div className="artistName"><p className="artistName">{props.results.name.split(" ")[0]}<span className="artistName">{props.results.name.substr(props.results.name.indexOf(" ") + 1)}</span></p></div>
+          <div className="artistName"><p className="artistName">{props.results.name.split(" ")[0].toLowerCase()}<span className="artistName">{props.results.name.substr(props.results.name.indexOf(" ") + 1).toLowerCase()}</span></p></div>
     </div>
 
 );
