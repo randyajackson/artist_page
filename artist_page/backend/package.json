@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@adriantombu/array-shuffle": "^2.0.3",
     "@types/express": "^4.17.2",
     "@types/mongoose": "^5.5.41",
     "@types/node": "^13.1.6",

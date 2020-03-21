@@ -1,6 +1,8 @@
 import axios from "axios";
 
+var os = require("os");
+
 export default axios.create({
-  baseURL: "http://10.0.0.84:5566/artists",
+  baseURL: "http://" + os.hostname() + ":5566/artists",
   responseType: "json"
 });

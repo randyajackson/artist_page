@@ -30,6 +30,8 @@ const masonryOptions = {
   stagger: '0.03s'
 };
 
+
+const { arrayShuffle } = require('@adriantombu/array-shuffle');
 const xSymbol = 'hamburger hamburger--slider is-active';
 const hamburger = 'hamburger hamburger--slider';
 
@@ -47,16 +49,16 @@ const Artists = (props: any) => (
           </button>
           <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 1 : 0) : ''}} >
             <div className="overlay_buttons">
-                {props.results.instagram && <a href= {props.results.instagram} target="_blank"><img className="social_icon" src = {instagram} alt = {logo}></img></a>}
-                {props.results.tumblr && <a href= {props.results.tumblr} target="_blank"><img className="social_icon" src = {tumblr} alt = {logo}></img></a>}
-                {props.results.facebook && <a href= {props.results.facebook} target="_blank"><img className="social_icon" src = {facebook} alt = {logo}></img></a>}
-                {props.results.soundCloud && <a href= {props.results.soundCloud} target="_blank"><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>}
-                {props.results.mixCloud && <a href= {props.results.mixCloud} target="_blank"><img className="social_icon" src = {mixcloud} alt = {logo}></img></a>}
-                {props.results.youTube && <a href= {props.results.youTube} target="_blank"><img className="social_icon" src = {youtube} alt = {logo}></img></a>}
-                {props.results.external && <a href= {props.results.external} target="_blank"><img className="social_icon" src = {external_link} alt = {logo}></img></a>}
-                {props.results.email && <a href= {'mailto:' + props.results.email} target="_blank"><img className="social_icon" src = {email} alt = {logo}></img></a>}
+                {props.results.instagram && <a href= {props.results.instagram} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {instagram} alt = {logo}></img></a>}
+                {props.results.tumblr && <a href= {props.results.tumblr} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {tumblr} alt = {logo}></img></a>}
+                {props.results.facebook && <a href= {props.results.facebook} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {facebook} alt = {logo}></img></a>}
+                {props.results.soundCloud && <a href= {props.results.soundCloud} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>}
+                {props.results.mixCloud && <a href= {props.results.mixCloud} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {mixcloud} alt = {logo}></img></a>}
+                {props.results.youTube && <a href= {props.results.youTube} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {youtube} alt = {logo}></img></a>}
+                {props.results.external && <a href= {props.results.external} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {external_link} alt = {logo}></img></a>}
+                {props.results.email && <a href= {'mailto:' + props.results.email} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {email} alt = {logo}></img></a>}
                 <div className="break"></div>
-                <a href= {props.results.paypal} target="_blank"><img id="donate" src = {donate} alt = {logo}></img></a>
+                <a href= {props.results.paypal} target="_blank" rel="noopener noreferrer"><img id="donate" src = {donate} alt = {logo}></img></a>
             </div>
           </div>
           <div className="artistName"><p className="artistName">{props.results.name.split(" ")[0].toLowerCase()}<span className="artistName">{props.results.name.substr(props.results.name.indexOf(" ") + 1).toLowerCase()}</span></p></div>
@@ -101,12 +103,16 @@ class App extends React.Component<{},any> {
     this.queryAll();  
   }
 
-  handleInputChange(event: any){
+  async handleInputChange(event: any){
 
-    this.setState({searchField: event.target.value});
+    await this.setState({searchField: event.target.value});
+    let searchValue = this.state.searchField;
 
     API.get('/' + this.state.searchField)
     .then(response => {
+
+      if(searchValue === "")
+        response.data = arrayShuffle(response.data);
 
       this.setState({
         artistResults: response.data,
@@ -147,7 +153,7 @@ class App extends React.Component<{},any> {
   queryAll(){
     API.get('/')
     .then(response => {
-
+      response.data = arrayShuffle(response.data);
       this.setState({
         artistResults: response.data,
         hamburgerButton : new Array(this.state.artistResults.length).fill(false)
@@ -202,11 +208,11 @@ class App extends React.Component<{},any> {
         <img className = "logo" src = {logo} alt = {logo}></img>
 
         <div className="topButtons">
-          <a href="https://www.youtube.com/c/IntrinsicAudio" target="_blank"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
-          <a href="https://www.instagram.com/intrinsic_radio/" target="_blank"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
-          <a href="https://soundcloud.com/intrinsic_radio" target="_blank"><img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img></a>
+          <a href="https://www.youtube.com/c/IntrinsicAudio" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
+          <a href="https://www.instagram.com/intrinsic_radio/" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
+          <a href="mailto: intrinsic.radio.mail@gmail.com" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {email} alt = {logo}></img></a>
           <br />
-          <img className="page-header-buttons-image" src = {donate} alt = {logo}></img>
+          <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=intrinsic.radio.mail%40gmail.com&currency_code=USD&source=url" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {donate} alt = {logo}></img></a>
         </div>
 
       <br /><br /><br /><br /><br /><br /><br /><br />    
