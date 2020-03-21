@@ -208,11 +208,11 @@ class App extends React.Component<{},any> {
         <img className = "logo" src = {logo} alt = {logo}></img>
 
         <div className="topButtons">
-          <a href="https://www.youtube.com/c/IntrinsicAudio" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
-          <a href="https://www.instagram.com/intrinsic_radio/" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
-          <a href="mailto: intrinsic.radio.mail@gmail.com" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {email} alt = {logo}></img></a>
+          <a href="https://www.youtube.com/c/IntrinsicAudio" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
+          <a href="https://www.instagram.com/intrinsic_radio/" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
+          <a href="mailto: intrinsic.radio.mail@gmail.com" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {email} alt = {logo}></img></a>
           <br />
-          <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=intrinsic.radio.mail%40gmail.com&currency_code=USD&source=url" target="_blank" rel="noopener noreferrer"><img className="page-header-buttons-image" src = {donate} alt = {logo}></img></a>
+          <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=intrinsic.radio.mail%40gmail.com&currency_code=USD&source=url" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {donate} alt = {logo}></img></a>
         </div>
 
       <br /><br /><br /><br /><br /><br /><br /><br />    
