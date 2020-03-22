@@ -1,6 +1,18 @@
 import { Request, Response } from 'express';
 import Artists from './../artists';
 
+//Get - /artists/name returns artist by name likeness
+export let artistByName = (req: Request, res: Response) => {
+
+    let artists = Artists.find( {"name": { $regex: req.params.name, $options: 'i'}} ,function(err, artists) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(artists);
+        }
+    });
+};
 
 //Get - /artists returns all artists
 export let allArtist = (req: Request, res: Response) => {
