@@ -11,10 +11,14 @@ mongoose.connect(uri, (err: any) => {
 });
 
 export const ArtistSchema = new mongoose.Schema({
-    id: {type:Number, required: true},
-    name: {type:String, required: true},
-    image: {type:String, required: true},
+    id: {type:Number, required: false},
+    name: {type:String, required: false},
+    image: {type:String, required: false},
+    tumblr: {type:String, required: false},
     soundCloud: {type:String, required: false},
+    mixCloud: {type:String, required: false},
+    external: {type:String, required: false},
+    facebook: {type:String, required: false},
     youTube: {type:String, required: false},
     instagram: {type:String, required: false},
     paypal: {type:String, required: false},

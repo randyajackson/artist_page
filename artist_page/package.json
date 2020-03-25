@@ -31,7 +31,7 @@
     "typescript": "^3.7.4"
   },
   "scripts": {
-    "start": "PORT=5555 react-scripts start",
+    "start": "HTTPS=true PORT=5000 react-scripts start",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon ",
     "build": "react-scripts build",

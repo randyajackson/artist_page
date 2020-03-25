@@ -47,7 +47,7 @@ const Artists = (props: any) => (
             <span className="hamburger-inner"></span>
           </span>
           </button>
-          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 1 : 0) : ''}} >
+          <div className="overlay" style={{opacity: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 1 : 0) : '', display: window.innerWidth <= 825 ? (props.hamburgerButton[props.index] ? 'block' : 'none') : 'block'} } >
             <div className="overlay_buttons">
                 {props.results.instagram && <a href= {props.results.instagram} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {instagram} alt = {logo}></img></a>}
                 {props.results.tumblr && <a href= {props.results.tumblr} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {tumblr} alt = {logo}></img></a>}
@@ -118,7 +118,6 @@ class App extends React.Component<{},any> {
         artistResults: response.data,
         hamburgerButton : new Array(this.state.artistResults.length).fill(false)
       });
-      
 
     })
     .catch((error) => {
@@ -169,6 +168,7 @@ class App extends React.Component<{},any> {
   render() {
 
   let allProps = [];
+
   allProps = this.state.artistResults.map(
     (currentResult: any, index: any) =>  <Artists results = {currentResult} index = {index} hamburgerButton = {this.state.hamburgerButton} buttonIsClicked = {this.buttonIsClicked}  />);
 
