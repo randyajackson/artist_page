@@ -58,7 +58,7 @@ const Artists = (props: any) => (
                 {props.results.external && <a href= {props.results.external} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {external_link} alt = {logo}></img></a>}
                 {props.results.email && <a href= {'mailto:' + props.results.email} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {email} alt = {logo}></img></a>}
                 <div className="break"></div>
-                <a href= {props.results.paypal} target="_blank" rel="noopener noreferrer"><img id="donate" src = {donate} alt = {logo}></img></a>
+                {props.results.paypal && <a href= {props.results.paypal} target="_blank" rel="noopener noreferrer"><img id="donate" src = {donate} alt = {logo}></img></a>}
             </div>
           </div>
           <div className="artistName"><p className="artistName">{props.results.name.split(" ")[0].toLowerCase()}<span className="artistName">{props.results.name.substr(props.results.name.indexOf(" ") + 1).toLowerCase()}</span></p></div>
