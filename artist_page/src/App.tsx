@@ -17,6 +17,9 @@ import soundcloud from './img/soundcloud.png';
 import tumblr from './img/tumblr.png';
 import youtube from './img/youtube.png';
 import donate from './img/donate.png';
+import spotify from './img/spotify.png';
+import bandcamp from './img/bandcamp.png';
+import twitter from './img/twitter.png';
 
 import Masonry from 'react-masonry-component';
 import { unstable_batchedUpdates } from 'react-dom';
@@ -52,8 +55,11 @@ const Artists = (props: any) => (
                 {props.results.instagram && <a href= {props.results.instagram} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {instagram} alt = {logo}></img></a>}
                 {props.results.tumblr && <a href= {props.results.tumblr} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {tumblr} alt = {logo}></img></a>}
                 {props.results.facebook && <a href= {props.results.facebook} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {facebook} alt = {logo}></img></a>}
+                {props.results.twitter && <a href= {props.results.twitter} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {twitter} alt = {logo}></img></a>}
                 {props.results.soundCloud && <a href= {props.results.soundCloud} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {soundcloud} alt = {logo}></img></a>}
                 {props.results.mixCloud && <a href= {props.results.mixCloud} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {mixcloud} alt = {logo}></img></a>}
+                {props.results.bandCamp && <a href= {props.results.bandCamp} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {bandcamp} alt = {logo}></img></a>}
+                {props.results.spotify && <a href= {props.results.spotify} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {spotify} alt = {logo}></img></a>}
                 {props.results.youTube && <a href= {props.results.youTube} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {youtube} alt = {logo}></img></a>}
                 {props.results.external && <a href= {props.results.external} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {external_link} alt = {logo}></img></a>}
                 {props.results.email && <a href= {'mailto:' + props.results.email} target="_blank" rel="noopener noreferrer"><img className="social_icon" src = {email} alt = {logo}></img></a>}
