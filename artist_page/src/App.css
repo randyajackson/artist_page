@@ -36,7 +36,7 @@ span.tagLineSecond {
 
   .grid-item {
     margin: 0 auto;
-    padding-left: 10%;
+    padding-left: 5%;
   }
 
   div.artistName {
@@ -44,10 +44,10 @@ span.tagLineSecond {
   }
   
   .overlay_buttons {
-    padding-left: 10%;
+    padding-left: 5%;
   }
   #donate {
-    padding-left: 10%;
+    padding-left: 5%;
   }
 
   .hamburger-box {

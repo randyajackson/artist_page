@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const uri: string = process.env.MONGOOSE_URL;
 
-mongoose.connect(uri, (err: any) => {
+let y = mongoose.createConnection(uri, (err: any) => {
     if (err) {
         console.log(err.message)
     } else {
@@ -74,5 +74,5 @@ export const ArtistSchema = new mongoose.Schema({
     tags: {type:String, required: false}
 });
 
-const Artists = mongoose.model('Artists', ArtistSchema);
+const Artists = y.model('Artists', ArtistSchema);
 export default Artists;

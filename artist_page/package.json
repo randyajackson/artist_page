@@ -27,7 +27,9 @@
     "react-dom": "^16.12.0",
     "react-icons": "^3.9.0",
     "react-masonry-component": "^6.2.1",
-    "react-scripts": "3.3.0",
+    "react-player": "^1.15.3",
+    "react-scripts": "^3.4.0",
+    "react-soundcloud-embed": "^1.0.3",
     "typescript": "^3.7.4"
   },
   "scripts": {
