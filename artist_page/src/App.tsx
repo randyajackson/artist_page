@@ -29,7 +29,11 @@ import Masonry from 'react-masonry-component';
 import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
 
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const masonryOptions = {
   columnWidth: 50,
@@ -255,7 +259,17 @@ class App extends React.Component<{},any> {
     //@ts-ignore
     (currentResult: any, index: any) =>  <ReactPlayer url= {currentResult.song_url} width= "400px" height = "400px"  />);
 
-
+  let sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    swipeToSlide: true,
+    swipe: true
+  };
 
   return (
     
@@ -314,13 +328,11 @@ class App extends React.Component<{},any> {
 
       </div>
         <br /><br /><br /><br />
-        <Masonry
-                  className={'grid-item'}
-                  elementType={'div'}
-                  options={masonryOptions}
-        >
-        {allRecents}
-        </Masonry>
+        <div style={{width: '400px', margin: '0 auto', paddingLeft: window.innerWidth <= 825 ? '10%' : '0%'}}>
+        <Slider {...sliderSettings}>
+          {allRecents}
+        </Slider>
+        </div>
 
         <br /><br /><br /><br />
         <div className = "topDisplay">
