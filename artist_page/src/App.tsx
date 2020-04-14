@@ -300,15 +300,18 @@ class App extends React.Component<{},any> {
         <nav></nav>
       </header>
       
-      
-      <div className = "topDisplay">
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />     
-
+      <br /><br /><br /><br /><br /><br />
+      {/* <div className = "topDisplay">   
         <img className = "logo" src = {logo} alt = {logo}></img>
+      </div> */}
+      <div className = "topDisplay" style = {{width: (window.innerWidth >= 825) ? '1280px' : '480px' , height: (window.innerWidth >= 825) ? '720px' : '360px'}}>
+ 
+        <ReactPlayer url= "https://player.twitch.tv/intrinsic_television"  width="100%" height="100%"/> 
+      
+      </div>
 
-        
-
-        <br /><br />
+      <div className = "topDisplay">
+        <br /><br /><br /><br /><br /><br />
 
         <div className="topButtons">
           <a href="https://www.youtube.com/c/IntrinsicAudio" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
