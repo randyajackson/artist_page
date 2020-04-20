@@ -12,9 +12,9 @@ var cors = require('cors');
 
 const app = express();
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/intrinsicradio.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/intrinsicradio.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/intrinsicradio.com/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/intrinse.net/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/intrinse.net/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/intrinse.net/chain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,

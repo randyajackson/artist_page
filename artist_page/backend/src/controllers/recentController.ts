@@ -8,7 +8,6 @@ export let allRecents = (req: Request, res: Response) => {
         if(err) {
             res.send(err);
         } else {
-            console.log(recent_songs);
             res.send(recent_songs);
         }    
     });
