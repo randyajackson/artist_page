@@ -129,8 +129,8 @@ const Artists = (props: any) => (
   
   );
 
+  class Live extends React.Component<{},any> {
   topButton = document.getElementById("topButton");
-
   constructor(props: Readonly<{}>){
     super(props);
 
@@ -358,3 +358,6 @@ const Artists = (props: any) => (
 
     );
   }
+  }
+
+  export default Live;

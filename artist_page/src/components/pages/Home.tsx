@@ -1,10 +1,12 @@
 import React from 'react';
+import HomeTopBanner from '../renders/HomeTopBanner';
 
 const Home: React.FC = () => {
     return(
-        <div>
+        <>
             <p>This is the home page</p>
-        </div>
+            <HomeTopBanner />
+        </>
     );
 
 }
