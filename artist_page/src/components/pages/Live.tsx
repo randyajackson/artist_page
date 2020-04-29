@@ -6,7 +6,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import API from "./utils/API";
 import API_RECENTS from "./utils/API_recents";
 
-import './App.css';
+import './css/live.css';
 import logo from './img/logo.png';
 
 import external_link from './img/external_link.png';

@@ -7,8 +7,8 @@ import Live from "./components/pages/Live";
 const App: React.FC = () => {
   return( 
   <>
-    <Route path="/" component={Home} />
-    {/* <Route path="/live" component={Live} /> */}
+    <Route exact path="/" component={Home} />
+    <Route path="/live" component={Live} />
   </>
   );
 }

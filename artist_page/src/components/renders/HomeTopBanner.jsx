@@ -18,7 +18,7 @@ export default class App extends Component {
             {src: topBannerWEBM, type: 'video/webm'},
           ]}
           width='100%'
-          height='90%'
+          height='80%'
           volume={0}
           muted
           loop
