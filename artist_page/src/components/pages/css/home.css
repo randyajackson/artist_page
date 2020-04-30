@@ -1,20 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@700&display=swap');
+
 .navHeader {
     width: 100%;
     position: fixed;
     background: black;
     left: 0;
-    top: 0;
-    bottom: 0;
+    top: 0%;
+    /* go from 0%-94% on link click */
     z-index: 500;
     height: 64px;
     max-height: 64px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+#atTop{
+    top: 0%;
+}
 
-.navLinks {
-    color: white;
+#moveToBottom{
+    top:94%;
+    transition:top .75s ease-out;
+}
+
+#atTopOpacity{
+    opacity: 1;
+}
+
+#moveToBottomOpacity{
+    opacity: 0;
+    transition: .5s ease-in-out;
 }
 
 .navBarBG{
     background-color: black;
 }
+
+.nav-link{
+    font-family: 'Barlow', sans-serif;
+    color: white !important;
+}
+
+.nav-link:hover{
+    font-family: 'Barlow', sans-serif;
+    color: #cb3939 !important;
+}
+

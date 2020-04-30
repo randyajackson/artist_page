@@ -7,46 +7,54 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 
 import './css/home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-const Home: React.FC = () => {
-    return(
-        <>
-            <HomeTopBanner />
 
-            <header className="navHeader">
-                {/* <Container>
-                    <Row>
-                        <Col className = "navLinks">Latest</Col>
-                        <Col className = "navLinks">News</Col>
-                        <Col className = "navLinks">Archived Selections</Col>
-                        <Col className = "navLinks">Livestream</Col>
-                    </Row>
-                </Container> */}
-                {/* <div className="navBar">
-                    <nav>
-                        <ul className = "navLinks">
-                            <li>Latest</li>
-                            <li>News</li>
-                            <li>Archived Selections</li>
-                            <li>Livestream</li>
-                        </ul>
-                    </nav>
-                </div> */}
-                <Navbar collapseOnSelect expand="lg" className="navBarBG" variant="dark" >
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#pricing">News</Nav.Link>
-                    <Nav.Link href="#features">Latest</Nav.Link>
-                    <Nav.Link href="#something">Archived Selections</Nav.Link>
-                    <Nav.Link href="#something">Mixes</Nav.Link>
-                    <Nav.Link href="#somethingElse">Livestream</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-                </Navbar>
-            </header>
-        </>
-    );
+class Home extends React.Component<{},any> {
+
+    constructor(props: Readonly<{}>){
+        super(props);
+    
+        this.state = {
+          headerClicked : 0
+        };
+        this.handleLinkClick = this.handleLinkClick.bind(this);
+        // this.buttonIsClicked = this.buttonIsClicked.bind(this);
+        // this.handleInputChange = this.handleInputChange.bind(this);
+        // this.handleClearChange = this.handleClearChange.bind(this);
+        // this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    handleLinkClick(event: any){
+        this.setState({
+            headerClicked: 1
+          });
+        console.log(this.state.headerClicked);
+    }
+
+    render(){
+        return(
+            <>
+                <div id= {(this.state.headerClicked === 0)? "atTopOpacity" : "moveToBottomOpacity"}>
+                    <HomeTopBanner />
+                </div>
+
+                <header className="navHeader" id= {(this.state.headerClicked === 0)? "atTop" : "moveToBottom"}>
+                    <Navbar collapseOnSelect expand="lg" className="navBarBG" variant="dark" >
+                    <Navbar.Brand href="#home">             </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="mr-auto">
+                        <Nav.Link className ="navLink" href="#pricing" onClick={this.handleLinkClick}>news</Nav.Link>
+                        <Nav.Link className ="navLink" href="#features" onClick={this.handleLinkClick}>latest</Nav.Link>
+                        <Nav.Link className ="navLink" href="#something" onClick={this.handleLinkClick}>archived selections</Nav.Link>
+                        <Nav.Link className ="navLink" href="#something" onClick={this.handleLinkClick}>mixes</Nav.Link>
+                        <Nav.Link className ="navLink" href="/live" onClick={this.handleLinkClick}>livestream</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                    </Navbar>
+                </header>
+            </>
+        );
+    }
 
 }
 
