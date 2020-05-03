@@ -1,0 +1,33 @@
+@media only screen and (max-width: 825px) {
+    .grid-item-latest{
+        margin: 0 auto;
+      }
+}
+
+@media only screen and (min-width: 825px) {
+    .grid-item-latest{
+        margin: 0 auto;
+      }
+}
+
+div.featuredText{
+    text-align:center;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 6rem;
+    color: black;
+    letter-spacing: 0.10em;
+    text-transform: lowercase;
+    line-height: 3rem;
+}
+
+span.tagLineFirst {
+font-size: 1.5rem;
+color: black;
+}
+
+span.tagLineSecond {
+font-size: 3rem;
+color: #7b0000;
+}

@@ -1,0 +1,30 @@
+div.featuredTextAbout{
+    text-align:center;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 6rem;
+    color: black;
+    letter-spacing: 0.10em;
+    text-transform: lowercase;
+    line-height: 1.5rem;
+}
+
+span.tagLineFirstAbout {
+font-size: 1.5rem;
+color: black;
+}
+
+span.tagLineFirstAboutBody {
+    font-size: 1rem;
+    color: black;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 0;
+}
+
+span.tagLineSecondAbout {
+font-size: 3rem;
+line-height: 3rem;
+color: #7b0000;
+}

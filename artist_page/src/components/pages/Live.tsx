@@ -6,6 +6,8 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import API from "./utils/API";
 import API_RECENTS from "./utils/API_recents";
 
+import NavigationMenu from "../renders/NavigationMenu";
+
 import './css/live.css';
 import logo from './img/logo.png';
 
@@ -30,10 +32,6 @@ import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
 
 import ReactPlayer from 'react-player';
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 const masonryOptions = {
   columnWidth: 50,
@@ -139,7 +137,6 @@ const Artists = (props: any) => (
       hamburgerButton: [],
       searchField: '',
       artistResults: [],
-      recentResults: [],
       topButtonCrawl: 0
 
     };
@@ -153,7 +150,6 @@ const Artists = (props: any) => (
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, { passive: true });
     this.queryAll();
-    this.queryRecent();
   }
 
   componentWillUnmount() {
@@ -228,20 +224,6 @@ const Artists = (props: any) => (
     });  
   }
 
-  queryRecent(){
-    API_RECENTS.get('/')
-    .then(response => {
-      response.data = arrayShuffle(response.data);
-      this.setState({
-        recentResults: response.data
-      });
-
-    })
-    .catch((error) => {
-      console.log(error);
-    });  
-  }
-
   render() {
 
   let allProps = [];
@@ -249,29 +231,9 @@ const Artists = (props: any) => (
   allProps = this.state.artistResults.map(
     (currentResult: any, index: any) =>  <Artists results = {currentResult} index = {index} hamburgerButton = {this.state.hamburgerButton} buttonIsClicked = {this.buttonIsClicked}  />);
 
-  let allRecents = [];
-  
-  allRecents = this.state.recentResults.map(
-    //@ts-ignore
-    (currentResult: any, index: any) =>  <ReactPlayer url= {currentResult.song_url} width= "400px" height = "400px"  />);
-
-  let sliderSettings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true,
-    swipeToSlide: true,
-    swipe: true
-  };
-
   return (
     
     <div>
-      <header className="page-header">
-        <div></div>
 
         <button 
         onClick={this.handleTop} 
@@ -280,26 +242,10 @@ const Artists = (props: any) => (
         title="Go to top"
         onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>
 
-        <div className="searchBarMain">
-          <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
-          <input 
-          type="text" 
-          name="header-search" 
-          value={this.state.searchField} 
-          onChange={this.handleInputChange} 
-          id="searchBarInput" 
-          placeholder="Search">
-          </input>
-          <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
-        </div>
-
-        <nav></nav>
-      </header>
+      <NavigationMenu />
       
-      <br /><br /><br /><br /><br /><br />
-      {/* <div className = "topDisplay">   
-        <img className = "logo" src = {logo} alt = {logo}></img>
-      </div> */}
+      <br /><br />
+
       <div className = "topDisplay" style = {{width: (window.innerWidth >= 825) ? '1280px' : '480px' , height: (window.innerWidth >= 825) ? '720px' : '360px'}}>
  
         <ReactPlayer url= "https://player.twitch.tv/intrinse"  width="100%" height="100%"/> 
@@ -316,24 +262,11 @@ const Artists = (props: any) => (
           <a href="mailto: intrinse.mail@gmail.com" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {email} alt = {logo}></img></a>
           <br />
           <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=intrinse.mail%40gmail.com&currency_code=USD&source=url" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {donate} alt = {logo}></img></a>
-        </div>
-
-
-      <br /><br /><br /><br /><br /><br /><br /><br />    
-        <div className = "featuredText">
-          <span className= "tagLineFirst">new</span>
-          <span className= "tagLineSecond">releases</span>
-        </div>
+        </div> 
 
       </div>
-        <br /><br /><br /><br />
-        <div style={{width: '400px', margin: '0 auto', paddingLeft: window.innerWidth <= 825 ? '10%' : '0%'}}>
-        <Slider {...sliderSettings}>
-          {allRecents}
-        </Slider>
-        </div>
 
-        <br /><br /><br /><br />
+        <br /><br />
         <div className = "topDisplay">
         <div className = "featuredText">
           <span className= "tagLineFirst">featured</span>
