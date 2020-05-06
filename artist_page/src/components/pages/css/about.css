@@ -5,7 +5,7 @@ div.featuredTextAbout{
     font-family: 'Barlow', sans-serif;
     font-size: 6rem;
     color: black;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.01rem;
     text-transform: lowercase;
     line-height: 1.5rem;
 }
@@ -25,6 +25,50 @@ span.tagLineFirstAboutBody {
 
 span.tagLineSecondAbout {
 font-size: 3rem;
-line-height: 3rem;
+line-height: 6rem;
 color: #7b0000;
 }
+
+span.tagLineSecondAboutHeader {
+    font-size: 3rem;
+    line-height: 1rem;
+    color: #7b0000;
+    }
+    
+.textContainer{
+    width: 70%;
+    height: fit-content;
+    margin:auto;
+    opacity: 1;
+
+  }
+
+  .fadeIn { 
+    animation: fadeInAnimation ease 1s; 
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+    } 
+
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+    } 
+} 
+
+.fadeOut { 
+    animation: fadeOutAnimation ease 1s; 
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+    } 
+
+@keyframes fadeOutAnimation { 
+    0% { 
+        opacity: 1; 
+    } 
+    100% { 
+        opacity: 0; 
+    } 
+} 
