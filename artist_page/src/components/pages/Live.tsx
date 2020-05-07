@@ -137,7 +137,8 @@ const Artists = (props: any) => (
       hamburgerButton: [],
       searchField: '',
       artistResults: [],
-      topButtonCrawl: 0
+      topButtonCrawl: 0,
+      navBarClicked : 0
 
     };
 
@@ -145,6 +146,7 @@ const Artists = (props: any) => (
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClearChange = this.handleClearChange.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleLinkClick = this.handleLinkClick.bind(this);
   }
 
   componentDidMount() {
@@ -224,6 +226,15 @@ const Artists = (props: any) => (
     });  
   }
 
+  handleLinkClick = () => {
+    this.setState({
+        navBarClicked: 1
+      });
+    console.log(this.state.navBarClicked);
+    window.setTimeout(() => {
+    }, 1000);
+  }
+
   render() {
 
   let allProps = [];
@@ -232,9 +243,10 @@ const Artists = (props: any) => (
     (currentResult: any, index: any) =>  <Artists results = {currentResult} index = {index} hamburgerButton = {this.state.hamburgerButton} buttonIsClicked = {this.buttonIsClicked}  />);
 
   return (
-    
-    <div>
-
+    <>
+    <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+    <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
+        
         <button 
         onClick={this.handleTop} 
         style={{opacity: this.state.topButtonCrawl}} 
@@ -242,7 +254,7 @@ const Artists = (props: any) => (
         title="Go to top"
         onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>
 
-      <NavigationMenu />
+      
       
       <br /><br />
 
@@ -288,7 +300,7 @@ const Artists = (props: any) => (
         {allProps}
       </Masonry>
     </div>
-
+    </>
     );
   }
   }

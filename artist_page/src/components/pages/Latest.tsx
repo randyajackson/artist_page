@@ -27,8 +27,11 @@ class Latest extends React.Component<{},any> {
         super(props);
     
         this.state = {
-            recentSCResults: []
+            recentSCResults: [],
+            navBarClicked : 0
         };
+
+        this.handleLinkClick = this.handleLinkClick.bind(this);
     }
 
     componentDidMount() {
@@ -49,6 +52,15 @@ class Latest extends React.Component<{},any> {
         });  
     }
 
+    handleLinkClick = () => {
+        this.setState({
+            navBarClicked: 1
+          });
+        console.log(this.state.navBarClicked);
+        window.setTimeout(() => {
+        }, 1000);
+    }
+
     render(){
 
     let allRecents = [];
@@ -59,23 +71,24 @@ class Latest extends React.Component<{},any> {
 
         return(
             <>
-                <NavigationMenu />
-
-                <div className = "featuredText">
-                    <span className= "tagLineFirst">new this week from</span>
-                    <br/>
-                    <span className= "tagLineSecond">featured livestream artists</span>
+                <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+                <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
+                    <div className = "featuredText">
+                        <span className= "tagLineFirst">new this week from</span>
+                        <br/>
+                        <span className= "tagLineSecond">featured livestream artists</span>
+                    </div>
+                    
+                    <br/><br/><br/>
+                    <Masonry
+                    className={'grid-item-latest'}
+                    elementType={'div'}
+                    options={masonryOptions}
+                    >
+                        {allRecents}
+                    </Masonry>
+                    <h1>new this week in archived music</h1>
                 </div>
-                
-                <br/><br/><br/>
-                <Masonry
-                  className={'grid-item-latest'}
-                  elementType={'div'}
-                  options={masonryOptions}
-                >
-                    {allRecents}
-                </Masonry>
-                <h1>new this week in archived music</h1>
             </>
         );
     }

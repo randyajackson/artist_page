@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default class App extends Component {
+export default class NavigationMenu extends Component {
+  
+  constructor (props) {
+    super(props);
+  }
 
   render() {
     return (
@@ -13,12 +17,12 @@ export default class App extends Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-            <Nav.Link className ="navLink" href="#pricing" onClick={this.handleLinkClick}>news</Nav.Link>
-            <Nav.Link className ="navLink" href="/latest" onClick={this.handleLinkClick}>latest</Nav.Link>
-            <Nav.Link className ="navLink" href="#something" onClick={this.handleLinkClick}>archived music</Nav.Link>
-            <Nav.Link className ="navLink" href="#something" onClick={this.handleLinkClick}>mixes</Nav.Link>
-            <Nav.Link className ="navLink" href="/live" onClick={this.handleLinkClick}>livestream</Nav.Link>
-            <Nav.Link className ="navLink" href="/about" onClick={this.handleLinkClick}>about</Nav.Link>
+            <Nav.Link className ="navLink" href="#pricing" onClick={this.props.handleLinkClick}>news</Nav.Link>
+            <Nav.Link className ="navLink" href="/latest" onClick={this.props.handleLinkClick}>latest</Nav.Link>
+            <Nav.Link className ="navLink" href="#something" onClick={this.props.handleLinkClick}>archived music</Nav.Link>
+            <Nav.Link className ="navLink" href="#something" onClick={this.props.handleLinkClick}>mixes</Nav.Link>
+            <Nav.Link className ="navLink" href="/live" onClick={this.props.handleLinkClick}>livestream</Nav.Link>
+            <Nav.Link className ="navLink" href="/about" onClick={this.props.handleLinkClick}>about</Nav.Link>
             </Nav>
         </Navbar.Collapse>
         </Navbar>

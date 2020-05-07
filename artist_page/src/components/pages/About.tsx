@@ -27,12 +27,11 @@ class About extends React.Component<{},any> {
     }
 
     handleLinkClick = () => {
-
         this.setState({
             navBarClicked: 1
           });
-
-        window.setTimeout(() => { 
+        console.log(this.state.navBarClicked);
+        window.setTimeout(() => {
         }, 1000);
     }
 
@@ -40,7 +39,7 @@ class About extends React.Component<{},any> {
 
         return(
             <>
-                <div onClick = {this.handleLinkClick}><NavigationMenu /></div>
+                <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
                 <div className={(this.state.navBarClicked === 0)? "textContainer fadeIn" : "textContainer fadeOut"}>
                     <br/>
                     <span className= "tagLineSecondAboutHeader">
