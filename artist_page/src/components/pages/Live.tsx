@@ -278,16 +278,25 @@ const Artists = (props: any) => (
 
       </div>
 
-        <br /><br />
         <div className = "topDisplay">
-        <div className = "featuredText">
-          <span className= "tagLineFirst">featured</span>
-          <span className= "tagLineSecond">artists</span>
-        </div>
+          <div className = "featuredText">
+            <span className= "tagLineFirst">featured</span>
+            <span className= "tagLineSecond">artists</span>
+          </div>
         </div>
 
-        <br /><br /><br /><br />
-
+        <div className="searchBarMain">
+          <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
+          <input 
+          type="text" 
+          name="header-search" 
+          value={this.state.searchField} 
+          onChange={this.handleInputChange} 
+          id="searchBarInput" 
+          placeholder="search by name">
+          </input>
+          <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
+        </div>
       
       <br/>
       <br/>

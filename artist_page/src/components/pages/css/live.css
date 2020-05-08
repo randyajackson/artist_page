@@ -1,6 +1,7 @@
 
 .topDisplay {
     display: block;
+    min-width: 480px;
     font-family: 'Barlow', sans-serif;
     font-size: 6rem;
     color: black;
@@ -184,11 +185,10 @@
   }
   
   .topButtons{
+    display: block;
+    min-width: 480px;
     text-align: center;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin: 10px auto;
   }
   
   #intrinsicLinks {
@@ -242,8 +242,10 @@
   }
   
   .searchBarMain {
+      position:relative;
+      min-width: 480px;
       background: #fff;
-      width: 40%;
+      width: 60%;
       max-width: 680px;
       margin: 0 auto;
       height: 42px;
@@ -255,10 +257,6 @@
       -ms-transition: all 0.2s ease-in-out;
       -o-transition: all 0.2s ease-in-out;
       transition: all 0.2s ease-in-out;
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0
   }
   
   .searchBarMain i.searchBarSearchIcon {
@@ -275,6 +273,7 @@
       padding: 0;
       margin: 0;
       border: 0;
+      text-align: center;
       box-sizing: border-box;
       background: transparent;
       width: calc(100% - 52px);
@@ -287,9 +286,9 @@
   }
   
   .searchBarMain i.clearSearchBarField {
-      position: absolute;
+      position:absolute;
       right: 12px;
-      top: 11px;
+      top: 5px;
       color: rgba(0, 0, 0, 0.84);
       font-size: 20px;
   }
@@ -385,6 +384,7 @@
         opacity: 0; 
     } 
 } 
+
   
   
   
