@@ -67,7 +67,7 @@ class Latest extends React.Component<{},any> {
   
     allRecents = this.state.recentSCResults.map(
     //@ts-ignore
-    (currentResult: any, index: any) =>  <ReactPlayer url= {currentResult.song_url} width= "400px" height = "400px"  />);
+    (currentResult: any, index: any) =>  <ReactPlayer url= {currentResult.song_url} width= "200px" height = "200px"  />);
 
         return(
             <>
@@ -87,7 +87,7 @@ class Latest extends React.Component<{},any> {
                     >
                         {allRecents}
                     </Masonry>
-                    <h1>new this week in archived music</h1>
+                    {/* <h1>new this week in archived music</h1> */}
                 </div>
             </>
         );
