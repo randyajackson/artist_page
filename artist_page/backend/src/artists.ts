@@ -1,8 +1,10 @@
 import * as mongoose from 'mongoose';
 require('dotenv').config();
 
+//@ts-ignore
 const uri: string = process.env.MONGOOSE_URL;
 
+//@ts-ignore
 let y = mongoose.createConnection(uri, (err: any) => {
     if (err) {
         console.log(err.message)

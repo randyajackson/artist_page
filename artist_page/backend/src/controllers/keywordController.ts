@@ -1,14 +1,17 @@
 import { Request, Response } from 'express';
 import Keywords from './../keywords';
 
-//Get - /recent returns all recent songs
+//Get - /youtubeKeywords returns all recent songs
 export let allKeywords = (req: Request, res: Response) => {
 
-    let youtubeKeywords = Keywords.find( (err: any, youtubeKeywords: any) => {
+    let youtube_keywords = Keywords.find( (err: any, youtube_keywords: any) => {
         if(err) {
+            console.log(err);
             res.send(err);
         } else {
-            res.send(youtubeKeywords);
+            console.log("good");
+            console.log(youtube_keywords);
+            res.send(youtube_keywords);
         }    
     });
 

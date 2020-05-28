@@ -1,18 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.allKeywords = void 0;
 const keywords_1 = require("./../keywords");
-
-//Get - /keywords returns all keywords
+//Get - /youtubeKeywords returns all recent songs
 exports.allKeywords = (req, res) => {
-    let keyword_list = keywords_1.default.find((err, keyword_list) => {
+    let youtube_keywords = keywords_1.default.find((err, youtube_keywords) => {
         if (err) {
-            
+            console.log(err);
             res.send(err);
         }
         else {
-            console.log(keyword_list);
-            res.send(keyword_list);
+            console.log("good");
+            console.log(youtube_keywords);
+            res.send(youtube_keywords);
         }
     });
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVjZW50Q29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIvYXJ0aXN0UGFnZS9hcnRpc3RfcGFnZS9hcnRpc3RfcGFnZS9iYWNrZW5kL3NyYy8iLCJzb3VyY2VzIjpbImNvbnRyb2xsZXJzL3JlY2VudENvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSwwQ0FBdUM7QUFFdkMsd0NBQXdDO0FBQzdCLFFBQUEsVUFBVSxHQUFHLENBQUMsR0FBWSxFQUFFLEdBQWEsRUFBRSxFQUFFO0lBRXBELElBQUksWUFBWSxHQUFHLGlCQUFXLENBQUMsSUFBSSxDQUFFLENBQUMsR0FBUSxFQUFFLFlBQWlCLEVBQUUsRUFBRTtRQUNqRSxFQUFFLENBQUEsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ0wsR0FBRyxDQUFDLElBQUksQ0FBQyxHQUFHLENBQUMsQ0FBQztRQUNsQixDQUFDO1FBQUMsSUFBSSxDQUFDLENBQUM7WUFDSixHQUFHLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDO1FBQzNCLENBQUM7SUFDTCxDQUFDLENBQUMsQ0FBQztBQUVQLENBQUMsQ0FBQyJ9
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoia2V5d29yZENvbnRyb2xsZXIuanMiLCJzb3VyY2VSb290IjoiLi9zcmMvIiwic291cmNlcyI6WyJjb250cm9sbGVycy9rZXl3b3JkQ29udHJvbGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFDQSw0Q0FBcUM7QUFFckMsaURBQWlEO0FBQ3RDLFFBQUEsV0FBVyxHQUFHLENBQUMsR0FBWSxFQUFFLEdBQWEsRUFBRSxFQUFFO0lBRXJELElBQUksZ0JBQWdCLEdBQUcsa0JBQVEsQ0FBQyxJQUFJLENBQUUsQ0FBQyxHQUFRLEVBQUUsZ0JBQXFCLEVBQUUsRUFBRTtRQUN0RSxJQUFHLEdBQUcsRUFBRTtZQUNKLE9BQU8sQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDakIsR0FBRyxDQUFDLElBQUksQ0FBQyxHQUFHLENBQUMsQ0FBQztTQUNqQjthQUFNO1lBQ0gsT0FBTyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsQ0FBQztZQUNwQixPQUFPLENBQUMsR0FBRyxDQUFDLGdCQUFnQixDQUFDLENBQUM7WUFDOUIsR0FBRyxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDO1NBQzlCO0lBQ0wsQ0FBQyxDQUFDLENBQUM7QUFFUCxDQUFDLENBQUMifQ==

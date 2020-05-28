@@ -2,7 +2,7 @@ import * as express from "express";
 import * as bodyParser from 'body-parser';
 import * as artistController from "./controllers/artistController";
 import * as recentController from "./controllers/recentController";
-
+import * as keywordController from "./controllers/keywordController";
 
 
 const fs = require('fs');
@@ -36,6 +36,7 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 router.get('/recents', recentController.allRecents);
+router.get('/youtube_keywords', keywordController.allKeywords);
 router.get('/artists', artistController.allArtist);
 router.get('/artists/:name', artistController.artistByName);
 router.get('/artists/byID/:id', artistController.getArtist);
