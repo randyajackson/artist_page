@@ -16,7 +16,10 @@ let x = mongoose.createConnection(uri, (err: any) => {
 export const KeywordSchema = new mongoose.Schema({
     id: { type: Number, required: false },
     keyword: { type: String, required: false },
-    count: { type: Number, required: false }
+    count: { type: Number, required: false },
+    r: { type: Number, required: false },
+    g: { type: Number, required: false },
+    b: { type: Number, required: false } 
 });
 
 const Keywords = x.model('Youtube_keywords', KeywordSchema);
