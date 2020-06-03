@@ -1,0 +1,10 @@
+a.keyword {
+    font-family: 'Barlow', sans-serif;
+    text-decoration: none;
+    font-size: 4em;
+    color: black;
+}
+
+a.keyword:hover {
+    color: #7b0000;
+}

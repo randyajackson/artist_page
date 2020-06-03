@@ -36,7 +36,10 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 router.get('/recents', recentController.allRecents);
+
 router.get('/youtube_keywords', keywordController.allKeywords);
+router.get('/youtube_keywords/:keyword', keywordController.keywordByKeyword);
+
 router.get('/artists', artistController.allArtist);
 router.get('/artists/:name', artistController.artistByName);
 router.get('/artists/byID/:id', artistController.getArtist);
