@@ -17,7 +17,7 @@ export let allKeywords = (req: Request, res: Response) => {
 //Get - /youtubeKeywords/keyword returns artist by name likeness
 export let keywordByKeyword = (req: Request, res: Response) => {
 
-    let youtube_keywords = Keywords.find( {"keyword": { $regex: req.params.keyword, $options: 'i'}} ,function(err, youtube_keywords) {
+    let youtube_keywords = Keywords.find( {"keyword": { $regex: decodeURIComponent(req.params.keyword), $options: 'i'}} ,function(err, youtube_keywords) {
         if (err) {
             res.send(err);
         }

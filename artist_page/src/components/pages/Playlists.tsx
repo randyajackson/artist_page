@@ -8,7 +8,6 @@ import API_videos from "./utils/playlists/API_videos";
 
 import './css/playlist.css';
 
-
 const queryString = require('query-string');
 const { arrayShuffle } = require('@adriantombu/array-shuffle');
 
@@ -20,6 +19,7 @@ class Playlists extends React.Component<{},any> {
         this.state = {
             keywordResults: [],
             keywordPlayerResult: [],
+            videoPlayerResult: [],
             hasKeyword: false,
             navBarClicked : 0
         };
@@ -65,7 +65,7 @@ class Playlists extends React.Component<{},any> {
           this.setState({
             keywordResults: response.data
           });
-    
+          
         })
         .catch((error) => {
           console.log(error);
@@ -73,7 +73,8 @@ class Playlists extends React.Component<{},any> {
     }
 
     queryForPlayer(query: string){
-        API_keywords.get('/' + query)
+        //get keyword data for supplied parameter
+        API_keywords.get('/' + encodeURIComponent(query))
         .then(response => {
           
           this.setState({
@@ -83,7 +84,21 @@ class Playlists extends React.Component<{},any> {
         })
         .catch((error) => {
           console.log(error);
-        });  
+        }); 
+        
+        //get video data for supplied parameter
+        API_videos.get('/' + encodeURIComponent(query))
+        .then(response => {
+          
+          this.setState({
+            videoPlayerResult: response.data
+          });
+
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+
     }
 
 
@@ -94,7 +109,8 @@ class Playlists extends React.Component<{},any> {
           if(this.state.keywordPlayerResult.length > 0)
             //@ts-ignore  
             document.body.style = 'background: rgb(' + this.state.keywordPlayerResult[0].r + ', ' + this.state.keywordPlayerResult[0].g + ', ' + this.state.keywordPlayerResult[0].b + '); transition: all ease .5s';
-
+          
+          console.log(this.state.videoPlayerResult);
           return(
               <>
                   <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
@@ -107,13 +123,15 @@ class Playlists extends React.Component<{},any> {
     
           allKeywords = this.state.keywordResults.map(
           //@ts-ignore
-          (currentKeyword: any, index: any) =>  [<a href={"?name=" + currentKeyword.keyword.toLowerCase() } className ="keyword" onMouseEnter={ () => document.body.style = 'background: rgb(' + currentKeyword.r + ', ' + currentKeyword.g + ', ' + currentKeyword.b + '); transition: all ease .5s'} onMouseOut={ () => document.body.style = 'background: white; transition: all ease .5s'}>{currentKeyword.keyword.toLowerCase()}</a>,<br/>] );
+          (currentKeyword: any, index: any) =>  [<a href={"?name=" + encodeURIComponent(currentKeyword.keyword.toLowerCase()) } className ="keyword" onMouseEnter={ () => document.body.style = 'background: rgb(' + currentKeyword.r + ', ' + currentKeyword.g + ', ' + currentKeyword.b + '); transition: all ease .5s'} onMouseOut={ () => document.body.style = 'background: white; transition: all ease .5s'}>{currentKeyword.keyword.toLowerCase()}</a>,<br/>] );
 
           return(
-              <>
-                  <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+            <>
+              <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+              <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
                   {allKeywords}
-              </>
+              </div>
+            </>
               );
         }
     }

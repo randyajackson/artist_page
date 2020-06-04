@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import * as artistController from "./controllers/artistController";
 import * as recentController from "./controllers/recentController";
 import * as keywordController from "./controllers/keywordController";
+import * as videoController from "./controllers/videoController";
 
 
 const fs = require('fs');
@@ -39,6 +40,8 @@ router.get('/recents', recentController.allRecents);
 
 router.get('/youtube_keywords', keywordController.allKeywords);
 router.get('/youtube_keywords/:keyword', keywordController.keywordByKeyword);
+
+router.get('/youtube_videos/:keyword', videoController.videoByKeyword);
 
 router.get('/artists', artistController.allArtist);
 router.get('/artists/:name', artistController.artistByName);
