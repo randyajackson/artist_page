@@ -6,6 +6,8 @@ import API_channels from "./utils/playlists/API_channels";
 import API_keywords from "./utils/playlists/API_keywords";
 import API_videos from "./utils/playlists/API_videos";
 
+import ReactPlayer from 'react-player';
+
 import './css/playlist.css';
 
 const queryString = require('query-string');
@@ -21,7 +23,8 @@ class Playlists extends React.Component<{},any> {
             keywordPlayerResult: [],
             videoPlayerResult: [],
             hasKeyword: false,
-            navBarClicked : 0
+            navBarClicked : 0,
+            currentVideo: 0
         };
 
         this.handleLinkClick = this.handleLinkClick.bind(this);
@@ -77,28 +80,25 @@ class Playlists extends React.Component<{},any> {
         API_keywords.get('/' + encodeURIComponent(query))
         .then(response => {
           
-          this.setState({
-            keywordPlayerResult: response.data
-          });
+              //get video data for supplied parameter
+              API_videos.get('/' + encodeURIComponent(query))
+              .then(response2 => {
+                
+                this.setState({
+                  keywordPlayerResult: response.data,
+                  videoPlayerResult: response2.data
+                });
+
+              })
+              .catch((error) => {
+                console.log(error);
+              }); 
 
         })
         .catch((error) => {
           console.log(error);
         }); 
         
-        //get video data for supplied parameter
-        API_videos.get('/' + encodeURIComponent(query))
-        .then(response => {
-          
-          this.setState({
-            videoPlayerResult: response.data
-          });
-
-        })
-        .catch((error) => {
-          console.log(error);
-        }); 
-
     }
 
 
@@ -106,14 +106,44 @@ class Playlists extends React.Component<{},any> {
 
         if(this.state.hasKeyword){
 
-          if(this.state.keywordPlayerResult.length > 0)
+          let allResultPlayers = [];
+          let allResultInfo = [];
+          let allResultThumbnails = [];
+
+          if(this.state.keywordPlayerResult.length > 0){
             //@ts-ignore  
             document.body.style = 'background: rgb(' + this.state.keywordPlayerResult[0].r + ', ' + this.state.keywordPlayerResult[0].g + ', ' + this.state.keywordPlayerResult[0].b + '); transition: all ease .5s';
+            
+            allResultPlayers = this.state.videoPlayerResult.map(
+              //@ts-ignore
+            (currentPlayer: any, index: any) =>  <ReactPlayer url = {currentPlayer.video_main_url} playing controls />);         
           
-          console.log(this.state.videoPlayerResult);
+            allResultInfo = this.state.videoPlayerResult.map(
+              //@ts-ignore
+            (currentPlayer: any, index: any) =>  [<h1>{currentPlayer.video_title}</h1>, <br/>,
+                                                  <h1>{currentPlayer.video_owner}</h1>, <br/>,
+                                                  <h1>{currentPlayer.video_tags}</h1>, <br/>,
+                                                  <h1>{currentPlayer.video_description}</h1>, <br/>]);     
+            
+            allResultThumbnails = this.state.videoPlayerResult.map(
+              //@ts-ignore
+            (currentPlayer: any, index: any) =>  <img src= {currentPlayer.video_small_thumbnail} />);                                      
+          //Everything involving state mapping happens above this line          
+          }
+
           return(
               <>
                   <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+                  <div className="nowPlayingContainer">
+                    <div className="vidPlayer">
+                      {allResultPlayers[this.state.currentVideo]}
+                    </div>
+                    {allResultInfo[this.state.currentVideo]}
+                  </div>
+
+                  <div className="playListSearch">
+                    {allResultThumbnails}
+                  </div>
               </>
             );  
         }

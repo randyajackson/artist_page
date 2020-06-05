@@ -38,3 +38,14 @@ a.keyword:hover {
         opacity: 0; 
     } 
 } 
+
+.nowPlayingContainer {
+    display: block;
+    position: relative;
+    top: 100px;
+}
+
+.vidPlayer {
+    width: 560px;
+    margin: 0 auto;
+}
