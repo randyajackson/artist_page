@@ -48,4 +48,10 @@ a.keyword:hover {
 .vidPlayer {
     width: 560px;
     margin: 0 auto;
+    font-size: 1em;
+}
+
+.playListSearch {
+    width: 560px;
+    margin: 0 auto;
 }

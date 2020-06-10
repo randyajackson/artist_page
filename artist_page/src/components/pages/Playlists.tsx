@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavigationMenu from "../renders/NavigationMenu";
+import Slider from "react-slick";
 
 import API_channels from "./utils/playlists/API_channels";
 import API_keywords from "./utils/playlists/API_keywords";
@@ -9,6 +10,9 @@ import API_videos from "./utils/playlists/API_videos";
 import ReactPlayer from 'react-player';
 
 import './css/playlist.css';
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const queryString = require('query-string');
 const { arrayShuffle } = require('@adriantombu/array-shuffle');
@@ -28,6 +32,7 @@ class Playlists extends React.Component<{},any> {
         };
 
         this.handleLinkClick = this.handleLinkClick.bind(this);
+        this.handlePlaylistImageClick = this.handlePlaylistImageClick.bind(this);
     }
 
     componentDidMount() {
@@ -58,6 +63,12 @@ class Playlists extends React.Component<{},any> {
 
         window.setTimeout(() => {
         }, 1000);
+    }
+
+    handlePlaylistImageClick = (index: number) => {
+      this.setState({
+        currentVideo: index
+        });
     }
 
     queryForSearch(){
@@ -106,6 +117,8 @@ class Playlists extends React.Component<{},any> {
 
         if(this.state.hasKeyword){
 
+          
+          let settings;
           let allResultPlayers = [];
           let allResultInfo = [];
           let allResultThumbnails = [];
@@ -120,29 +133,45 @@ class Playlists extends React.Component<{},any> {
           
             allResultInfo = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<h1>{currentPlayer.video_title}</h1>, <br/>,
-                                                  <h1>{currentPlayer.video_owner}</h1>, <br/>,
-                                                  <h1>{currentPlayer.video_tags}</h1>, <br/>,
-                                                  <h1>{currentPlayer.video_description}</h1>, <br/>]);     
+            (currentPlayer: any, index: any) =>  [<span>{"Uploaded By: " + currentPlayer.video_owner}</span>, <br/>,
+                                                  <span>{currentPlayer.video_title}</span>, <br/>,]);
+                                                  
+                                                  //<h1>{currentPlayer.video_tags}</h1>, <br/>,
+                                                  //<h1>{currentPlayer.video_description}</h1>, <br/>]);     
             
             allResultThumbnails = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  <img src= {currentPlayer.video_small_thumbnail} />);                                      
-          //Everything involving state mapping happens above this line          
+            (currentPlayer: any, index: any) =>  <img src= {currentPlayer.video_large_thumbnail} onClick = {(e) => this.handlePlaylistImageClick(index)}/>);                                      
+          //Everything involving state mapping happens above this line
+          
+              settings = {
+              className: "center",
+              centerMode: true,
+              infinite: true,
+              centerPadding: "60px",
+              slidesToShow:3,
+              speed: 500
+            };
+
           }
 
           return(
               <>
                   <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+                  
                   <div className="nowPlayingContainer">
                     <div className="vidPlayer">
-                      {allResultPlayers[this.state.currentVideo]}
+                    {allResultPlayers[this.state.currentVideo]} 
+                    {allResultInfo[this.state.currentVideo]}  
+                    <Slider {...settings}>
+                        {allResultThumbnails}  
+                    </Slider>
                     </div>
-                    {allResultInfo[this.state.currentVideo]}
-                  </div>
 
-                  <div className="playListSearch">
-                    {allResultThumbnails}
+                    <div className="playListSearch">
+                      
+                    </div>  
+                     
                   </div>
               </>
             );  
