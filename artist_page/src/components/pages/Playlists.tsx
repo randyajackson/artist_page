@@ -26,7 +26,9 @@ class Playlists extends React.Component<{},any> {
             keywordResults: [],
             keywordPlayerResult: [],
             videoPlayerResult: [],
+            channelPlayerResult: [],
             hasKeyword: false,
+            playlistName: '',
             navBarClicked : 0,
             currentVideo: 0
         };
@@ -44,7 +46,8 @@ class Playlists extends React.Component<{},any> {
           this.queryForPlayer(params.name);
 
           this.setState({
-            hasKeyword: true
+            hasKeyword: true,
+            playlistName: params.name
           });
         }  
         else{
@@ -93,11 +96,25 @@ class Playlists extends React.Component<{},any> {
           
               //get video data for supplied parameter
               API_videos.get('/' + encodeURIComponent(query))
-              .then(response2 => {
-                
+              .then(response2 => {                           
+
+                //get channel data for each video
+                let channelInfo: any = [];
+                response2.data.forEach((element : any) => 
+                    API_channels.get('/' + encodeURIComponent(element.video_owner) )
+                    .then( response3 => {
+                      channelInfo.push(response3.data[0]);
+
+                      this.setState({
+                        channelPlayerResult: channelInfo
+                      });
+                    }
+                    )
+                );
+
                 this.setState({
                   keywordPlayerResult: response.data,
-                  videoPlayerResult: response2.data
+                  videoPlayerResult: response2.data,
                 });
 
               })
@@ -122,6 +139,7 @@ class Playlists extends React.Component<{},any> {
           let allResultPlayers = [];
           let allResultInfo = [];
           let allResultThumbnails = [];
+          let allChannelInfo = [];
 
           if(this.state.keywordPlayerResult.length > 0){
             //@ts-ignore  
@@ -141,7 +159,15 @@ class Playlists extends React.Component<{},any> {
             
             allResultThumbnails = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  <img src= {currentPlayer.video_large_thumbnail} onClick = {(e) => this.handlePlaylistImageClick(index)}/>);                                      
+            (currentPlayer: any, index: any) =>  <img src= {currentPlayer.video_large_thumbnail} onClick = {(e) => this.handlePlaylistImageClick(index)}/>); 
+            
+            allChannelInfo = this.state.channelPlayerResult.map(
+              //@ts-ignore
+            (currentPlayer: any, index: any) =>  [<span>{"Video Owner: " + currentPlayer.channel_name}</span>, <br/>,
+                                                  <span><img src = {currentPlayer.channel_picture}></img></span>, <br/>,]);
+
+            console.log(this.state.channelPlayerResult);
+            
           //Everything involving state mapping happens above this line
           
               settings = {
@@ -158,11 +184,12 @@ class Playlists extends React.Component<{},any> {
           return(
               <>
                   <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
-                  
+                  <h1>{this.state.playlistName}</h1>
                   <div className="nowPlayingContainer">
                     <div className="vidPlayer">
                     {allResultPlayers[this.state.currentVideo]} 
-                    {allResultInfo[this.state.currentVideo]}  
+                    {allResultInfo[this.state.currentVideo]} 
+                    {allChannelInfo[this.state.currentVideo]} 
                     <Slider {...settings}>
                         {allResultThumbnails}  
                     </Slider>

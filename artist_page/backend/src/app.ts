@@ -4,7 +4,7 @@ import * as artistController from "./controllers/artistController";
 import * as recentController from "./controllers/recentController";
 import * as keywordController from "./controllers/keywordController";
 import * as videoController from "./controllers/videoController";
-
+import * as channelController from "./controllers/channelController";
 
 const fs = require('fs');
 const http = require('http');
@@ -36,13 +36,16 @@ app.use('/', router);
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
+//In use for latest feature
 router.get('/recents', recentController.allRecents);
 
+//In use for playlist feature
 router.get('/youtube_keywords', keywordController.allKeywords);
 router.get('/youtube_keywords/:keyword', keywordController.keywordByKeyword);
-
 router.get('/youtube_videos/:keyword', videoController.videoByKeyword);
+router.get('/channel_informations/:video_owner', channelController.channelByVideo);
 
+//In use for livestream feature
 router.get('/artists', artistController.allArtist);
 router.get('/artists/:name', artistController.artistByName);
 router.get('/artists/byID/:id', artistController.getArtist);
