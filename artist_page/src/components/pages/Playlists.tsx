@@ -139,34 +139,37 @@ class Playlists extends React.Component<{},any> {
           let allResultPlayers = [];
           let allResultInfo = [];
           let allResultThumbnails = [];
-          let allChannelInfo = [];
+          let channelThumbnail = [];
+
+          let textR;
+          let textG;
+          let textB;
 
           if(this.state.keywordPlayerResult.length > 0){
             //@ts-ignore  
             document.body.style = 'background: rgb(' + this.state.keywordPlayerResult[0].r + ', ' + this.state.keywordPlayerResult[0].g + ', ' + this.state.keywordPlayerResult[0].b + '); transition: all ease .5s';
             
+            textR = this.state.keywordPlayerResult[0].r;
+            textG = this.state.keywordPlayerResult[0].g;
+            textB = this.state.keywordPlayerResult[0].b;
+
             allResultPlayers = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  <ReactPlayer url = {currentPlayer.video_main_url} playing controls />);         
+            (currentPlayer: any, index: any) =>  <ReactPlayer width = "414px" height = "174px" url = {currentPlayer.video_main_url} playing controls />);         
           
             allResultInfo = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<span>{"Uploaded By: " + currentPlayer.video_owner}</span>, <br/>,
-                                                  <span>{currentPlayer.video_title}</span>, <br/>,]);
-                                                  
-                                                  //<h1>{currentPlayer.video_tags}</h1>, <br/>,
-                                                  //<h1>{currentPlayer.video_description}</h1>, <br/>]);     
-            
+            (currentPlayer: any, index: any) =>  [<span><b>{"uploaded by : "}</b>  {currentPlayer.video_owner}</span>,<br/>,
+                                                  <span>{currentPlayer.video_title}</span>, <br/>,
+                                                  <span><b>{"runtime : "}</b> {currentPlayer.video_hours + ":" + currentPlayer.video_minutes + ":" + currentPlayer.video_seconds}</span>]);
+                                                              
             allResultThumbnails = this.state.videoPlayerResult.map(
               //@ts-ignore
             (currentPlayer: any, index: any) =>  <img src= {currentPlayer.video_large_thumbnail} onClick = {(e) => this.handlePlaylistImageClick(index)}/>); 
-            
-            allChannelInfo = this.state.channelPlayerResult.map(
-              //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<span>{"Video Owner: " + currentPlayer.channel_name}</span>, <br/>,
-                                                  <span><img src = {currentPlayer.channel_picture}></img></span>, <br/>,]);
 
-            console.log(this.state.channelPlayerResult);
+            channelThumbnail = this.state.channelPlayerResult.map(
+              //@ts-ignore
+            (currentPlayer: any, index: any) =>  [<img className = "channelThumbnail" src = {currentPlayer.channel_picture}></img>, <br/>]);
             
           //Everything involving state mapping happens above this line
           
@@ -184,22 +187,31 @@ class Playlists extends React.Component<{},any> {
           return(
               <>
                   <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
-                  <h1>{this.state.playlistName}</h1>
+                  <h1 className = "playlistName" style = {{color: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")"}}>{this.state.playlistName}</h1>
                   <div className="nowPlayingContainer">
                     <div className="vidPlayer">
-                    {allResultPlayers[this.state.currentVideo]} 
-                    {allResultInfo[this.state.currentVideo]} 
-                    {allChannelInfo[this.state.currentVideo]} 
-                    <Slider {...settings}>
-                        {allResultThumbnails}  
-                    </Slider>
+                      {allResultPlayers[this.state.currentVideo]} 
+
+                      <div className="info">
+                        <div className="flex-child-thumb">
+                          {channelThumbnail[this.state.currentVideo]}
+                        </div>
+                        <div className="flex-child-description">
+                          {allResultInfo[this.state.currentVideo]} 
+                        </div>
+                      </div>
+                    <div className="playListSearch"> 
+                      <Slider {...settings}>
+                          {allResultThumbnails}  
+                      </Slider>
+                    </div>
                     </div>
 
-                    <div className="playListSearch">
+                    
                       
                     </div>  
                      
-                  </div>
+                  
               </>
             );  
         }

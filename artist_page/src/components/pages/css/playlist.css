@@ -42,16 +42,48 @@ a.keyword:hover {
 .nowPlayingContainer {
     display: block;
     position: relative;
-    top: 100px;
+    top: 30px;
 }
 
 .vidPlayer {
-    width: 560px;
+    width: 414px;
     margin: 0 auto;
     font-size: 1em;
 }
 
 .playListSearch {
-    width: 560px;
+    max-width: 414px;
     margin: 0 auto;
+}
+
+.playlistName {
+    text-align: center;
+    font-size:5em;
+}
+
+.channelThumbnail {
+    max-width: 100px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.flex-child-thumb {
+    flex:.25;
+    margin: 1px;
+}
+
+.flex-child-description {
+    flex:1;
+    padding-left: 3px;
+    margin: 1px;
+    height: 100px;
 }
