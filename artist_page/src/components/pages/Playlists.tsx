@@ -174,7 +174,7 @@ class Playlists extends React.Component<{},any> {
           //Everything involving state mapping happens above this line
           
               settings = {
-              className: "center",
+              className: "playListSearch",
               centerMode: true,
               infinite: true,
               centerPadding: "60px",
@@ -190,21 +190,20 @@ class Playlists extends React.Component<{},any> {
                   <h1 className = "playlistName" style = {{color: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")"}}>{this.state.playlistName}</h1>
                   <div className="nowPlayingContainer">
                     <div className="vidPlayer">
+                        <Slider {...settings}>
+                            {allResultThumbnails}  
+                        </Slider>
                       {allResultPlayers[this.state.currentVideo]} 
 
                       <div className="info">
                         <div className="flex-child-thumb">
                           {channelThumbnail[this.state.currentVideo]}
                         </div>
-                        <div className="flex-child-description">
+                        <div className="flex-child-description" style = {{backgroundColor: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")", color: "rgb(" + (textR + 70) + ", " + (textG + 70) + ", " + (textB + 70) + ")"}}>
                           {allResultInfo[this.state.currentVideo]} 
                         </div>
                       </div>
-                    <div className="playListSearch"> 
-                      <Slider {...settings}>
-                          {allResultThumbnails}  
-                      </Slider>
-                    </div>
+                    
                     </div>
 
                     

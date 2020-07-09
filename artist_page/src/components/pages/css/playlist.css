@@ -83,7 +83,7 @@ a.keyword:hover {
 
 .flex-child-description {
     flex:1;
-    padding-left: 3px;
-    margin: 1px;
     height: 100px;
+    background-color: black;
+    color: white;
 }
