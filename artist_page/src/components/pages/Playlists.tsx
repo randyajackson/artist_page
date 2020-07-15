@@ -140,6 +140,7 @@ class Playlists extends React.Component<{},any> {
           let allResultInfo = [];
           let allResultThumbnails = [];
           let channelThumbnail = [];
+          let videoKeywords = [];
 
           let textR;
           let textG;
@@ -159,9 +160,9 @@ class Playlists extends React.Component<{},any> {
           
             allResultInfo = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<span><b>{"uploaded by : "}</b>  {currentPlayer.video_owner}</span>,<br/>,
-                                                  <span>{currentPlayer.video_title}</span>, <br/>,
-                                                  <span><b>{"runtime : "}</b> {currentPlayer.video_hours + ":" + currentPlayer.video_minutes + ":" + currentPlayer.video_seconds}</span>]);
+            (currentPlayer: any, index: any) =>  [<span>{currentPlayer.video_title}</span>, <br/>,
+                                                  <span><b>{"runtime : "}</b> {currentPlayer.video_hours + ":" + currentPlayer.video_minutes + ":" + currentPlayer.video_seconds}</span>, <br/>,
+                                                  <span><b>{"uploaded by : "}</b>  {currentPlayer.video_owner}</span>,<br/>]);
                                                               
             allResultThumbnails = this.state.videoPlayerResult.map(
               //@ts-ignore
@@ -169,7 +170,11 @@ class Playlists extends React.Component<{},any> {
 
             channelThumbnail = this.state.channelPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<img className = "channelThumbnail" src = {currentPlayer.channel_picture}></img>, <br/>]);
+            (currentPlayer: any, index: any) =>  [<a href ={currentPlayer.channel_main_url}><img className = "channelThumbnail" src = {currentPlayer.channel_picture}></img></a>, <br/>]);
+
+            videoKeywords = this.state.videoPlayerResult.map(
+              //@ts-ignore
+            (currentPlayer: any, index: any) =>  [<a href ="#">{currentPlayer.video_tags}</a> ]);
             
           //Everything involving state mapping happens above this line
           
@@ -182,6 +187,7 @@ class Playlists extends React.Component<{},any> {
               speed: 500
             };
 
+            //console.log(this.state.videoPlayerResult);
           }
 
           return(
@@ -190,9 +196,11 @@ class Playlists extends React.Component<{},any> {
                   <h1 className = "playlistName" style = {{color: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")"}}>{this.state.playlistName}</h1>
                   <div className="nowPlayingContainer">
                     <div className="vidPlayer">
-                        <Slider {...settings}>
-                            {allResultThumbnails}  
-                        </Slider>
+                      
+                      <Slider {...settings}>
+                          {allResultThumbnails}  
+                      </Slider>
+                        
                       {allResultPlayers[this.state.currentVideo]} 
 
                       <div className="info">
@@ -203,12 +211,14 @@ class Playlists extends React.Component<{},any> {
                           {allResultInfo[this.state.currentVideo]} 
                         </div>
                       </div>
-                    
+                      <div>
+                        {videoKeywords[this.state.currentVideo]}
+                      </div>  
                     </div>
 
                     
                       
-                    </div>  
+                  </div>  
                      
                   
               </>
