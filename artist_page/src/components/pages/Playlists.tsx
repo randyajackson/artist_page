@@ -140,6 +140,7 @@ class Playlists extends React.Component<{},any> {
           let allResultInfo = [];
           let allResultThumbnails = [];
           let channelThumbnail = [];
+          //@ts-ignore
           let videoKeywords = [];
 
           let textR;
@@ -171,10 +172,12 @@ class Playlists extends React.Component<{},any> {
             channelThumbnail = this.state.channelPlayerResult.map(
               //@ts-ignore
             (currentPlayer: any, index: any) =>  [<a href ={currentPlayer.channel_main_url}><img className = "channelThumbnail" src = {currentPlayer.channel_picture}></img></a>, <br/>]);
-
-            videoKeywords = this.state.videoPlayerResult.map(
+            
+            //@ts-ignore
+            this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<a href ="#">{currentPlayer.video_tags}</a> ]);
+            (currentPlayer: any, index: any) =>  {videoKeywords[index] = currentPlayer.video_tags.map( (tag: any) => [<a href ="#">{tag}</a> ])} );  
+            
             
           //Everything involving state mapping happens above this line
           
@@ -212,6 +215,7 @@ class Playlists extends React.Component<{},any> {
                         </div>
                       </div>
                       <div>
+                        {/*@ts-ignore  */}
                         {videoKeywords[this.state.currentVideo]}
                       </div>  
                     </div>
