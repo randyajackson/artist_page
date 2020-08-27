@@ -142,9 +142,12 @@ class Playlists extends React.Component<{},any> {
           let channelThumbnail = [];
           //@ts-ignore
           let videoKeywords = [];
-
+          
+          //@ts-ignore
           let textR;
+          //@ts-ignore
           let textG;
+          //@ts-ignore
           let textB;
 
           if(this.state.keywordPlayerResult.length > 0){
@@ -176,7 +179,7 @@ class Playlists extends React.Component<{},any> {
             //@ts-ignore
             this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  {videoKeywords[index] = currentPlayer.video_tags.map( (tag: any) => [<a href ="#">{tag}</a> ])} );  
+            (currentPlayer: any, index: any) =>  {videoKeywords[index] = currentPlayer.video_tags.map( (tag: any) => [<a href ={"/playlists?name=" + encodeURIComponent(tag)} className = "tagButton" style = {{backgroundColor: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")", color: "rgb(" + (textR + 70) + ", " + (textG + 70) + ", " + (textB + 70) + ")"}}>{tag}</a> ])} );  
             
             
           //Everything involving state mapping happens above this line
@@ -186,11 +189,10 @@ class Playlists extends React.Component<{},any> {
               centerMode: true,
               infinite: true,
               centerPadding: "60px",
-              slidesToShow:3,
+              slidesToShow:1,
               speed: 500
             };
 
-            //console.log(this.state.videoPlayerResult);
           }
 
           return(
@@ -203,7 +205,7 @@ class Playlists extends React.Component<{},any> {
                       <Slider {...settings}>
                           {allResultThumbnails}  
                       </Slider>
-                        
+
                       {allResultPlayers[this.state.currentVideo]} 
 
                       <div className="info">
