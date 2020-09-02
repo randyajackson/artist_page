@@ -197,11 +197,18 @@ class Playlists extends React.Component<{},any> {
 
           return(
               <>
+              {/* the link will need to change here when live */}
+              <button 
+              onClick={(e) => { e.preventDefault(); window.location.href='https://intrinse.net:3333/playlists';
+                }} 
+              id="backButton" 
+              title="Back to playlists"> {'<'}
+              </button>
+
                   <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
                   <h1 className = "playlistName" style = {{color: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")"}}>{this.state.playlistName}</h1>
                   <div className="nowPlayingContainer">
                     <div className="vidPlayer">
-                      
                       <Slider {...settings}>
                           {allResultThumbnails}  
                       </Slider>
@@ -221,12 +228,8 @@ class Playlists extends React.Component<{},any> {
                         {videoKeywords[this.state.currentVideo]}
                       </div>  
                     </div>
-
-                    
-                      
                   </div>  
-                     
-                  
+              <br/><br/><br/><br/><br/><br/>
               </>
             );  
         }

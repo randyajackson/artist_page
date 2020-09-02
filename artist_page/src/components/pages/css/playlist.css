@@ -100,6 +100,20 @@ a.tagButton{
     text-align:center;
     transition: all 0.2s;
 }
-    
 
+#backButton {
+    display: block;
+    position: fixed;
+    top: 10%;
+    left: 0;
+    z-index: 99;
+    font-size: 25px;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
 
