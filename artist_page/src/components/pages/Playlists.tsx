@@ -35,6 +35,7 @@ class Playlists extends React.Component<{},any> {
 
         this.handleLinkClick = this.handleLinkClick.bind(this);
         this.handlePlaylistImageClick = this.handlePlaylistImageClick.bind(this);
+        this.handleVideoProgress = this.handleVideoProgress.bind(this);
     }
 
     componentDidMount() {
@@ -129,6 +130,22 @@ class Playlists extends React.Component<{},any> {
         
     }
 
+    handleVideoProgress(){
+      console.log(this.state.currentVideo);
+      console.log(this.state.videoPlayerResult.length);
+
+      if(this.state.currentVideo + 1 !== this.state.videoPlayerResult.length)
+        this.setState({
+          currentVideo: this.state.currentVideo + 1,
+        });
+      else
+        this.setState({
+          currentVideo: 0,
+        });
+      
+        console.log(this.state.currentVideo);
+    }
+
 
     render(){
 
@@ -160,7 +177,7 @@ class Playlists extends React.Component<{},any> {
 
             allResultPlayers = this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  <ReactPlayer width = "414px" height = "174px" url = {currentPlayer.video_main_url} playing controls />);         
+            (currentPlayer: any, index: any) =>  <ReactPlayer width = "414px" height = "174px" url = {currentPlayer.video_main_url} onEnded = {(e) => this.handleVideoProgress()} onError = {(e) => this.handleVideoProgress()} playing controls />);         
           
             allResultInfo = this.state.videoPlayerResult.map(
               //@ts-ignore
