@@ -117,3 +117,66 @@ a.tagButton{
     border-radius: 4px;
   }
 
+  .noUserSelect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+  .searchBarPlaylistMain {
+    position: fixed;
+    background: rgb(0, 0, 0);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    top: 0;
+    /* left: 25%; */
+    height: 42px;
+    margin-top: 11px;
+    border-radius: 2px;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.623);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.searchBarPlaylistMain i.searchBarSearchIcon {
+    height: 100%;
+    line-height: 42px;
+    float: left;
+    width: 52px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.searchBarPlaylistMain input#searchBarInput {
+    height: 42px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-align: center;
+    box-sizing: border-box;
+    background: transparent;
+    width: calc(100% - 52px);
+    outline: none;
+    padding-right: 32px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.76);
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+
+.searchBarPlaylistMain i.clearSearchBarField {
+    position:absolute;
+    right: 12px;
+    top: 5px;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 20px;
+}
+
+.searchBarPlaylistMain i.clearSearchBarField:hover {
+    cursor: pointer;
+}

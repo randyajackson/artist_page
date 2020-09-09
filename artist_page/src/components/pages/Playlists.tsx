@@ -9,6 +9,9 @@ import API_videos from "./utils/playlists/API_videos";
 
 import ReactPlayer from 'react-player';
 
+import { GoSearch } from "react-icons/go";
+import { MdClear } from "react-icons/md";
+
 import './css/playlist.css';
 
 import "slick-carousel/slick/slick.css";
@@ -28,6 +31,7 @@ class Playlists extends React.Component<{},any> {
             videoPlayerResult: [],
             channelPlayerResult: [],
             hasKeyword: false,
+            searchField: '',
             playlistName: '',
             navBarClicked : 0,
             currentVideo: 0
@@ -36,6 +40,8 @@ class Playlists extends React.Component<{},any> {
         this.handleLinkClick = this.handleLinkClick.bind(this);
         this.handlePlaylistImageClick = this.handlePlaylistImageClick.bind(this);
         this.handleVideoProgress = this.handleVideoProgress.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClearChange = this.handleClearChange.bind(this);
     }
 
     componentDidMount() {
@@ -146,6 +152,37 @@ class Playlists extends React.Component<{},any> {
         console.log(this.state.currentVideo);
     }
 
+    async handleInputChange(event: any){
+
+      await this.setState({searchField: event.target.value});
+      let searchValue = this.state.searchField;
+  
+      API_keywords.get('/' + this.state.searchField)
+      .then(response => {
+  
+        if(searchValue === "")
+          response.data = arrayShuffle(response.data);
+  
+        this.setState({
+          keywordResults: response.data,
+        });
+  
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
+    }
+
+    handleClearChange(event: any){
+      this.setState({searchField: ''});
+      this.queryForSearch();  
+    }
+
+    pad(n: number) {
+      return (n < 10) ? ("0" + n) : n;
+    }
+
 
     render(){
 
@@ -182,7 +219,7 @@ class Playlists extends React.Component<{},any> {
             allResultInfo = this.state.videoPlayerResult.map(
               //@ts-ignore
             (currentPlayer: any, index: any) =>  [<span>{currentPlayer.video_title}</span>, <br/>,
-                                                  <span><b>{"runtime : "}</b> {currentPlayer.video_hours + ":" + currentPlayer.video_minutes + ":" + currentPlayer.video_seconds}</span>, <br/>,
+                                                  <span><b>{"runtime : "}</b> {this.pad(currentPlayer.video_hours) + ":" + this.pad(currentPlayer.video_minutes) + ":" + this.pad(currentPlayer.video_seconds)}</span>, <br/>,
                                                   <span><b>{"uploaded by : "}</b>  {currentPlayer.video_owner}</span>,<br/>]);
                                                               
             allResultThumbnails = this.state.videoPlayerResult.map(
@@ -262,7 +299,25 @@ class Playlists extends React.Component<{},any> {
             <>
               <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
               <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
+
+                <div className="searchBarPlaylistMain">
+                  <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
+                  <input 
+                  type="text" 
+                  name="header-search" 
+                  value={this.state.searchField} 
+                  onChange={this.handleInputChange} 
+                  id="searchBarInput" 
+                  placeholder="search by keyword">
+                  </input>
+                  <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
+                </div>
+
+                  <br/>
+                  <br/>
                   {allKeywords}
+                  <br/>
+                  <br/>
               </div>
             </>
               );
