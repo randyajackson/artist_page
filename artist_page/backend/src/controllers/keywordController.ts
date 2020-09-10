@@ -4,7 +4,7 @@ import Keywords from './../keywords';
 //Get - /youtubeKeywords returns all recent songs
 export let allKeywords = (req: Request, res: Response) => {
 
-    let youtube_keywords = Keywords.find( (err: any, youtube_keywords: any) => {
+    let youtube_keywords = Keywords.aggregate( [{ $sample: { size: 150 } }] , function(err: any, youtube_keywords: any) {
         if(err) {
             res.send(err);
         } else {
