@@ -5,6 +5,7 @@ import * as recentController from "./controllers/recentController";
 import * as keywordController from "./controllers/keywordController";
 import * as videoController from "./controllers/videoController";
 import * as channelController from "./controllers/channelController";
+import * as recentKeywordController from "./controllers/recentKeywordController";
 
 const fs = require('fs');
 const http = require('http');
@@ -38,6 +39,8 @@ const httpsServer = https.createServer(credentials, app);
 
 //In use for latest feature
 router.get('/recents', recentController.allRecents);
+router.get('/recent_keywords', recentKeywordController.allKeywords)
+
 
 //In use for playlist feature
 router.get('/youtube_keywords', keywordController.allKeywords);

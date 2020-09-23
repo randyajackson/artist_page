@@ -8,6 +8,7 @@ import Masonry from 'react-masonry-component';
 
 import API from "./utils/API";
 import API_RECENTS from "./utils/API_recents";
+import API_RECENT_KEYWORDS from "./utils/API_recent_keywords";
 
 import './css/latest.css';
 
@@ -28,6 +29,7 @@ class Latest extends React.Component<{},any> {
     
         this.state = {
             recentSCResults: [],
+            recentKeywords: [],
             navBarClicked : 0
         };
 
@@ -36,6 +38,7 @@ class Latest extends React.Component<{},any> {
 
     componentDidMount() {
         this.queryRecentSC();
+        this.queryRecentKeywords();
       }
 
     queryRecentSC(){
@@ -52,11 +55,24 @@ class Latest extends React.Component<{},any> {
         });  
     }
 
+    queryRecentKeywords(){
+        API_RECENT_KEYWORDS.get('/')
+        .then(response => {
+
+          this.setState({
+            recentKeywords: response.data
+          });
+    
+        })
+        .catch((error) => {
+          console.log(error);
+        });  
+    }
+
     handleLinkClick = () => {
         this.setState({
             navBarClicked: 1
           });
-        console.log(this.state.navBarClicked);
         window.setTimeout(() => {
         }, 1000);
     }
@@ -64,15 +80,21 @@ class Latest extends React.Component<{},any> {
     render(){
 
     let allRecents = [];
+    let allRecentKeywords = [];
   
     allRecents = this.state.recentSCResults.map(
     //@ts-ignore
     (currentResult: any, index: any) =>  <ReactPlayer url= {currentResult.song_url} width= "200px" height = "200px"  />);
 
+    allRecentKeywords = this.state.recentKeywords.map(
+        //@ts-ignore
+    (currentResult: any, index: any) =>  currentResult.keyword);
+
         return(
             <>
                 <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
                 <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
+                    
                     <div className = "featuredText">
                         <span className= "tagLineFirst">new this week from</span>
                         <br/>
@@ -87,7 +109,22 @@ class Latest extends React.Component<{},any> {
                     >
                         {allRecents}
                     </Masonry>
-                    {/* <h1>new this week in archived music</h1> */}
+
+                    <div className = "featuredText">
+                        <span className= "tagLineFirst">new this week in</span>
+                        <br/>
+                        <span className= "tagLineSecond">playlists</span>
+                    </div>
+                    
+                    <br/><br/><br/>
+                    <Masonry
+                    className={'grid-item-latest'}
+                    elementType={'div'}
+                    options={masonryOptions}
+                    >
+                        {allRecentKeywords}
+                    </Masonry>
+                    
                 </div>
             </>
         );
