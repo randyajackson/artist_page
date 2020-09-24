@@ -20,6 +20,18 @@ import "slick-carousel/slick/slick-theme.css";
 const queryString = require('query-string');
 const { arrayShuffle } = require('@adriantombu/array-shuffle');
 
+//@ts-ignore
+const encode = str => encodeURIComponent(str)
+    .replace(/\-/g, '%2D')
+    .replace(/\_/g, '%5F')
+    .replace(/\./g, '%2E')
+    .replace(/\!/g, '%21')
+    .replace(/\~/g, '%7E')
+    .replace(/\*/g, '%2A')
+    .replace(/\'/g, '%27')
+    .replace(/\(/g, '%28')
+    .replace(/\)/g, '%29');
+
 class Playlists extends React.Component<{},any> {
 
     constructor(props: Readonly<{}>){
@@ -98,17 +110,17 @@ class Playlists extends React.Component<{},any> {
 
     queryForPlayer(query: string){
         //get keyword data for supplied parameter
-        API_keywords.get('/' + encodeURIComponent(query))
+        API_keywords.get('/' + encode(query))
         .then(response => {
           
               //get video data for supplied parameter
-              API_videos.get('/' + encodeURIComponent(query))
+              API_videos.get('/' + encode(query))
               .then(response2 => {                           
 
                 //get channel data for each video
                 let channelInfo: any = [];
                 response2.data.forEach((element : any) => 
-                    API_channels.get('/' + encodeURIComponent(element.video_owner) )
+                    API_channels.get('/' + encode(element.video_owner) )
                     .then( response3 => {
                       channelInfo.push(response3.data[0]);
 
@@ -233,7 +245,7 @@ class Playlists extends React.Component<{},any> {
             //@ts-ignore
             this.state.videoPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  {videoKeywords[index] = currentPlayer.video_tags.map( (tag: any) => [<a href ={"/playlists?name=" + encodeURIComponent(tag)} className = "tagButton" style = {{backgroundColor: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")", color: "rgb(" + (textR + 70) + ", " + (textG + 70) + ", " + (textB + 70) + ")"}}>{tag}</a> ])} );  
+            (currentPlayer: any, index: any) =>  {videoKeywords[index] = currentPlayer.video_tags.map( (tag: any) => [<a href ={"/playlists?name=" + encode(tag)} className = "tagButton" style = {{backgroundColor: "rgb(" + (textR - 70) + ", " + (textG - 70) + ", " + (textB - 70) + ")", color: "rgb(" + (textR + 70) + ", " + (textG + 70) + ", " + (textB + 70) + ")"}}>{tag}</a> ])} );  
             
             
           //Everything involving state mapping happens above this line
@@ -293,7 +305,7 @@ class Playlists extends React.Component<{},any> {
     
           allKeywords = this.state.keywordResults.map(
           //@ts-ignore
-          (currentKeyword: any, index: any) =>  [<a href={"?name=" + encodeURIComponent(currentKeyword.keyword.toLowerCase()) } className ="keyword" onMouseEnter={ () => document.body.style = 'background: rgb(' + currentKeyword.r + ', ' + currentKeyword.g + ', ' + currentKeyword.b + '); transition: all ease .5s'} onMouseOut={ () => document.body.style = 'background: white; transition: all ease .5s'}>{currentKeyword.keyword.toLowerCase()}</a>,<br/>] );
+          (currentKeyword: any, index: any) =>  [<a href={"?name=" + encode(currentKeyword.keyword.toLowerCase()) } className ="keyword" onMouseEnter={ () => document.body.style = 'background: rgb(' + currentKeyword.r + ', ' + currentKeyword.g + ', ' + currentKeyword.b + '); transition: all ease .5s'} onMouseOut={ () => document.body.style = 'background: white; transition: all ease .5s'}>{currentKeyword.keyword.toLowerCase()}</a>,<br/>] );
 
           return(
             <>

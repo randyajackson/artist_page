@@ -53,6 +53,18 @@ const { arrayShuffle } = require('@adriantombu/array-shuffle');
 const xSymbol = 'hamburger hamburger--slider is-active';
 const hamburger = 'hamburger hamburger--slider';
 
+//@ts-ignore
+const encode = str => encodeURIComponent(str)
+    .replace(/\-/g, '%2D')
+    .replace(/\_/g, '%5F')
+    .replace(/\./g, '%2E')
+    .replace(/\!/g, '%21')
+    .replace(/\~/g, '%7E')
+    .replace(/\*/g, '%2A')
+    .replace(/\'/g, '%27')
+    .replace(/\(/g, '%28')
+    .replace(/\)/g, '%29');
+
 const Artists = (props: any) => (
     <div className="grid-item">
             <img className="artist_picture" 
@@ -169,7 +181,7 @@ const Artists = (props: any) => (
     await this.setState({searchField: event.target.value});
     let searchValue = this.state.searchField;
 
-    API.get('/' + this.state.searchField)
+    API.get('/' + encode(this.state.searchField))
     .then(response => {
 
       if(searchValue === "")

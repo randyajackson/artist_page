@@ -1,10 +1,24 @@
 import { Request, Response } from 'express';
 import Artists from './../artists';
 
+//@ts-ignore
+const decode = str => decodeURIComponent(
+    str
+    .replace(/\%2D/g, '-')
+    .replace(/\%5F/g, '_')
+    .replace(/\%2E/g, '.')
+    .replace(/\%21/g, '!')
+    .replace(/\%7E/g, '~')
+    .replace(/\%2A/g, '*')
+    .replace(/\%27/g, "'")
+    .replace(/\%28/g, '(')
+    .replace(/\%29/g, ')')
+).replace(/[-[\]{}()*+?.,\\/^$|#\s]/g, "\\$&");
+
 //Get - /artists/name returns artist by name likeness
 export let artistByName = (req: Request, res: Response) => {
 
-    let artists = Artists.find( {"name": { $regex: req.params.name, $options: 'i'}} ,function(err, artists) {
+    let artists = Artists.find( {"name": { $regex: decode(req.params.name), $options: 'i'}} ,function(err, artists) {
         if (err) {
             res.send(err);
         }

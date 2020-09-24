@@ -22,6 +22,18 @@ const masonryOptions = {
     stagger: '0.03s'
 };
 
+//@ts-ignore
+const encode = str => encodeURIComponent(str)
+    .replace(/\-/g, '%2D')
+    .replace(/\_/g, '%5F')
+    .replace(/\./g, '%2E')
+    .replace(/\!/g, '%21')
+    .replace(/\~/g, '%7E')
+    .replace(/\*/g, '%2A')
+    .replace(/\'/g, '%27')
+    .replace(/\(/g, '%28')
+    .replace(/\)/g, '%29');
+
 class Latest extends React.Component<{},any> {
 
     constructor(props: Readonly<{}>){
@@ -87,8 +99,8 @@ class Latest extends React.Component<{},any> {
     (currentResult: any, index: any) =>  <ReactPlayer url= {currentResult.song_url} width= "200px" height = "200px"  />);
 
     allRecentKeywords = this.state.recentKeywords.map(
-        //@ts-ignore
-    (currentResult: any, index: any) =>  currentResult.keyword);
+    //@ts-ignore
+    (currentKey: any, index: any) =>  <a href ={"/playlists?name=" + encode(currentKey.keyword.toLowerCase())} className = "tagButton">{currentKey.keyword}</a>  ); 
 
         return(
             <>
@@ -116,7 +128,7 @@ class Latest extends React.Component<{},any> {
                         <span className= "tagLineSecond">playlists</span>
                     </div>
                     
-                    <br/><br/><br/>
+                    <br/>
                     <Masonry
                     className={'grid-item-latest'}
                     elementType={'div'}
@@ -124,7 +136,7 @@ class Latest extends React.Component<{},any> {
                     >
                         {allRecentKeywords}
                     </Masonry>
-                    
+                    <br/><br/><br/>
                 </div>
             </>
         );
