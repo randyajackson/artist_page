@@ -24,6 +24,7 @@ export const VideoSchema = new mongoose.Schema({
     video_small_thumbnail : { type: String, required: false },
     video_medium_thumbnail : { type: String, required: false },
     video_large_thumbnail : { type: String, required: false },
+    video_publish_date : { type: String, required: false},
     video_hours : { type: Number, required: false },
     video_minutes : { type: Number, required: false },
     video_seconds : { type: Number, required: false },

@@ -62,7 +62,7 @@ a.keyword:hover {
 }
 
 .channelThumbnail {
-    max-width: 100px;
+    width: 100px;
 }
 
 .info {
