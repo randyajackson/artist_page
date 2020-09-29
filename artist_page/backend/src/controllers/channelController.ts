@@ -15,10 +15,23 @@ const decode = str => decodeURIComponent(
     .replace(/\%29/g, ')')
 ).replace(/[-[\]{}()*+?.,\\/^$|#\s]/g, "\\$&");
 
+//Get - /youtubeKeywords/ returns all recent songs
+export let channels = (req: Request, res: Response) => {
+
+    let channel_informations = Channels.find( (err: any, channel_informations: any) => {
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(channel_informations);
+        }    
+    });
+
+};
+
 //Get - /youtubeKeywords/keyword returns artist by name likeness
 export let channelByVideo = (req: Request, res: Response) => {
 
-    let channel_informations = Channels.find( {"channel_name": { $regex: decode(req.params.video_owner), $options: 'i'}} ,function(err, channel_informations) {
+    let channel_informations = Channels.find( {"channel_name": decodeURIComponent(req.params.video_owner)} ,function(err, channel_informations) {
         if (err) {
             res.send(err);
         }

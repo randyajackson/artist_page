@@ -20,6 +20,9 @@ import "slick-carousel/slick/slick-theme.css";
 const queryString = require('query-string');
 const { arrayShuffle } = require('@adriantombu/array-shuffle');
 
+
+let channelOwnerData = new Map();
+
 //@ts-ignore
 const encode = str => encodeURIComponent(str)
     .replace(/\-/g, '%2D')
@@ -109,6 +112,16 @@ class Playlists extends React.Component<{},any> {
     }
 
     queryForPlayer(query: string){
+
+      API_channels.get('/')
+                  .then( channelInfo => {
+                    //@ts-ignore                
+                    for(let i = 0; i < channelInfo.data.length; i++) {  
+                      //@ts-ignore
+                  channelOwnerData.set( channelInfo.data[i].channel_name, channelInfo.data[i]);
+                  };
+                  });
+                  
         //get keyword data for supplied parameter
         API_keywords.get('/' + encode(query))
         .then(response => {
@@ -116,24 +129,18 @@ class Playlists extends React.Component<{},any> {
               //get video data for supplied parameter
               API_videos.get('/' + encode(query))
               .then(response2 => {                           
+                
+                let channelList = [];
 
-                //get channel data for each video
-                let channelInfo: any = [];
-                response2.data.forEach((element : any) => 
-                    API_channels.get('/' + encode(element.video_owner) )
-                    .then( response3 => {
-                      channelInfo.push(response3.data[0]);
-
-                      this.setState({
-                        channelPlayerResult: channelInfo
-                      });
-                    }
-                    )
-                );
+                for(let i = 0; i < response2.data.length; i++){
+                  //@ts-ignore
+                   channelList.push(channelOwnerData.get(response2.data[i].video_owner));
+                }
 
                 this.setState({
                   keywordPlayerResult: response.data,
                   videoPlayerResult: response2.data,
+                  channelPlayerResult: channelList
                 });
 
               })
@@ -149,8 +156,6 @@ class Playlists extends React.Component<{},any> {
     }
 
     handleVideoProgress(){
-      console.log(this.state.currentVideo);
-      console.log(this.state.videoPlayerResult.length);
 
       if(this.state.currentVideo + 1 !== this.state.videoPlayerResult.length)
         this.setState({
@@ -161,7 +166,6 @@ class Playlists extends React.Component<{},any> {
           currentVideo: 0,
         });
       
-        console.log(this.state.currentVideo);
     }
 
     async handleInputChange(event: any){
@@ -200,8 +204,13 @@ class Playlists extends React.Component<{},any> {
 
         if(this.state.hasKeyword){
 
+          let todayDate : Date = new Date();
+          let weekBeginDate : Date = new Date();
+          weekBeginDate.setDate(weekBeginDate.getDate() - 7); 
+          let videoDate : Date;
           
-          let settings;
+
+          let settings;        
           let allResultPlayers = [];
           let allResultInfo = [];
           let allResultThumbnails = [];
@@ -223,6 +232,8 @@ class Playlists extends React.Component<{},any> {
             textR = this.state.keywordPlayerResult[0].r;
             textG = this.state.keywordPlayerResult[0].g;
             textB = this.state.keywordPlayerResult[0].b;
+            
+            videoDate = new Date(this.state.videoPlayerResult[this.state.currentVideo].video_publish_date);
 
             allResultPlayers = this.state.videoPlayerResult.map(
               //@ts-ignore
@@ -252,11 +263,12 @@ class Playlists extends React.Component<{},any> {
           
               settings = {
               className: "playListSearch",
-              centerMode: true,
+              centerMode: false,
               infinite: true,
               centerPadding: "60px",
-              slidesToShow:1,
-              speed: 500
+              slidesToShow: (this.state.videoPlayerResult.length) > 2 ? 3 : 1,
+              slidesToScroll: (this.state.videoPlayerResult.length) > 2 ? 3 : 1,
+              speed: 750
             };
 
           }
@@ -280,7 +292,10 @@ class Playlists extends React.Component<{},any> {
                       </Slider>
 
                       {allResultPlayers[this.state.currentVideo]} 
-
+                      {/* //@ts-ignore */}
+                      <div className="flex-new-notification" style={{display: ( ( (todayDate >= videoDate!) && (videoDate! >= weekBeginDate) ) ? 'inline-block' : 'none')}}>
+                          new this week
+                      </div>
                       <div className="info">
                         <div className="flex-child-thumb">
                           {channelThumbnail[this.state.currentVideo]}
@@ -289,6 +304,7 @@ class Playlists extends React.Component<{},any> {
                           {allResultInfo[this.state.currentVideo]} 
                         </div>
                       </div>
+                      
                       <div>
                         {/*@ts-ignore  */}
                         {videoKeywords[this.state.currentVideo]}

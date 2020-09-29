@@ -3,6 +3,7 @@ import Keywords from './../keywords';
 //@ts-ignore
 const decode = str => decodeURIComponent(
     str
+    .replace(/\%20/g, ' ')
     .replace(/\%2D/g, '-')
     .replace(/\%5F/g, '_')
     .replace(/\%2E/g, '.')
@@ -29,7 +30,7 @@ export let allKeywords = (req: Request, res: Response) => {
 
 //Get - /youtubeKeywords/keyword returns keyword by name likeness
 export let keywordByKeyword = (req: Request, res: Response) => {
-
+    
     let youtube_keywords = Keywords.find( {"keyword": { $regex: decode(req.params.keyword), $options: 'i'}} ,function(err, youtube_keywords) {
         if (err) {
             res.send(err);

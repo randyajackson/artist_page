@@ -46,7 +46,9 @@ router.get('/recent_keywords', recentKeywordController.allKeywords)
 router.get('/youtube_keywords', keywordController.allKeywords);
 router.get('/youtube_keywords/:keyword', keywordController.keywordByKeyword);
 router.get('/youtube_videos/:keyword', videoController.videoByKeyword);
+router.get('/channel_informations/', channelController.channels);
 router.get('/channel_informations/:video_owner', channelController.channelByVideo);
+
 
 //In use for livestream feature
 router.get('/artists', artistController.allArtist);
