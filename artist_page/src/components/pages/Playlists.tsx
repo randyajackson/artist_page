@@ -56,6 +56,7 @@ class Playlists extends React.Component<{},any> {
         this.handlePlaylistImageClick = this.handlePlaylistImageClick.bind(this);
         this.handleVideoProgress = this.handleVideoProgress.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleClearChange = this.handleClearChange.bind(this);
     }
 
@@ -171,23 +172,31 @@ class Playlists extends React.Component<{},any> {
     async handleInputChange(event: any){
 
       await this.setState({searchField: event.target.value});
-      let searchValue = this.state.searchField;
   
-      API_keywords.get('/' + this.state.searchField)
-      .then(response => {
-  
-        if(searchValue === "")
-          response.data = arrayShuffle(response.data);
-  
-        this.setState({
-          keywordResults: response.data,
+    }
+
+    async handleKeyDown(event: any){
+
+      if( event.keyCode == 13 ){
+        
+        let searchValue = this.state.searchField;
+    
+        API_keywords.get('/' + this.state.searchField)
+        .then(response => {
+    
+          if(searchValue === "")
+            response.data = arrayShuffle(response.data);
+    
+          this.setState({
+            keywordResults: response.data,
+          });
+    
+        })
+        .catch((error) => {
+          console.log(error);
         });
-  
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  
+      }
+
     }
 
     handleClearChange(event: any){
@@ -335,6 +344,7 @@ class Playlists extends React.Component<{},any> {
                   name="header-search" 
                   value={this.state.searchField} 
                   onChange={this.handleInputChange} 
+                  onKeyDown={this.handleKeyDown}
                   id="searchBarInput" 
                   placeholder="search by keyword">
                   </input>
