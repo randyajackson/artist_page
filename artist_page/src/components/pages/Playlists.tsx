@@ -56,11 +56,22 @@ class Playlists extends React.Component<{},any> {
         this.handlePlaylistImageClick = this.handlePlaylistImageClick.bind(this);
         this.handleVideoProgress = this.handleVideoProgress.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleKeyDown = this.handleKeyDown.bind(this);
+        // this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleClearChange = this.handleClearChange.bind(this);
     }
 
     componentDidMount() {
+
+        if(channelOwnerData.size == 0){
+          API_channels.get('/')
+          .then( channelInfo => {
+            //@ts-ignore                
+            for(let i = 0; i < channelInfo.data.length; i++) {  
+              //@ts-ignore
+          channelOwnerData.set( channelInfo.data[i].channel_name, channelInfo.data[i]);
+          };
+          });
+        }
 
         const params = queryString.parse(window.location.search);
         
@@ -113,16 +124,7 @@ class Playlists extends React.Component<{},any> {
     }
 
     queryForPlayer(query: string){
-
-      API_channels.get('/')
-                  .then( channelInfo => {
-                    //@ts-ignore                
-                    for(let i = 0; i < channelInfo.data.length; i++) {  
-                      //@ts-ignore
-                  channelOwnerData.set( channelInfo.data[i].channel_name, channelInfo.data[i]);
-                  };
-                  });
-                  
+         
         //get keyword data for supplied parameter
         API_keywords.get('/' + encode(query))
         .then(response => {
@@ -172,15 +174,11 @@ class Playlists extends React.Component<{},any> {
     async handleInputChange(event: any){
 
       await this.setState({searchField: event.target.value});
-  
-    }
 
-    async handleKeyDown(event: any){
+      let searchValue = this.state.searchField;
+      
+      if (searchValue.length > 2){
 
-      if( event.keyCode == 13 ){
-        
-        let searchValue = this.state.searchField;
-    
         API_keywords.get('/' + this.state.searchField)
         .then(response => {
     
@@ -195,8 +193,13 @@ class Playlists extends React.Component<{},any> {
         .catch((error) => {
           console.log(error);
         });
-      }
 
+      }
+      else{
+        if (searchValue.length < 1){
+          this.handleClearChange(event);
+        }
+      }
     }
 
     handleClearChange(event: any){
@@ -251,7 +254,7 @@ class Playlists extends React.Component<{},any> {
             allResultInfo = this.state.videoPlayerResult.map(
               //@ts-ignore
             (currentPlayer: any, index: any) =>  [<span>{currentPlayer.video_title}</span>, <br/>,
-                                                  <span><b>{"runtime : "}</b> {this.pad(currentPlayer.video_hours) + ":" + this.pad(currentPlayer.video_minutes) + ":" + this.pad(currentPlayer.video_seconds)}</span>, <br/>,
+                                                  <span><b>{"runtime : "}</b> {this.pad( (isNaN(currentPlayer.video_hours) || currentPlayer.video_hours == null ) ? 0 : currentPlayer.video_hours) + ":" + this.pad( (isNaN(currentPlayer.video_minutes) || currentPlayer.video_minutes == null ) ? 0 : currentPlayer.video_minutes) + ":" + this.pad( (isNaN(currentPlayer.video_seconds) ||  currentPlayer.video_seconds == null)? 0 : currentPlayer.video_seconds  )}</span>, <br/>,
                                                   <span><b>{"uploaded by : "}</b>  {currentPlayer.video_owner}</span>,<br/>]);
                                                               
             allResultThumbnails = this.state.videoPlayerResult.map(
@@ -344,7 +347,6 @@ class Playlists extends React.Component<{},any> {
                   name="header-search" 
                   value={this.state.searchField} 
                   onChange={this.handleInputChange} 
-                  onKeyDown={this.handleKeyDown}
                   id="searchBarInput" 
                   placeholder="search by keyword">
                   </input>

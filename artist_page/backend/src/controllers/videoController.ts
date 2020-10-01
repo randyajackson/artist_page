@@ -18,12 +18,13 @@ const decode = str => decodeURIComponent(
 //Get - /youtubeKeywords/keyword returns artist by name likeness
 export let videoByKeyword = (req: Request, res: Response) => {
 
-    let youtube_videos = Videos.find( {"video_tags": { $regex: decode(req.params.keyword), $options: 'i'} }).sort({'video_publish_date': 'descending'}).exec(function(err: any, youtube_videos: any) {
+    let youtube_videos = Videos.find( {"video_tags": { $regex: "^" + decode(req.params.keyword) } }).sort({'video_publish_date': 'descending'}).exec(function(err: any, youtube_videos: any) {
         if (err) {
             res.send(err);
         }
         else {
             res.send(youtube_videos);
         }
+        console.log(decode(req.params.keyword));
     });
 };
