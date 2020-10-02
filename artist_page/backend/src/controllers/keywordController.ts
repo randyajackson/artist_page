@@ -41,3 +41,17 @@ export let keywordByKeyword = (req: Request, res: Response) => {
 
     });
 };
+
+//Get - /youtubeKeywords/keyword returns exact keyword
+export let keywordExact = (req: Request, res: Response) => {
+    
+    let youtube_keywords = Keywords.find( {"keyword": { $regex: "^" + decode(req.params.keyword) + "$" }} ,function(err, youtube_keywords) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(youtube_keywords);
+        }
+
+    });
+};

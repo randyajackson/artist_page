@@ -5,6 +5,7 @@ import Slider from "react-slick";
 
 import API_channels from "./utils/playlists/API_channels";
 import API_keywords from "./utils/playlists/API_keywords";
+import API_keywords_exact from "./utils/playlists/API_keywords_exact"
 import API_videos from "./utils/playlists/API_videos";
 
 import ReactPlayer from 'react-player';
@@ -56,7 +57,6 @@ class Playlists extends React.Component<{},any> {
         this.handlePlaylistImageClick = this.handlePlaylistImageClick.bind(this);
         this.handleVideoProgress = this.handleVideoProgress.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        // this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleClearChange = this.handleClearChange.bind(this);
     }
 
@@ -111,7 +111,6 @@ class Playlists extends React.Component<{},any> {
     queryForSearch(){
         API_keywords.get('/')
         .then(response => {
-          response.data = arrayShuffle(response.data);
           
           this.setState({
             keywordResults: response.data
@@ -126,7 +125,7 @@ class Playlists extends React.Component<{},any> {
     queryForPlayer(query: string){
          
         //get keyword data for supplied parameter
-        API_keywords.get('/' + encode(query))
+        API_keywords_exact.get('/' + encode(query))
         .then(response => {
           
               //get video data for supplied parameter
