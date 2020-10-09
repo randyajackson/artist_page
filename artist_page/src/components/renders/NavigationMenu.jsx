@@ -20,7 +20,7 @@ export default class NavigationMenu extends Component {
             {/* <Nav.Link className ="navLink" href="#pricing" onClick={this.props.handleLinkClick}>news</Nav.Link> */}
             <Nav.Link className ="navLink" href="/latest" onClick={this.props.handleLinkClick}>latest</Nav.Link>
             <Nav.Link className ="navLink" href="/playlists" onClick={this.props.handleLinkClick}>playlists</Nav.Link>
-            {/* <Nav.Link className ="navLink" href="#something" onClick={this.props.handleLinkClick}>mixes</Nav.Link> */}
+            <Nav.Link className ="navLink" href="/radio" onClick={this.props.handleLinkClick}>radio</Nav.Link>
             <Nav.Link className ="navLink" href="/live" onClick={this.props.handleLinkClick}>livestream</Nav.Link>
             <Nav.Link className ="navLink" href="/about" onClick={this.props.handleLinkClick}>about</Nav.Link>
             </Nav>

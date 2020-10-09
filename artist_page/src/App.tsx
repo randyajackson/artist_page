@@ -6,12 +6,14 @@ import Live from "./components/pages/Live";
 import Latest from "./components/pages/Latest";
 import About from "./components/pages/About";
 import Playlists from "./components/pages/Playlists";
+import Radio from "./components/pages/Radio";
 
 const App: React.FC = () => {
   return( 
   <>
     <Route exact path="/" component={Home} />
     <Route path="/live" component={Live} />
+    <Route path="/radio" component={Radio} />
     <Route path="/latest" component={Latest} />
     <Route path="/about" component={About} />
     <Route path="/playlists" component={Playlists} />

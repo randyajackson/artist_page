@@ -25,6 +25,5 @@ export let videoByKeyword = (req: Request, res: Response) => {
         else {
             res.send(youtube_videos);
         }
-        console.log(decode(req.params.keyword));
     });
 };

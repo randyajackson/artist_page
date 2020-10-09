@@ -62,7 +62,7 @@ class Home extends React.Component<{},any> {
                     {/* <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/news")}>news</Nav.Link> */}
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/latest")}>latest</Nav.Link>
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/playlists")}>playlists</Nav.Link>
-                    {/* <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/mixes")}>mixes</Nav.Link> */}
+                    <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/radio")}>radio</Nav.Link>
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/live")}>livestream</Nav.Link>
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/about")}>about</Nav.Link>
                     </Nav>

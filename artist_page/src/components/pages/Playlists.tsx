@@ -288,7 +288,7 @@ class Playlists extends React.Component<{},any> {
               <>
               {/* the link will need to change here when live */}
               <button 
-              onClick={(e) => { e.preventDefault(); window.location.href='https://intrinse.net:3333/playlists';
+              onClick={(e) => { e.preventDefault(); window.location.href='https://intrinse.net/playlists';
                 }} 
               id="backButton" 
               title="Back to playlists"> {'<'}
