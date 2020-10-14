@@ -59,9 +59,9 @@ const encode = str => encodeURIComponent(str)
     <>
     <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
     <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
-    <video controls preload="auto">
-      <source src="http://intrinse.net:8000/stream" type="audio/mpeg"/>
-    </video>
+    <audio controls preload="auto">
+      <source src="https://intrinse.net/stream" type="audio/mpeg"/>
+    </audio>
     </div>    
     </>
     );
