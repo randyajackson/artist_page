@@ -383,7 +383,14 @@
     100% { 
         opacity: 0; 
     } 
-} 
+}
+
+.radioButtons {
+    text-align: center;
+    display: block;
+    position: relative;
+    top: 30px;
+}
 
   
   
