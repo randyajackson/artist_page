@@ -2,6 +2,7 @@ import React from 'react';
 import update from 'react-addons-update';
 
 import NavigationMenu from "../renders/NavigationMenu";
+import cover from './img/cover.jpg';
 
 import './css/radio.css';
 
@@ -9,7 +10,7 @@ import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
 
 import ReactPlayer from 'react-player';
-
+//@ts-ignore
 import AudioPlayer from "@omargee/audio-player";
 
 //@ts-ignore
@@ -62,6 +63,7 @@ const encode = str => encodeURIComponent(str)
     <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
     <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
       <div className="radioButtons">
+      <img className="page-header-buttons-image" src = {cover} alt = "image"></img>
         <AudioPlayer
             tracks={[
               {
