@@ -9,9 +9,8 @@ import './css/radio.css';
 import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
 
-import ReactPlayer from 'react-player';
-//@ts-ignore
-import AudioPlayer from "@omargee/audio-player";
+import ReactHowler from 'react-howler';
+
 
 //@ts-ignore
 const encode = str => encodeURIComponent(str)
@@ -31,10 +30,13 @@ const encode = str => encodeURIComponent(str)
     super(props);
 
     this.state = {
-      navBarClicked : 0
+      navBarClicked : 0,
+      playing: false
     };
 
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.handlePlay = this.handlePlay.bind(this);
+    this.handlePause = this.handlePause.bind(this);
 
   }
 
@@ -55,6 +57,18 @@ const encode = str => encodeURIComponent(str)
     }, 1000);
   }
 
+  handlePlay () {
+    this.setState({
+      playing: true
+    })
+  }
+
+  handlePause () {
+    this.setState({
+      playing: false
+    })
+  }
+
 
   render() {
 
@@ -63,13 +77,7 @@ const encode = str => encodeURIComponent(str)
     <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
     <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
       <div className="radioButtons">
-      <img className="page-header-buttons-image" src = {cover} alt = "image"></img>
-        <AudioPlayer
-            tracks={[
-              {
-                url: "https://intrinse.net/stream",
-              }
-            ]}/>
+        <audio className="audioBar" src="https://intrinse.net/stream" controls autoPlay/>
       </div>
     </div>    
     </>
