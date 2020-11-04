@@ -6,6 +6,7 @@ import * as keywordController from "./controllers/keywordController";
 import * as videoController from "./controllers/videoController";
 import * as channelController from "./controllers/channelController";
 import * as recentKeywordController from "./controllers/recentKeywordController";
+import * as radioInfoController from "./controllers/radioInfoController";
 
 const fs = require('fs');
 const http = require('http');
@@ -39,8 +40,10 @@ const httpsServer = https.createServer(credentials, app);
 
 //In use for latest feature
 router.get('/recents', recentController.allRecents);
-router.get('/recent_keywords', recentKeywordController.allKeywords)
+router.get('/recent_keywords', recentKeywordController.allKeywords);
 
+//In use for radio feature
+router.get('/radio_infos', radioInfoController.allRadioInfo);
 
 //In use for playlist feature
 router.get('/youtube_keywords', keywordController.allKeywords);
@@ -49,7 +52,6 @@ router.get('/youtube_keywords/exact/:keyword', keywordController.keywordExact);
 router.get('/youtube_videos/:keyword', videoController.videoByKeyword);
 router.get('/channel_informations/', channelController.channels);
 router.get('/channel_informations/:video_owner', channelController.channelByVideo);
-
 
 //In use for livestream feature
 router.get('/artists', artistController.allArtist);

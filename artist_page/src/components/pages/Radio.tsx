@@ -9,7 +9,7 @@ import './css/radio.css';
 import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
 
-import ReactHowler from 'react-howler';
+import API_radio_infos from "./utils/API_radio_infos";
 
 
 //@ts-ignore
@@ -31,6 +31,9 @@ const encode = str => encodeURIComponent(str)
 
     this.state = {
       navBarClicked : 0,
+      artist: '',
+      song: '',
+      coverURL: '',
       playing: false
     };
 
@@ -42,6 +45,27 @@ const encode = str => encodeURIComponent(str)
 
   componentDidMount() {
 
+    let allThis = this;
+
+    let getRadioData = function() {
+      API_radio_infos.get('/')
+        .then( radioInfo => {
+          allThis.setState({
+                artist: radioInfo.data[0].artist,
+                song: radioInfo.data[0].song,
+                coverURL: radioInfo.data[0].coverURL
+              });     
+        });
+    }
+
+    //@ts-ignore
+    getRadioData.call();
+
+    setInterval(function(){
+      //@ts-ignore  
+      getRadioData.call();
+    }, 10000);
+    
   }
 
   componentWillUnmount() {
@@ -52,7 +76,6 @@ const encode = str => encodeURIComponent(str)
     this.setState({
         navBarClicked: 1
       });
-    console.log(this.state.navBarClicked);
     window.setTimeout(() => {
     }, 1000);
   }
@@ -77,6 +100,9 @@ const encode = str => encodeURIComponent(str)
     <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
     <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
       <div className="radioButtons">
+        {this.state.artist}
+        {this.state.song}
+        <img src= {this.state.coverURL}/>
         <audio className="audioBar" src="https://intrinse.net/stream" controls autoPlay/>
       </div>
     </div>    
