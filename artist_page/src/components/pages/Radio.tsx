@@ -100,9 +100,13 @@ const encode = str => encodeURIComponent(str)
     <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
     <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
       <div className="radioButtons">
-        {this.state.artist}
-        {this.state.song}
-        <img src= {this.state.coverURL}/>
+        <img className = "coverArt" src= {this.state.coverURL} />
+        <br/>
+        <span className= "tagLineSecond">{this.state.artist}</span>
+        <br/>
+        <span className= "tagLineFirst">{this.state.song}</span>
+        <br/>
+        <br/>
         <audio className="audioBar" src="https://intrinse.net/stream" controls autoPlay/>
       </div>
     </div>    
