@@ -109,7 +109,11 @@ const encode = str => encodeURIComponent(str)
         <br/>
         <audio className="audioBar" src="https://intrinse.net/stream" controls autoPlay/>
       </div>
-    </div>    
+    </div> 
+    <br/>
+    <br/>
+    <br/>
+    <br/>   
     </>
     );
   }

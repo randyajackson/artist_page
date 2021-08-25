@@ -236,7 +236,7 @@ class Playlists extends React.Component<{},any> {
           //@ts-ignore
           let textB;
 
-          if(this.state.keywordPlayerResult.length > 0){
+          if(this.state.keywordPlayerResult.length > 0 ){
             //@ts-ignore  
             document.body.style = 'background: rgb(' + this.state.keywordPlayerResult[0].r + ', ' + this.state.keywordPlayerResult[0].g + ', ' + this.state.keywordPlayerResult[0].b + '); transition: all ease .5s';
             
@@ -262,7 +262,7 @@ class Playlists extends React.Component<{},any> {
 
             channelThumbnail = this.state.channelPlayerResult.map(
               //@ts-ignore
-            (currentPlayer: any, index: any) =>  [<a href ={currentPlayer.channel_main_url}><img className = "channelThumbnail" src = {currentPlayer.channel_picture}></img></a>, <br/>]);
+            (currentPlayer: any, index: any) =>  (!currentPlayer) ? [] : [<a href ={currentPlayer.channel_main_url}><img className = "channelThumbnail" src = {currentPlayer.channel_picture}></img></a>, <br/>]);
             
             //@ts-ignore
             this.state.videoPlayerResult.map(
