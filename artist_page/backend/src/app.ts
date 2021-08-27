@@ -7,6 +7,7 @@ import * as videoController from "./controllers/videoController";
 import * as channelController from "./controllers/channelController";
 import * as recentKeywordController from "./controllers/recentKeywordController";
 import * as radioInfoController from "./controllers/radioInfoController";
+import * as discogsController from "./controllers/discogsController";
 
 const fs = require('fs');
 const http = require('http');
@@ -60,6 +61,11 @@ router.get('/artists/byID/:id', artistController.getArtist);
 router.put('/artists/', artistController.addArtist);
 router.delete('/artists/:id', artistController.deleteArtist);
 router.post('/artists/:id', artistController.updateArtist);
+
+//In use for discogs feature
+router.get('/discogs', discogsController.allDiscogs);
+router.get('/discogs/:genre', discogsController.albumsByGenre);
+router.get('/discogs/max_price/:max_price', discogsController.albumsByPrice);
 
 httpsServer.listen(app.get('port'), () => {
     console.log(`Mongo Server Running @ http://localhost:${app.get("port")} `);

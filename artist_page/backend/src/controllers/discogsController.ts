@@ -18,7 +18,7 @@ const decode = str => decodeURIComponent(
 //Get - /discogs returns all albums
 export let allDiscogs = (req: Request, res: Response) => {
 
-    let discogs = Discogs.find( {} , {sort: { 'timestamp': 1 }} , function(err: any, discogs: any) {
+    let discogs = Discogs.find({}).sort({ "created_at": -1 }).exec( (err: any, discogs: any) => {
         if(err) {
             res.send(err);
         } else {
@@ -31,7 +31,7 @@ export let allDiscogs = (req: Request, res: Response) => {
 //Get - /discogs/genre returns album by containing genre
 export let albumsByGenre = (req: Request, res: Response) => {
     //db.new_record_purchasables.find({ $or: [{"genres":{ $regex: "^New" }}, {"styles":{ $regex: "^New" }}] })
-    let discogs = Discogs.find( { $or: [{"genres":{ $regex:  "^" + decode(req.params.keyword) }}, {"styles":{ $regex:  "^" + decode(req.params.keyword) }}] } ,function(err, discogs) {
+    let discogs = Discogs.find( { $or: [{"genres":{ $regex:  "^" + decode(req.params.genre) + "$" }}, {"styles":{ $regex:  "^" + decode(req.params.genre) }}] } ,function(err, discogs) {
         if (err) {
             res.send(err);
         }
@@ -42,16 +42,16 @@ export let albumsByGenre = (req: Request, res: Response) => {
     });
 };
 
-//Get - /discogs/max_price returns albums less than maximum price
+//Get - /discogs/max_price/ returns albums less than maximum price
 export let albumsByPrice = (req: Request, res: Response) => {
     
-    let discogs = Discogs.find( { "lowest_price": {$lt: decode(req.params.max_price)}} ,function(err, discogs) {
+    let discogs = Discogs.find( { "lowest_price": { $lte: String(req.params.max_price) } } ,function(err, discogs) {
         if (err) {
             res.send(err);
         }
         else {
             res.send(discogs);
         }
-
+        console.log(req.params.max_price);
     });
 };
