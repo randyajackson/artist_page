@@ -10,6 +10,13 @@ import { unstable_batchedUpdates } from 'react-dom';
 import { checkPropTypes } from 'prop-types';
 
 import API_radio_infos from "./utils/API_radio_infos";
+import donate from './img/donate.png';
+import logo from './img/logo.png';
+import youtube from './img/youtube.png';
+import instagram from './img/instagram.png';
+import soundcloud from './img/soundcloud.png';
+import email from './img/email.png';
+
 
 
 //@ts-ignore
@@ -108,6 +115,13 @@ const encode = str => encodeURIComponent(str)
         <br/>
         <br/>
         <audio className="audioBar" src="https://intrinse.net/stream" controls autoPlay/>
+        <br/>
+        <a href="https://www.youtube.com/c/intrinse" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {youtube} alt = {logo}></img></a>
+        <a href="https://www.instagram.com/intrinse_" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {instagram} alt = {logo}></img></a>
+        <a href="https://soundcloud.com/intrinse" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {soundcloud} alt = {logo}></img></a>
+        <a href="mailto: intrinse.mail@gmail.com" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {email} alt = {logo}></img></a>
+        <br />
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=intrinse.mail%40gmail.com&currency_code=USD&source=url" target="_blank" rel="noopener noreferrer" id="intrinsicLinks"><img className="page-header-buttons-image" src = {donate} alt = {logo}></img></a>
       </div>
     </div> 
     <br/>
