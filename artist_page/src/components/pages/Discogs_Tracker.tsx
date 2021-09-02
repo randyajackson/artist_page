@@ -8,7 +8,7 @@ import API_GENRE from "./utils/API_genre_discogs";
 
 import NavigationMenu from "../renders/NavigationMenu";
 
-import './css/live.css';
+import './css/discogs.css';
 import logo from './img/logo.png';
 
 import external_link from './img/external_link.png';
@@ -63,6 +63,11 @@ const encode = str => encodeURIComponent(str)
 
     const Album = (props: any) => (
         <div className="grid-item">
+          <a href = {props.results.link} target="_blank">
+                <img
+                src = {(props.results.cover_art !== " ") ? props.results.cover_art : "https://static.thenounproject.com/png/340719-200.png"} 
+                alt="none"></img>
+          </a>
                 {/* <img className="artist_picture" 
                 src = {props.results.image} 
                 alt="none"
@@ -228,23 +233,18 @@ const encode = str => encodeURIComponent(str)
   let allProps = [];
 
   allProps = this.state.albumResults.map(
-    (currentResult: any, index: any) =>  <Album results = {currentResult} index = {index} />);
+  (currentResult: any, index: any) =>  <Album results = {currentResult} index = {index} />);
 
   return (
     <>
-    <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
-    <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
-        
-        <button 
+      {/* <button 
         onClick={this.handleTop} 
         style={{opacity: this.state.topButtonCrawl}} 
         id="topButton" 
         title="Go to top"
         onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>
 
-      <br /><br />
-
-        <div className="searchBarMain">
+      <div className="searchBarMain">
           <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
           <input 
           type="text" 
@@ -255,11 +255,8 @@ const encode = str => encodeURIComponent(str)
           placeholder="search by name">
           </input>
           <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
-        </div>
-      
-      <br/>
-      <br/>
-      
+      </div> */}
+
       <Masonry
                   className={'grid-item'}
                   elementType={'div'}
@@ -267,7 +264,22 @@ const encode = str => encodeURIComponent(str)
       >
         {allProps}
       </Masonry>
-    </div>
+
+    {/* <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
+    <div className={(this.state.navBarClicked === 0)? "fadeIn" : "fadeOut"}>
+        
+        
+
+      <br /><br />
+
+        
+          
+      
+      <br/>
+      <br/>
+      
+      
+    </div> */}
     </>
     );
   }

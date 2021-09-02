@@ -7,6 +7,7 @@ import Latest from "./components/pages/Latest";
 import About from "./components/pages/About";
 import Playlists from "./components/pages/Playlists";
 import Radio from "./components/pages/Radio";
+import Discogs_Tracker from "./components/pages/Discogs_Tracker";
 
 const App: React.FC = () => {
   return( 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
     <Route path="/latest" component={Latest} />
     <Route path="/about" component={About} />
     <Route path="/playlists" component={Playlists} />
+    <Route path="/discogs" component={Discogs_Tracker} />
   </>
   );
 }
