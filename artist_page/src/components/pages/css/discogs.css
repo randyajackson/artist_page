@@ -42,7 +42,11 @@
       font-weight: bold;
     }
   
-    div.artistName {
+    div.price {
+      z-index: 1;
+    }
+
+    div.genre {
       z-index: 1;
     }
   
@@ -65,7 +69,11 @@
       z-index: 2;
     }
   
-    div.artistName {
+    div.price {
+      z-index: 1;
+    }
+
+    div.genre {
       z-index: 1;
     }
   
@@ -97,33 +105,42 @@
     min-width: 400px;
   }
   
-  div.artistName {
+  div.price {
     position: absolute;
-    left: -5%;
-    top: 55%;
+    left: 5%;
+    top: 5%;
   }
   
-  span.artistName {
+  span.price {
     font-size: 3rem;
-    color: #7b0000;
+    color: #ffeed0;
   }
   
-  p.artistName {
-    font-family: 'Barlow', sans-serif;
-    font-size: 2rem;
-    color: black;
-    background: rgba(255, 255, 255, 0.747);
-  
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1);
+  p.price {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1rem;
+    color: rgb(34, 48, 126);
+    background: rgba(255, 255, 255);
     
-    -webkit-animation-name: floating;
-            animation-name: floating;
-    -webkit-animation-duration: 15s;
-            animation-duration: 15s;
-    -webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
-    -webkit-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
+  }
+
+  div.genre {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+  }
+  
+  span.genre {
+    font-size: 2rem;
+    color: #ffeed0;
+  }
+  
+  p.genre {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1rem;
+    text-align: right;
+    color: rgb(34, 48, 126);
+    background: rgba(255, 255, 255);
   }
   
   .overlay_buttons{

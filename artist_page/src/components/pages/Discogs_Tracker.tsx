@@ -61,11 +61,14 @@ const encode = str => encodeURIComponent(str)
 
     const AlbumNoArt = (props: any) => (
       
+      <div className="grid-item">
       <a href = {props.results.link} target="_blank" style= {{"text-decoration":"none"}}>
         <div className="grid-item-no-art">
-          {props.results.genres.concat(props.results.styles).join("\n")}
+          {props.results.genres.concat(props.results.styles).join("\n")} <br/> { (props.results.release_year !== "0") ? props.results.release_year : "" }
       </div>
       </a>
+      <div className="price"><p className="price">{Number(props.results.lowest_price).toFixed(2)}</p></div>
+      </div>
           
     );
 
@@ -76,6 +79,8 @@ const encode = str => encodeURIComponent(str)
                 src = {(props.results.cover_art.length > 1) ? props.results.cover_art : "https://static.thenounproject.com/png/340719-200.png"} 
                 alt="none"></img>
           </a>
+          <div className="price"><p className="price">{Number(props.results.lowest_price).toFixed(2)}</p></div>
+          <div className="genre"><p className="genre">{(props.results.release_year !== "0") ? props.results.release_year : "" } {props.results.genres.concat(props.results.styles).join("\/")}</p></div>
         </div> 
       );
 
