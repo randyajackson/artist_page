@@ -42,6 +42,10 @@
       font-weight: bold;
     }
   
+    div.date {
+      z-index: 1;
+    }
+
     div.price {
       z-index: 1;
     }
@@ -69,6 +73,10 @@
       z-index: 2;
     }
   
+    div.date {
+      z-index: 1;
+    }
+
     div.price {
       z-index: 1;
     }
@@ -103,6 +111,25 @@
   .grid-item  .artist_picture{
     max-width: 400px;
     min-width: 400px;
+  }
+
+  div.date {
+    position: absolute;
+    right: 5%;
+    bottom: 0%;
+  }
+  
+  span.date {
+    font-size: 3rem;
+    color: #ffeed0;
+  }
+  
+  p.date {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1rem;
+    color: rgb(34, 48, 126);
+    background: rgba(255, 255, 255);
+    
   }
   
   div.price {

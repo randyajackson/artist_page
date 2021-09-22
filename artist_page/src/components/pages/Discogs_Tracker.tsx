@@ -64,10 +64,11 @@ const encode = str => encodeURIComponent(str)
       <div className="grid-item">
       <a href = {props.results.link} target="_blank" style= {{"text-decoration":"none"}}>
         <div className="grid-item-no-art">
-          {props.results.genres.concat(props.results.styles).join("\n")} <br/> { (props.results.release_year !== "0") ? props.results.release_year : "" }
+          {props.results.genres.concat(props.results.styles).splice(0, 3).join("\n")} <br/> { (props.results.release_year !== "0") ? props.results.release_year : "" }
       </div>
       </a>
       <div className="price"><p className="price">{Number(props.results.lowest_price).toFixed(2)}</p></div>
+      <div className="date"><p className="date">{props.results.created_at.substring(5,10)} {props.results.created_at.substring(11,16)}</p></div>
       </div>
           
     );
@@ -80,7 +81,8 @@ const encode = str => encodeURIComponent(str)
                 alt="none"></img>
           </a>
           <div className="price"><p className="price">{Number(props.results.lowest_price).toFixed(2)}</p></div>
-          <div className="genre"><p className="genre">{(props.results.release_year !== "0") ? props.results.release_year : "" } {props.results.genres.concat(props.results.styles).join("\/")}</p></div>
+          <div className="genre"><p className="genre">{(props.results.release_year !== "0") ? props.results.release_year : "" } {props.results.genres.concat(props.results.styles).splice(0, 3).join("\/")} <br/> {props.results.created_at.substring(5,10)} {props.results.created_at.substring(11,16)}</p></div>
+          {/* <div className="date"><p className="date">{props.results.created_at.substring(5,10)} {props.results.created_at.substring(11,16)}</p></div> */}
         </div> 
       );
 
@@ -90,7 +92,6 @@ const encode = str => encodeURIComponent(str)
     super(props);
 
     this.state = {
-
       searchField: '',
       albumResults: [],
       topButtonCrawl: 0,
