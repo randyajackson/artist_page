@@ -9,23 +9,6 @@ import API_GENRE from "./utils/API_genre_discogs";
 import NavigationMenu from "../renders/NavigationMenu";
 
 import './css/discogs.css';
-import logo from './img/logo.png';
-
-import external_link from './img/external_link.png';
-import email from './img/email.png';
-import facebook from './img/facebook.png';
-import instagram from './img/instagram.png';
-import mixcloud from './img/mixcloud.png';
-import soundcloud from './img/soundcloud.png';
-import tumblr from './img/tumblr.png';
-import youtube from './img/youtube.png';
-import donate from './img/donate.png';
-import spotify from './img/spotify.png';
-import bandcamp from './img/bandcamp.png';
-import twitter from './img/twitter.png';
-import ra from './img/ra.png';
-import discogs from './img/discogs.png';
-import songkick from './img/songkick.png';
 
 import Masonry from 'react-masonry-component';
 import { unstable_batchedUpdates } from 'react-dom';
@@ -35,13 +18,6 @@ import ReactPlayer from 'react-player';
 
 const masonryOptions = {
   columnWidth: 50,
-  horizontalOrder: true,
-  fitWidth: true,
-  stagger: '0.03s'
-};
-
-const masonryOptions2 = {
-  columnWidth: 400,
   horizontalOrder: true,
   fitWidth: true,
   stagger: '0.03s'
@@ -127,9 +103,8 @@ const encode = str => encodeURIComponent(str)
 
     API_GENRE.get('/' + encode(this.state.searchField))
     .then(response => {
-
       this.setState({
-        albumResults: response.data
+        albumResults: response.data.splice(0,50)
       });
 
     })
@@ -156,7 +131,7 @@ const encode = str => encodeURIComponent(str)
       API_ALL.get('/')
       .then(response => {
         this.setState({
-          albumResults: response.data
+          albumResults: response.data.splice(0,51)
         });
       })
       .catch((error) => {
