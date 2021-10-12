@@ -120,6 +120,8 @@ const encode = str => encodeURIComponent(str)
       this.setState( {topButtonCrawl : (window.scrollY / 1500).toFixed(2)} );
     else
       this.setState( {topButtonCrawl : 1} );
+    
+    if(window.innerHeight + window.pageYOffset >= document.body.offsetHeight) { alert("Bottom"); }
   }
 
   handleTop(){
@@ -127,11 +129,12 @@ const encode = str => encodeURIComponent(str)
       document.documentElement.scrollTop = 0;
   }
 
+
   queryAll(){
       API_ALL.get('/')
       .then(response => {
         this.setState({
-          albumResults: response.data.splice(0,51)
+          albumResults: response.data.splice(0,501)
         });
       })
       .catch((error) => {
@@ -161,13 +164,13 @@ const encode = str => encodeURIComponent(str)
 
   return (
     <>
-      {/* <button 
+      { <button 
         onClick={this.handleTop} 
         style={{opacity: this.state.topButtonCrawl}} 
         id="topButton" 
         title="Go to top"
         onScroll={this.handleScroll}><MdKeyboardArrowUp/></button>
-
+      /*
       <div className="searchBarMain">
           <i className="searchBarSearchIcon noUserSelect"><GoSearch/></i>
           <input 
