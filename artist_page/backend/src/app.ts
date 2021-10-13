@@ -63,7 +63,8 @@ router.delete('/artists/:id', artistController.deleteArtist);
 router.post('/artists/:id', artistController.updateArtist);
 
 //In use for discogs feature
-router.get('/discogs', discogsController.allDiscogs);
+router.get('/discogs', discogsController.firstAllDiscogs);
+router.get('/discogs/:date', discogsController.nextAllDiscogs);
 router.get('/discogs/:genre', discogsController.albumsByGenre);
 router.get('/discogs/max_price/:max_price', discogsController.albumsByPrice);
 

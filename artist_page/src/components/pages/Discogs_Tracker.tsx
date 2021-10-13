@@ -11,10 +11,6 @@ import NavigationMenu from "../renders/NavigationMenu";
 import './css/discogs.css';
 
 import Masonry from 'react-masonry-component';
-import { unstable_batchedUpdates } from 'react-dom';
-import { checkPropTypes } from 'prop-types';
-
-import ReactPlayer from 'react-player';
 
 const masonryOptions = {
   columnWidth: 50,
@@ -70,6 +66,7 @@ const encode = str => encodeURIComponent(str)
     this.state = {
       searchField: '',
       albumResults: [],
+      lastDate: '',
       topButtonCrawl: 0,
       navBarClicked : 0
 
@@ -134,7 +131,14 @@ const encode = str => encodeURIComponent(str)
       API_ALL.get('/')
       .then(response => {
         this.setState({
-          albumResults: response.data.splice(0,501)
+          albumResults: response.data.map(
+            (currentResult: any, index: any) =>  {
+              if(currentResult.cover_art.length > 1)
+                return <AlbumArt results = {currentResult} index = {index} />;
+              else
+                return <AlbumNoArt results = {currentResult} index = {index} />;
+            }),
+          lastDate: response.data[response.data - 1].created_at
         });
       })
       .catch((error) => {
@@ -152,16 +156,6 @@ const encode = str => encodeURIComponent(str)
   }
 
   render() {
-
-  let allProps = [];
-  allProps = this.state.albumResults.map(
-  (currentResult: any, index: any) =>  {
-    if(currentResult.cover_art.length > 1)
-      return <AlbumArt results = {currentResult} index = {index} />;
-    else
-      return <AlbumNoArt results = {currentResult} index = {index} />;
-  });
-
   return (
     <>
       { <button 
@@ -183,13 +177,13 @@ const encode = str => encodeURIComponent(str)
           </input>
           <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
       </div> */}
-
+      {this.state.lastDate}
       <Masonry
                   className={'grid-item'}
                   elementType={'div'}
                   options={masonryOptions}
       >
-        {allProps}
+        {this.state.albumResults}
       </Masonry>
 
     {/* <NavigationMenu handleLinkClick = {this.handleLinkClick}/>
