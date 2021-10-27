@@ -25,6 +25,7 @@ export const DiscogsSchema = new mongoose.Schema({
     date_added:  { type: String, required: false},
     number_for_sale:  { type: String, required: false},
     lowest_price:  { type: String, required: false},
+    created_at: { type: Date, required: false}
 });
 
 const Discogs = x.model('New_record_purchasables', DiscogsSchema);

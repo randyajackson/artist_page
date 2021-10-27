@@ -18,7 +18,7 @@ const decode = str => decodeURIComponent(
 //Get - /discogs returns first 100 records
 export let firstAllDiscogs = (req: Request, res: Response) => {
 
-    let discogs = Discogs.find({}, { link:1, genres:1, styles:1, release_year:1, lowest_price:1, created_at:1,cover_art:1}).sort({ "created_at": -1 }).limit(100).exec( (err: any, discogs: any) => {
+    let discogs = Discogs.find({}).sort({ "created_at": -1 }).limit(100).exec( (err: any, discogs: any) => {
         if(err) {
             res.send(err);
         } else {
@@ -30,8 +30,10 @@ export let firstAllDiscogs = (req: Request, res: Response) => {
 
 //Get - /discogs/:date returns next 100 records
 export let nextAllDiscogs = (req: Request, res: Response) => {
+    
+    const queryString = new Date(req.params.date);
 
-    let discogs = Discogs.find({}, { link:1, genres:1, styles:1, release_year:1, lowest_price:1, created_at:1,cover_art:1}).sort({ "created_at": -1 }).exec( (err: any, discogs: any) => {
+    let discogs = Discogs.find( { "created_at" : { $lt : queryString } }).sort({ "created_at": -1 }).limit(100).exec( (err: any, discogs: any) => {
         if(err) {
             res.send(err);
         } else {
