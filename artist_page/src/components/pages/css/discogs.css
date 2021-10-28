@@ -19,7 +19,6 @@
   
   
   @media only screen and (max-width: 825px) {
-  
     .grid-item {
       margin: 0 auto;
       padding-left: 5%;
@@ -87,6 +86,10 @@
   
   }
   
+  a.grid-item {
+    text-decoration : none
+  }
+
   .grid-item {
     margin: 5 auto;
   }

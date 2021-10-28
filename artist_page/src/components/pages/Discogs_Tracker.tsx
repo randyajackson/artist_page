@@ -1,12 +1,12 @@
 import React from 'react';
-import update from 'react-addons-update';
-import { GoSearch } from "react-icons/go";
-import { MdClear } from "react-icons/md";
+//import update from 'react-addons-update';
+//import { GoSearch } from "react-icons/go";
+//import { MdClear } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import API_ALL from "./utils/API_all_discogs";
 import API_GENRE from "./utils/API_genre_discogs";
 
-import NavigationMenu from "../renders/NavigationMenu";
+//import NavigationMenu from "../renders/NavigationMenu";
 
 import './css/discogs.css';
 
@@ -16,7 +16,7 @@ const masonryOptions = {
   columnWidth: 50,
   horizontalOrder: true,
   fitWidth: true,
-  stagger: '0.03s'
+  stagger: '0s'
 };
 
 //@ts-ignore
@@ -34,7 +34,7 @@ const encode = str => encodeURIComponent(str)
     const AlbumNoArt = (props: any) => (
       
       <div className="grid-item">
-      <a href = {props.results.link} target="_blank" style= {{"text-decoration":"none"}}>
+      <a href = {props.results.link} target="_blank">
         <div className="grid-item-no-art">
           {props.results.genres.concat(props.results.styles).splice(0, 3).join("\n")} <br/> { (props.results.release_year !== "0") ? props.results.release_year : "" }
       </div>
@@ -118,7 +118,31 @@ const encode = str => encodeURIComponent(str)
     else
       this.setState( {topButtonCrawl : 1} );
     
-    if(window.innerHeight + window.pageYOffset >= document.body.offsetHeight) { alert("Bottom"); }
+    if(window.innerHeight + window.pageYOffset >= document.body.offsetHeight) { 
+      
+      API_ALL.get('/' + this.state.lastDate)
+      .then(response => {
+        this.setState({
+          lastDate: response.data[response.data.length - 1].created_at,
+          
+          albumResults: this.state.albumResults.concat(
+            response.data.map(
+            (currentResult: any, index: any) =>  {
+              if(currentResult.cover_art.length > 1)
+                return <AlbumArt results = {currentResult} index = {index} />;
+              else
+                return <AlbumNoArt results = {currentResult} index = {index} />;
+            })
+          )
+
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+     }
   }
 
   handleTop(){
@@ -131,14 +155,17 @@ const encode = str => encodeURIComponent(str)
       API_ALL.get('/')
       .then(response => {
         this.setState({
+          lastDate: response.data[response.data.length - 1].created_at,
+          
           albumResults: response.data.map(
             (currentResult: any, index: any) =>  {
               if(currentResult.cover_art.length > 1)
                 return <AlbumArt results = {currentResult} index = {index} />;
               else
                 return <AlbumNoArt results = {currentResult} index = {index} />;
-            }),
-          lastDate: response.data[response.data - 1].created_at
+            })
+
+          
         });
       })
       .catch((error) => {
@@ -177,7 +204,7 @@ const encode = str => encodeURIComponent(str)
           </input>
           <i className="clearSearchBarField noUserSelect" style={{display: (this.state.searchField.length > 0) ? '' : 'none'}} onClick={this.handleClearChange} ><MdClear/></i>
       </div> */}
-      {this.state.lastDate}
+      {/* {this.state.lastDate} */}
       <Masonry
                   className={'grid-item'}
                   elementType={'div'}
