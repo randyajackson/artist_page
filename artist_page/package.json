@@ -21,7 +21,7 @@
     "@types/react-slick": "^0.23.4",
     "@types/react-tag-autocomplete": "^6.1.1",
     "@types/react-transition-group": "^4.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
     "core-js": "^3.19.1",
