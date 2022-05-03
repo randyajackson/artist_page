@@ -59,8 +59,8 @@ class Home extends React.Component<{},any> {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                    {/* <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/news")}>news</Nav.Link> */}
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/latest")}>latest</Nav.Link>
+                    <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/discogs")}>discogs new arrivals</Nav.Link>
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/playlists")}>playlists</Nav.Link>
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/radio")}>radio</Nav.Link>
                     <Nav.Link className ="navLink" onClick={() => this.handleLinkClick("/live")}>livestream</Nav.Link>

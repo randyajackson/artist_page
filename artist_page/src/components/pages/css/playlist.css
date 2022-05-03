@@ -2,7 +2,7 @@ a.keyword {
     font-family: 'Barlow', sans-serif;
     text-decoration: none;
     font-size: 4em;
-    color: black;
+    color: white;
 }
 
 a.keyword:hover {
@@ -84,7 +84,7 @@ a.keyword:hover {
 .flex-child-description {
     flex:1;
     height: 100px;
-    background-color: black;
+    background-color: white;
     color: white;
     font-size: 90%;
 }
@@ -126,8 +126,8 @@ a.tagButton{
     font-size: 25px;
     border: none;
     outline: none;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     cursor: pointer;
     padding: 15px;
     border-radius: 4px;
@@ -142,7 +142,7 @@ a.tagButton{
 
   .searchBarPlaylistMain {
     position: fixed;
-    background: rgb(0, 0, 0);
+    background: darkgray;
     width: 100%;
     max-width: 400px;
     margin: 0 auto;

@@ -4,7 +4,7 @@ div.featuredTextAbout{
     margin-right: 0px;
     font-family: 'Barlow', sans-serif;
     font-size: 6rem;
-    color: black;
+    color: white;
     letter-spacing: 0.01rem;
     text-transform: lowercase;
     line-height: 1.5rem;
@@ -12,12 +12,12 @@ div.featuredTextAbout{
 
 span.tagLineFirstAbout {
 font-size: 1.5rem;
-color: black;
+color: white;
 }
 
 span.tagLineFirstAboutBody {
     font-size: 1rem;
-    color: black;
+    color: white;
     letter-spacing: 0;
     text-transform: none;
     line-height: 0;

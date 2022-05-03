@@ -28,6 +28,19 @@ export let firstAllDiscogs = (req: Request, res: Response) => {
 
 };
 
+//Get - /discogs/styles returns array of all styles
+export let getAllGenres = (req: Request, res: Response) => {
+
+    let discogs = Discogs.distinct("genres").exec( (err: any, discogs: any) => {
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(discogs);
+        }    
+    });
+
+};
+
 //Get - /discogs/:date returns next 100 records
 export let nextAllDiscogs = (req: Request, res: Response) => {
     
@@ -43,10 +56,9 @@ export let nextAllDiscogs = (req: Request, res: Response) => {
 
 };
 
-//Get - /discogs/genre returns album by containing genre
+//Get - /discogs/genre/:genres returns album by containing genre
 export let albumsByGenre = (req: Request, res: Response) => {
-    //db.new_record_purchasables.find({ $or: [{"genres":{ $regex: "^New" }}, {"styles":{ $regex: "^New" }}] })
-    let discogs = Discogs.find( { $or: [{"genres":{ $regex:  "^" + decode(req.params.genre) + "$" }}, {"styles":{ $regex:  "^" + decode(req.params.genre) }}] } ,function(err, discogs) {
+    let discogs = Discogs.aggregate([{"$match": { "genres" : { $all: req.query.genres }}}, {"$sort": { "created_at": -1 }}]).exec((err: any, discogs:any) => {
         if (err) {
             res.send(err);
         }
@@ -67,6 +79,5 @@ export let albumsByPrice = (req: Request, res: Response) => {
         else {
             res.send(discogs);
         }
-        console.log(req.params.max_price);
     });
 };

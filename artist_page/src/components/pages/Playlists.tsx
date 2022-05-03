@@ -332,7 +332,7 @@ class Playlists extends React.Component<{},any> {
     
           allKeywords = this.state.keywordResults.map(
           //@ts-ignore
-          (currentKeyword: any, index: any) =>  [<a href={"?name=" + encode(currentKeyword.keyword.toLowerCase()) } className ="keyword" onMouseEnter={ () => document.body.style = 'background: rgb(' + currentKeyword.r + ', ' + currentKeyword.g + ', ' + currentKeyword.b + '); transition: all ease .5s'} onMouseOut={ () => document.body.style = 'background: white; transition: all ease .5s'}>{currentKeyword.keyword.toLowerCase()}</a>,<br/>] );
+          (currentKeyword: any, index: any) =>  [<a href={"?name=" + encode(currentKeyword.keyword.toLowerCase()) } className ="keyword" onMouseEnter={ () => document.body.style = 'background: rgb(' + currentKeyword.r + ', ' + currentKeyword.g + ', ' + currentKeyword.b + '); transition: all ease .5s'} onMouseOut={ () => document.body.style = 'background: black; transition: all ease .5s'}>{currentKeyword.keyword.toLowerCase()}</a>,<br/>] );
 
           return(
             <>

@@ -26,6 +26,7 @@
     "next-absolute-url": "^1.2.2",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
+    "socket.io": "^4.4.1",
     "tsc-watch": "^4.2.8"
   }
 }
