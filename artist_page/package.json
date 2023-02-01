@@ -28,7 +28,7 @@
     "express": "^4.17.1",
     "http-proxy-middleware": "^0.20.0",
     "masonry-layout": "^4.2.2",
-    "mongoose": "^5.9.16",
+    "mongoose": "^5.13.15",
     "mundu-react-carousel": "0.0.20",
     "nodemon": "^2.0.4",
     "prop-types": "^15.7.2",
