@@ -30,7 +30,7 @@
     "masonry-layout": "^4.2.2",
     "mongoose": "^5.9.16",
     "mundu-react-carousel": "0.0.20",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-addons-update": "^15.6.2",
